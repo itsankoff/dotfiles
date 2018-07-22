@@ -1,0 +1,36 @@
+# Shortcuts
+alias l='ls'
+alias ll='ls -lh'
+alias la='ls -lha'
+alias dev='cd ~/developers'
+alias dl='cd ~/Downloads'
+alias desk='cd ~/Desktop'
+alias home='cd ~'
+
+# Git releated
+alias g="git"
+alias gc="git commit -m"
+alias gp="git push origin"
+
+# Zsh related
+alias zconf='vim ~/.zshrc'
+alias zconfi='vim ~/.zshrc'
+alias zconfig='vim ~/.zshrc'
+alias zload='source ~/.zshrc'
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# One of @janmoesen’s ProTip™s
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+  alias "$method"="lwp-request -m '$method'"
+done
