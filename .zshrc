@@ -39,12 +39,13 @@ plugins=(
   command-not-found
   mosh
   web-search
+  ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # Setup aliases
-source .aliases
+source ~/.aliases
 
 # File search functions
 function f() { find . -iname "*$1*" ${@:2} }
@@ -56,6 +57,12 @@ source $(brew --prefix autoenv)/activate.sh
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
+
+# Lunchy
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+  . $LUNCHY_DIR/lunchy-completion.zsh
+fi
 
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
