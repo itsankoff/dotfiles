@@ -17,7 +17,7 @@ brew install wget
 brew install curl
 brew install htop
 brew install git
-brew install autoenv
+brew install direnv
 brew install autojump
 brew install go
 brew install hg

@@ -51,12 +51,11 @@ source ~/.aliases
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
 
-# autoenv
-source $(brew --prefix autoenv)/activate.sh
+# direnv
+eval "$(direnv hook zsh)"
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
 
 # Lunchy
 LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
