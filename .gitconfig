@@ -1,0 +1,21 @@
+[alias]
+    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    s = status
+    c = commit
+    d = diff
+    ce = checkout
+    ds = diff --staged
+    pullr = pull --rebase
+    uncommit = git reset HEAD^
+    branches = branch -a
+    remotes = remote -v
+
+[merge]
+    log = true
+
+[push]
+    default = matching
+
+[user]
+    name = itsankoff
+    email = itsankoff@gmail.com
