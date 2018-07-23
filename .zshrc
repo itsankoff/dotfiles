@@ -46,10 +46,6 @@ source $ZSH/oh-my-zsh.sh
 # Setup aliases
 source .aliases
 
-# User configuration
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export EDITOR=vim
-
 # File search functions
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
@@ -59,5 +55,15 @@ source $(brew --prefix autoenv)/activate.sh
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+
+# User configuration
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export EDITOR=vim
+export GOPATH=$HOME/developers/workspace
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
 
 echo "FUCKING WORK $(date +%V/54)"
