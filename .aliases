@@ -9,6 +9,10 @@ alias home='cd ~'
 
 # Git releated
 alias g="git"
+alias gs="git status"
+alias gd="git diff"
+alias ga="git add"
+alias gds="git diff --staged"
 alias gc="git commit -m"
 alias gp="git push origin"
 
@@ -17,6 +21,10 @@ alias zconf='vim ~/.zshrc'
 alias zconfi='vim ~/.zshrc'
 alias zconfig='vim ~/.zshrc'
 alias zload='source ~/.zshrc'
+
+# Aliases related
+alias zalias='vim ~/.aliases'
+alias zaliases='vim ~/.aliases'
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
