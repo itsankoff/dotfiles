@@ -22,8 +22,7 @@ Plug 'SirVer/ultisnips'
 let g:go_fmt_command = "goimports"
 call plug#end()
 
-
-let mapleader = "`"
+let mapleader = "§"
 
 if has('autocmd')
     " Default indent rules
