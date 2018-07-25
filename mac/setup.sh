@@ -1,16 +1,24 @@
 #!/bin/bash
 
+# NOTE:
+# This file can work as stanalone installer for mac environment
+
 # Install basic apps
 brew install git
 brew cask install iterm2
 brew cask install the-unarchiver
 brew cask install google-chrome
+brew cask install java
 brew install wget
 brew install curl
 brew install htop
 brew install git
 brew install direnv
 brew install autojump
+brew install node
+brew install ansible
+brew install python3
+pip3 install virtualenv
 
 # Setup development structure
 DEV_HOME=~developers
@@ -28,9 +36,6 @@ brew install hg
 
 # Install goimports
 go get golang.org/x/tools/cmd/goimports
-
-# install nodejs
-brew install node
 
 # Install postgres
 brew install postgresql
@@ -52,10 +57,6 @@ ln -s ~/developers/dotfiles/.aliases ~/.aliases
 
 # Install zsh themes
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-
-# Install golang
-wget https://dl.google.com/go/go1.10.3.darwin-amd64.pkg
-tar -C /usr/local -xzf /usr/local go1.10.3.darwin-amd64.pkg
 
 # Clone dotfiles repo
 pushd ~/developers && git clone git@github.com:itsankoff/dotfiles.git popd
