@@ -1,7 +1,15 @@
 #!/bin/bash
 
-# install git
+# Install basic apps
 brew install git
+brew cask install iterm2
+brew cask install google-chrome
+brew install wget
+brew install curl
+brew install htop
+brew install git
+brew install direnv
+brew install autojump
 
 # Setup development structure
 DEV_HOME=~developers
@@ -20,15 +28,8 @@ brew install hg
 # Install goimports
 go get golang.org/x/tools/cmd/goimports
 
-# Install basic apps
-brew cask install iterm2
-brew cask install google-chrome
-brew install wget
-brew install curl
-brew install htop
-brew install git
-brew install direnv
-brew install autojump
+# install nodejs
+brew install node
 
 # Install postgres
 brew install postgresql
