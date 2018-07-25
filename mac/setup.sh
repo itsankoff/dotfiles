@@ -9,12 +9,14 @@ brew cask install iterm2
 brew cask install the-unarchiver
 brew cask install google-chrome
 brew cask install java
+brew cask install docker
 brew install wget
 brew install curl
 brew install htop
 brew install git
 brew install direnv
 brew install autojump
+brew install grip
 brew install node
 brew install ansible
 brew install python3
