@@ -3,6 +3,7 @@
 # Install basic apps
 brew install git
 brew cask install iterm2
+brew cask install the-unarchiver
 brew cask install google-chrome
 brew install wget
 brew install curl
