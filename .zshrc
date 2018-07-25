@@ -64,6 +64,8 @@ if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
 fi
 
 # User configuration
+
+# Homebrew needs /usr/local/bin to be before /usr/bin in PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export EDITOR=vim
 export GOPATH=$HOME/developers/workspace
