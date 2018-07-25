@@ -3,6 +3,7 @@
     s = status
     c = commit
     d = diff
+    br = branch
     ce = checkout
     ds = diff --staged
     pullr = pull --rebase
@@ -25,3 +26,6 @@
 
 [url "git@bitbucket.org:"]
     insteadOf = https://bitbucket.org/
+
+[pager]
+    branch = false
