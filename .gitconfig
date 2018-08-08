@@ -6,8 +6,9 @@
     br = branch
     ce = checkout
     ds = diff --staged
+    last = log -1
     pullr = pull --rebase
-    uncommit = git reset HEAD^
+    uncommit = reset HEAD^
     branches = branch -a
     remotes = remote -v
 
