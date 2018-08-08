@@ -10,6 +10,7 @@ brew cask install the-unarchiver
 brew cask install google-chrome
 brew cask install java
 brew cask install docker
+brew cask install tunnelblick
 brew install wget
 brew install curl
 brew install htop
@@ -21,6 +22,7 @@ brew install node
 brew install ansible
 brew install python3
 pip3 install virtualenv
+sudo gem install cocoapods
 
 # Setup development structure
 DEV_HOME=~developers
