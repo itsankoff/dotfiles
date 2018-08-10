@@ -89,7 +89,7 @@ set nowritebackup
 set noswapfile
 
 " Copy to clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " Search options
 set incsearch
@@ -171,10 +171,6 @@ nnoremap <leader>jj :cclose<CR>
 nnoremap <leader>nn :cn<CR>
 nnoremap <leader>pp :cp<CR>
 nnoremap <leader>cc :cc<CR>
-
-" Easy copy/paster to/from clipboard
-vnoremap <leader>y "+y
-vnoremap <leader>p "+p
 
 " Easy .vimrc reload
 nnoremap <leader>r :so $MYVIMRC<CR>

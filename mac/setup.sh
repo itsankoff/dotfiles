@@ -22,6 +22,7 @@ brew install grip
 brew install node
 brew install ansible
 brew install python3
+brew install vim --with-override-system-vi
 pip3 install virtualenv
 sudo gem install cocoapods
 
