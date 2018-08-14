@@ -12,7 +12,7 @@ ln -s $(pwd)/.vimrc ~/.vimrc
 
 # Setup colorscheme
 mkdir -p ${VIM_DIR}/colors
-cp jellygrass.vim ~/.vim/colors/
+ln -s $(pwd)/jellygrass.vim ~/.vim/colors/
 
 # Install Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
