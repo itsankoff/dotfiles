@@ -118,7 +118,7 @@ set title
 " Turn the spell check on by default. Use underline as indicator.
 set spell
 hi clear SpellBad
-hi SpellBad cterm=underline
+hi SpellBad guisp=blue gui=underline guifg=NONE guibg=NONE cterm=underline ctermbg=NONE ctermfg=NONE term=underline
 
 set notimeout
 set nottimeout

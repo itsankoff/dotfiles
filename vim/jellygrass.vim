@@ -147,10 +147,10 @@ hi! link MoreMsg Special
 call s:X("Question",s:cyan,"","")
 
 " Spell Checking
-call s:X("SpellBad","",s:dark_red,"underline")
-call s:X("SpellRare","",s:dark_red,"underline")
-call s:X("SpellCap","",s:light_green,"underline")
-call s:X("SpellLocal","",s:green,"underline")
+call s:X("SpellBad","NONE","NONE","underline")
+call s:X("SpellRare","NONE","NONE","underline")
+call s:X("SpellCap","NONE","NONE","underline")
+call s:X("SpellLocal","NONE","NONE","underline")
 
 " Diff
 hi! link diffRemoved Constant
