@@ -57,4 +57,8 @@ git clone https://github.com/leafgarland/typescript-vim.git ~/.vim/bundle/typesc
 # Install all vundle plugins
 vim +PluginInstall +qall
 
+# Install vim-go binaries
+go get github.com/mdempsky/gocode
+vim +'silent :GoInstallBinaries' +qall
+
 echo "Happy vim-ing!"

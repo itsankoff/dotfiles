@@ -75,3 +75,6 @@ export PATH=$PATH:$GOROOT/bin
 
 
 echo "FUCKING WORK $(date +%V/54)"
+
+# added by travis gem
+[ -f /Users/itsankoff/.travis/travis.sh ] && source /Users/itsankoff/.travis/travis.sh

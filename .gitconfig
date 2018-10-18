@@ -8,6 +8,7 @@
     ds = diff --staged
     last = log -1
     logp = log --graph --oneline --pretty
+    logone = log --oneline
     pullr = pull --rebase
     uncommit = reset HEAD^
     branches = branch -a

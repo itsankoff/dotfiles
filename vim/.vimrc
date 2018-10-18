@@ -10,16 +10,23 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'flazz/vim-colorschemes'
+" Plugin 'Valloric/YouCompleteMe'
 " End Vundle setup
-
 
 " GO lang vim-go setup
 call plug#begin()
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go'}
-Plug 'SirVer/ultisnips'
+
+" auto imports
 let g:go_fmt_command = "goimports"
+
+" show only quickfix
+let g:go_list_type = "quickfix"
+
+" let g:go_metalinter_autosave = 1
+
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 let mapleader = "§"
@@ -27,6 +34,14 @@ let mapleader = "§"
 if has('autocmd')
     " Default indent rules
     autocmd FileType * set tabstop=4 shiftwidth=4 expandtab softtabstop=0
+
+    " Golang shortcuts
+    autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+    autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
     " Custom javascript indent rules
     autocmd FileType javascript,javascript.jsx,typescript,html,htmldjango set tabstop=2 shiftwidth=2 expandtab
