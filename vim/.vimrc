@@ -11,7 +11,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'flazz/vim-colorschemes'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 " End Vundle setup
 
 " GO lang vim-go setup
@@ -36,12 +36,13 @@ if has('autocmd')
     autocmd FileType * set tabstop=4 shiftwidth=4 expandtab softtabstop=0
 
     " Golang shortcuts
-    autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+    " Trigger :GoCoverage
+    autocmd FileType go nmap <Leader>1 <Plug>(go-coverage-toggle)
+    autocmd FileType go nmap <Leader>2 <Plug>(go-info)
     autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
     autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
     autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
     autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-    autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
     " Custom javascript indent rules
     autocmd FileType javascript,javascript.jsx,typescript,html,htmldjango set tabstop=2 shiftwidth=2 expandtab

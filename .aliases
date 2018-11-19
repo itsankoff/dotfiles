@@ -6,6 +6,7 @@ alias dev='cd ~/developers'
 alias dl='cd ~/Downloads'
 alias desk='cd ~/Desktop'
 alias home='cd ~'
+alias git='LANG=en_GB git'
 
 # Git releated
 alias g="git"
