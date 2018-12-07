@@ -68,11 +68,11 @@ fi
 # Homebrew needs /usr/local/bin to be before /usr/bin in PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export EDITOR=vim
-export GOPATH=$HOME/developers/workspace
 export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME/developers/workspace
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
 export PATH=$PATH:$GOROOT/bin
-
 
 echo "FUCKING WORK $(date +%V/54)"
 

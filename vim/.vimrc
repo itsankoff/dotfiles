@@ -82,7 +82,7 @@ set nocompatible
 set ffs=unix,mac,dos
 
 " Set default encoding
-set encoding=utf-8
+set encoding=UTF-8
 
 " Automatically save before commands like :next and :make
 set autowrite
