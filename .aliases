@@ -7,6 +7,7 @@ alias dl='cd ~/Downloads'
 alias desk='cd ~/Desktop'
 alias home='cd ~'
 alias git='LANG=en_GB git'
+alias vimz='vim $(fzf)'
 
 # Git releated
 alias g="git"

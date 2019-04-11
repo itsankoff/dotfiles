@@ -24,6 +24,7 @@ brew install ansible
 brew install python3
 brew install vim --with-override-system-vi
 brew install cmake
+brew install fzf
 pip3 install virtualenv
 sudo gem install cocoapods
 

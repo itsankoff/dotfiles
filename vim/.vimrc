@@ -14,8 +14,8 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'Valloric/YouCompleteMe'
 " End Vundle setup
 
-" GO lang vim-go setup
 call plug#begin()
+" GO lang vim-go setup
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go'}
 
 " auto imports
@@ -27,6 +27,9 @@ let g:go_list_type = "quickfix"
 " let g:go_metalinter_autosave = 1
 
 Plug 'ctrlpvim/ctrlp.vim'
+
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 let mapleader = "§"
@@ -156,6 +159,8 @@ set pastetoggle=<F12>
 
 " Make Cyrillic usable
 set langmap+=чявертъуиопшщасдфгхйклзьцжбнмЧЯВЕРТЪУИОПШЩАСДФГХЙКЛЗѝЦЖБНМ;`qwertyuiop[]asdfghjklzxcvbnm~QWERTYUIOP{}ASDFGHJKLZXCVBNM,ю\\,Ю\|,
+
+set backspace=indent,eol,start
 
 " Switch to sudo mode in already opened buffer
 cmap w!! w !sudo tee % >/dev/null
