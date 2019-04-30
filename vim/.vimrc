@@ -218,3 +218,5 @@ nnoremap <C-l> <C-w>l
 " nnoremap <Right> <NOP>
 " inoremap <Right> <NOP>
 " vnoremap <Right> <NOP>
+"
+nnoremap <leader>s :FZF<CR>
