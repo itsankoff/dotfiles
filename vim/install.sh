@@ -61,4 +61,9 @@ vim +PluginInstall +qall
 go get github.com/mdempsky/gocode
 vim +'silent :GoInstallBinaries' +qall
 
+# Install fugative.vim
+cd ~/.vim/bundle
+git clone https://github.com/tpope/vim-fugitive.git
+vim -u NONE -c "helptags vim-fugitive/doc" -c q
+
 echo "Happy vim-ing!"
