@@ -38,7 +38,6 @@ plugins=(
   colored-man-pages
   command-not-found
   mosh
-  web-search
   ssh-agent
 )
 

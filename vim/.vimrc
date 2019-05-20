@@ -12,6 +12,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'hashivim/vim-terraform'
 " End Vundle setup
 
 call plug#begin()
@@ -33,6 +34,10 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 let mapleader = "§"
+
+" Terraform vim config
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
 if has('autocmd')
     " Default indent rules
