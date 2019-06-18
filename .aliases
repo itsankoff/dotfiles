@@ -10,6 +10,8 @@ alias git='LANG=en_GB git'
 alias vims='vim $(fzf)'
 alias vimr='vim $(fzf)'
 alias vimz='vim $(fzf)'
+alias copy='pbcopy'
+alias paste='pbpaste'
 
 # Git releated
 alias g="git"
