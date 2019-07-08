@@ -170,6 +170,9 @@ set backspace=indent,eol,start
 " Switch to sudo mode in already opened buffer
 cmap w!! w !sudo tee % >/dev/null
 
+" Set split direction
+set splitright
+
 " Comment mapping
 noremap <silent> <C-c> :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> <C-x> :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
@@ -208,20 +211,20 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Ignore arrows
-" nnoremap <Up> <NOP>
-" inoremap <Up> <NOP>
-" vnoremap <Up> <NOP>
-"
-" nnoremap <Down> <NOP>
-" inoremap <Down> <NOP>
-" vnoremap <Down> <NOP>
-"
-" nnoremap <Left> <NOP>
-" inoremap <Left> <NOP>
-" vnoremap <Left> <NOP>
-"
-" nnoremap <Right> <NOP>
-" inoremap <Right> <NOP>
-" vnoremap <Right> <NOP>
-"
+nnoremap <Up> <NOP>
+inoremap <Up> <NOP>
+vnoremap <Up> <NOP>
+
+nnoremap <Down> <NOP>
+inoremap <Down> <NOP>
+vnoremap <Down> <NOP>
+
+nnoremap <Left> <NOP>
+inoremap <Left> <NOP>
+vnoremap <Left> <NOP>
+
+nnoremap <Right> <NOP>
+inoremap <Right> <NOP>
+vnoremap <Right> <NOP>
+
 nnoremap <leader>s :FZF<CR>
