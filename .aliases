@@ -21,6 +21,7 @@ alias ga="git add"
 alias gds="git diff --staged"
 alias gc="git commit -m"
 alias gp="git push origin"
+alias gpf="git push -f origin"
 
 # Zsh related
 alias zconf='vim ~/.zshrc'
