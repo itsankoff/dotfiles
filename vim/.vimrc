@@ -33,12 +33,6 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-let mapleader = "§"
-
-" Terraform vim config
-let g:terraform_align=1
-let g:terraform_fmt_on_save=1
-
 if has('autocmd')
     " Default indent rules
     autocmd FileType * set tabstop=4 shiftwidth=4 expandtab softtabstop=0
@@ -76,12 +70,15 @@ if has('autocmd')
     " Remove trailing spaces on save for specific file types
     autocmd FileType c,vim,cpp,python,javascript,jsx autocmd BufWritePre <buffer> :%s/\s\+$//e
 
-    " Keep clipboard content after vim exit
-    autocmd VimLeave * call system("xclip -o | xclip -selection c")
 endif
+
+let mapleader = "§"
 
 " Color scheme
 colorscheme jellygrass
+
+" Keep clipboard content after vim exit
+autocmd VimLeave * call system("xclip -o | xclip -selection c")
 
 " Vim, not vi
 set nocompatible
@@ -184,6 +181,10 @@ noremap <Tab> :NERDTreeToggle<CR>
 nnoremap <F2> :A<CR>
 nnoremap <silent> <F3> :Bgrep<CR>
 nnoremap <silent> <F4> :Rgrep<CR>
+
+" Terraform vim config
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
 " Save files
 nnoremap <leader>ww :w<CR>
