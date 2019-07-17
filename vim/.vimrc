@@ -204,6 +204,9 @@ nnoremap <leader>cc :cc<CR>
 " Easy .vimrc reload
 nnoremap <leader>r :so $MYVIMRC<CR>
 
+" FZF mappings
+nnoremap <leader>s :Files<CR>
+
 " Easy window navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -211,20 +214,18 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Ignore arrows
-nnoremap <Up> <NOP>
-inoremap <Up> <NOP>
-vnoremap <Up> <NOP>
-
-nnoremap <Down> <NOP>
-inoremap <Down> <NOP>
-vnoremap <Down> <NOP>
-
-nnoremap <Left> <NOP>
-inoremap <Left> <NOP>
-vnoremap <Left> <NOP>
-
-nnoremap <Right> <NOP>
-inoremap <Right> <NOP>
-vnoremap <Right> <NOP>
-
-nnoremap <leader>s :FZF<CR>
+" nnoremap <Up> <NOP>
+" inoremap <Up> <NOP>
+" vnoremap <Up> <NOP>
+"
+" nnoremap <Down> <NOP>
+" inoremap <Down> <NOP>
+" vnoremap <Down> <NOP>
+"
+" nnoremap <Left> <NOP>
+" inoremap <Left> <NOP>
+" vnoremap <Left> <NOP>
+"
+" nnoremap <Right> <NOP>
+" inoremap <Right> <NOP>
+" vnoremap <Right> <NOP>
