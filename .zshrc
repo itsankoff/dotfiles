@@ -87,3 +87,6 @@ echo "FUCKING WORK $(date +%V/54)"
 
 # added by travis gem
 [ -f /Users/itsankoff/.travis/travis.sh ] && source /Users/itsankoff/.travis/travis.sh
+
+# Set locale
+export LC_ALL=en_US.UTF-8
