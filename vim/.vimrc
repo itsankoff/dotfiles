@@ -13,6 +13,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'hashivim/vim-terraform'
+Plugin 'leafgarland/typescript-vim'
 " End Vundle setup
 
 call plug#begin()
