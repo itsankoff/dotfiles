@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/itsankoff/.oh-my-zsh"
+export ZSH="/Users/${USER}/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
@@ -62,17 +62,10 @@ eval "$(direnv hook zsh)"
 # File search functions
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
+function pub() { ssh-keygen -y -f $1 > $1.pub }
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-# Lunchy OSX
-LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-  . $LUNCHY_DIR/lunchy-completion.zsh
-fi
-
-# User configuration
 
 # Homebrew needs /usr/local/bin to be before /usr/bin in PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -84,9 +77,6 @@ export PATH=$PATH:$GOBIN
 export PATH=$PATH:$GOROOT/bin
 
 echo "FUCKING WORK $(date +%V/54)"
-
-# added by travis gem
-[ -f /Users/itsankoff/.travis/travis.sh ] && source /Users/itsankoff/.travis/travis.sh
 
 # Set locale
 export LC_ALL=en_US.UTF-8
