@@ -12,6 +12,7 @@ brew cask install java
 brew cask install docker
 brew cask install tunnelblick
 brew cask install ngrok
+brew install terraform
 brew install wget
 brew install curl
 brew install htop
