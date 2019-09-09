@@ -13,6 +13,7 @@
     uncommit = reset HEAD^
     branches = branch -a
     remotes = remote -v
+    whichcommit = branch --contains
 
 [merge]
     log = true
