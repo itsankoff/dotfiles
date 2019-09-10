@@ -3,6 +3,17 @@
 # NOTE:
 # This file can work as stanalone installer for mac environment
 
+# Install fonts
+mkdir -p /tmp/fonts
+pushd /tmp/fonts
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
+popd
+exit 1
+
 # Install basic apps
 brew install git
 brew cask install iterm2
