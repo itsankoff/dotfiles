@@ -3,17 +3,6 @@
 # NOTE:
 # This file can work as stanalone installer for mac environment
 
-# Install fonts
-mkdir -p /tmp/fonts
-pushd /tmp/fonts
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts
-./install.sh
-cd ..
-rm -rf fonts
-popd
-exit 1
-
 # Install basic apps
 brew install git
 brew cask install iterm2
@@ -64,6 +53,16 @@ initdb
 brew services start postgres
 createdb $USER
 
+# Install fonts
+mkdir -p /tmp/fonts
+pushd /tmp/fonts
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
+popd
+
 # Setup Oh my zsh
 brew install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -81,4 +80,5 @@ ln -s ${USER_HOME}/developers/dotfiles/.gitconfig ${USER_HOME}/.gitconfig
 # Reload zsh config
 source ${USER_HOME}/.zshrc
 
-echo Done!
+echo "Don't forget to uncheck keyboard shortcuts in Settings -> Keyboards -> Shortcuts -> Mission Control ^<- ^->"
+echo "Done!"
