@@ -80,3 +80,5 @@ echo "FUCKING WORK $(date +%V/54)"
 
 # Set locale
 export LC_ALL=en_US.UTF-8
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
