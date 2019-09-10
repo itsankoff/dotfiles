@@ -23,15 +23,16 @@ brew install grip
 brew install node
 brew install ansible
 brew install python3
-brew install vim --with-override-system-vi
+brew install vim
 brew install cmake
-brew install fzf
 pip3 install virtualenv
 sudo gem install cocoapods
 
 # Setup development structure
-DEV_HOME=~developers
-mkdir $DEV_HOME
+USER_HOME="/Users/${USER}"
+DEV_HOME="${USER_HOME}/developers"
+
+mkdir -p $DEV_HOME
 
 # Setup golang workspace structure
 mkdir -p $DEV_HOME/workspace
@@ -49,34 +50,24 @@ go get golang.org/x/tools/cmd/goimports
 # Install postgres
 brew install postgresql
 initdb
-gem install lunchy
-mkdir -p ~/Library/LaunchAgents
-cp /usr/local/Cellar/postgresql/10.4/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents/
-lunchy start postgres
+brew services start postgres
 createdb $USER
 
 # Setup Oh my zsh
 brew install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 pushd developers && git clone https://github.com/powerline/fonts.git && pushd fonts && ./install.sh && popd && popd
-mv .zshrc .zshrc.orig
-pushd developers && git clone git@github.com:itsankoff/dotfiles.git && popd
-ln -s ~/developers/dotfiles/.zshrc ~/.zshrc
-ln -s ~/developers/dotfiles/.aliases ~/.aliases
-
-# Install zsh themes
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-
-# Clone dotfiles repo
-pushd ~/developers && git clone git@github.com:itsankoff/dotfiles.git popd
+mv ${USER_HOME}/.zshrc ${USER_HOME}/.zshrc.orig
+ln -s ${USER_HOME}/developers/dotfiles/.zshrc ${USER_HOME}/.zshrc
+ln -s ${USER_HOME}/developers/dotfiles/.aliases ${USER_HOME}/.aliases
 
 # Setup vim
-pushd ~/developers/dotfiles/vim && ./install.sh && popd
+pushd ${USER_HOME}/developers/dotfiles/vim && ./install.sh && popd
 
 # Setup github
-ln -s ~/developers/dotfiles/.gitconfig ~/.gitconfig
+ln -s ${USER_HOME}/developers/dotfiles/.gitconfig ${USER_HOME}/.gitconfig
 
 # Reload zsh config
-source ~/.zshrc
+source ${USER_HOME}/.zshrc
 
 echo Done!
