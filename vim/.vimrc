@@ -14,23 +14,15 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'hashivim/vim-terraform'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'fatih/vim-go'
 " End Vundle setup
 
 call plug#begin()
-" GO lang vim-go setup
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go'}
+" vim-polyglot
+Plug 'sheerun/vim-polyglot'
 
-" auto imports
-let g:go_fmt_command = "goimports"
-
-" show only quickfix
-let g:go_list_type = "quickfix"
-
-" let g:go_metalinter_autosave = 1
-
-Plug 'ctrlpvim/ctrlp.vim'
-
-Plug '/usr/local/opt/fzf'
+" FZF
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
@@ -73,6 +65,15 @@ if has('autocmd')
 
 endif
 
+" vim-go
+" auto imports
+let g:go_fmt_command = "goimports"
+
+" show only quickfix
+let g:go_list_type = "quickfix"
+
+" let g:go_metalinter_autosave = 1
+
 " for hex editing
 augroup Binary
   au!
@@ -85,7 +86,7 @@ augroup Binary
   au BufWritePost *.bin set nomod | endif
 augroup END
 
-let mapleader = "§"
+let mapleader = "`"
 
 " Color scheme
 colorscheme jellygrass
