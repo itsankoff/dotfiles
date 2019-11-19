@@ -5,13 +5,6 @@
 
 # Install basic apps
 brew install git
-brew cask install iterm2
-brew cask install the-unarchiver
-brew cask install google-chrome
-brew cask install java
-brew cask install docker
-brew cask install tunnelblick
-brew cask install ngrok
 brew install terraform
 brew install wget
 brew install curl
@@ -25,7 +18,18 @@ brew install ansible
 brew install python3
 brew install vim
 brew install cmake
+brew install ffmpeg
 pip3 install virtualenv
+brew cask install iterm2
+brew cask install the-unarchiver
+brew cask install google-chrome
+brew cask install java
+brew cask install docker
+brew cask install tunnelblick
+brew cask install ngrok
+brew cask install skype
+brew cask install slack
+brew cask install spotify
 sudo gem install cocoapods
 
 # Setup development structure
