@@ -3,6 +3,9 @@
 # NOTE:
 # This file can work as stanalone installer for mac environment
 
+# Install brew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 # Install basic apps
 brew install git
 brew install terraform
