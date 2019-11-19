@@ -3,6 +3,9 @@
 # NOTE:
 # This file can work as stanalone installer for mac environment
 
+# Setup machine hostname
+sudo scutil --set HostName molar
+
 # Install brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
