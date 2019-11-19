@@ -61,7 +61,7 @@ eval "$(direnv hook zsh)"
 
 # File search functions
 function f() { find . -iname "*$1*" ${@:2} }
-function r() { grep "$1" ${@:2} -R . }
+function r() { grep -R -n "$1" $2 }
 function pub() { ssh-keygen -y -f $1 > $1.pub }
 
 # autojump
