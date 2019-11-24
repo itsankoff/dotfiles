@@ -39,6 +39,7 @@ brew cask install ngrok || message "Failed to install ngrok"
 brew cask install skype || message "Failed to install skype"
 brew cask install slack || message "Failed to install slack"
 brew cask install spotify || message "Failed to install spotify"
+brew cask install visual-studio-code || message "Failed to install xcode"
 sudo gem install cocoapods || message "Failed to install cocoapods"
 
 # Setup development structure
