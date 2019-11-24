@@ -56,9 +56,6 @@ source $ZSH/oh-my-zsh.sh
 # Setup aliases
 source ~/.aliases
 
-# direnv hook setup
-eval "$(direnv hook zsh)"
-
 # File search functions
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep -R -n "$1" $2 }
@@ -82,3 +79,5 @@ echo "FUCKING WORK $(date +%V/54)"
 export LC_ALL=en_US.UTF-8
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(direnv hook zsh)"
