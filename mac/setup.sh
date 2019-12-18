@@ -7,6 +7,27 @@ function message {
     echo "$1"
 }
 
+function verify {
+    message "$1? ($2/$3): "
+    read PROMPT
+
+    if [ $PROMPT == "$2" ]
+    then
+        message "Nicee!"
+    fi
+
+    if [ $PROMPT == "$3" ]
+    then
+        message "I am sorry, but I can't help with that..."
+    fi
+}
+
+message "OK Let's setup this machine! I will take care..."
+message "Go and make yourself a coffee or a tea!"
+sleep 2
+
+message "Setting up the environment..."
+
 # Setup machine hostname
 sudo scutil --set HostName molar
 
@@ -95,5 +116,14 @@ ln -s ${USER_HOME}/developers/dotfiles/.gitconfig ${USER_HOME}/.gitconfig
 # Reload zsh config
 source ${USER_HOME}/.zshrc
 
-echo "Don't forget to uncheck keyboard shortcuts in Settings -> Keyboards -> Shortcuts -> Mission Control ^<- ^->"
-echo "Done!"
+
+verify "Btw how was your coffee/tea" "good" "bad"
+sleep 1
+
+message "Anyway..."
+sleep 1
+
+message "Don't forget to uncheck keyboard shortcuts in Settings -> Keyboards -> Shortcuts -> Mission Control ^<- ^->"
+sleep 2
+
+message "Happy coding!"
