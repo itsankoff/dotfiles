@@ -1,58 +1,49 @@
 #!/bin/bash
 
-VIM_DIR=~/.vim
+VIM_DIR=~/.vim-itsankoff
+VIM_PLUGIN_DIR=${VIM_DIR}/plugged
 
-# Install pathogen
-mkdir -p ${VIM_DIR}/autoload
-mkdir -p ${VIM_DIR}/bundle
-curl -fLo ${VIM_DIR}/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-
-# Install Vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+function must() {
+    echo cmd: $@
+    "$@";
+    code=$?
+    if [ $code -ne 0 ]
+    then
+        echo "Last command ($*) failed with non-zero exit code ($code)."
+        exit 1
+    fi
+}
 
 # Install Plug
-curl -fLo ${VIM_DIR}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-# Plugins from this folder are autoloaded
-mkdir -p ${VIM_DIR}/plugin
+must curl -fLo ${VIM_DIR}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Setup colorscheme
-mkdir -p ${VIM_DIR}/colors
-ln -s $(pwd)/jellygrass.vim ~/.vim/colors/
+must mkdir -p ${VIM_DIR}/colors
+must ln -sf $(pwd)/jellygrass.vim ${VIM_DIR}/colors/jellygrass.vim
 
 # Install NERDTree plugin
-git clone https://github.com/scrooloose/nerdtree.git ${VIM_DIR}/bundle/nerdtree
+test -d ${VIM_PLUGIN_DIR}/nerdtree || must git clone https://github.com/scrooloose/nerdtree.git ${VIM_PLUGIN_DIR}/nerdtree
 
-# Install grep search plugin
-mkdir ${VIM_DIR}/bundle/grep
-curl -fLo /tmp/grep.zip https://www.vim.org/scripts/download_script.php?src_id=25816
-unzip /tmp/grep.zip -d ${VIM_DIR}/bundle/grep/
-rm /tmp/grep.zip
+# Install TypeScript syntax
+test -d ${VIM_PLUGIN_DIR}/typescript-vim || must git clone https://github.com/leafgarland/typescript-vim.git ${VIM_PLUGIN_DIR}/typescript-vim
 
-# Install missing syntax
-git clone https://github.com/leafgarland/typescript-vim.git ~/.vim/bundle/typescript-vim
-
-# Install vimrc
-ln -s $(pwd)/.vimrc ~/.vimrc
-
-# Install all vundle plugins
-vim +PluginInstall +qall
+# Install vim configuration
+test -f ~/.vimrc && must mv ~/.vimrc ~/.vimrc-${USER}
+must ln -s $(pwd)/.vimrc ~/.vimrc
 
 # Install all plug plugins
-vim +PlugInstall +qall
+must vim -c 'PlugInstall' +qall
 
-echo "Plugins installed"
+echo "VIM Plugins installed"
 
 # Install YouCompleteMe server
-pushd ~/.vim/bundle/YouCompleteMe && python install.py && popd
+pushd ${VIM_DIR}/YouCompleteMe
+    must python3 install.py
+popd
 
+must vim -c 'GoInstallBinaries' +qall
 # Install vim-go binaries
-go get github.com/mdempsky/gocode
-vim +'silent :GoInstallBinaries' +qall
-
-# Install fugative.vim
-cd ~/.vim/bundle
-git clone https://github.com/tpope/vim-fugitive.git
-vim -u NONE -c "helptags vim-fugitive/doc" -c q
+must go get github.com/mdempsky/gocode
+GO111MODULE=on must go get golang.org/x/tools/gopls@latest
 
 echo "Happy vim-ing!"

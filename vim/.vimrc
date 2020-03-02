@@ -1,29 +1,25 @@
-execute pathogen#infect()
+set rtp^=~/.vim-itsankoff
+
 filetype plugin indent on
 syntax on
 
-" Setup Vundle
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim-itsankoff')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'hashivim/vim-terraform'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'fatih/vim-go'
-" End Vundle setup
-
-call plug#begin()
-" vim-polyglot
+Plug 'preservim/nerdtree'
+Plug 'flazz/vim-colorschemes'
+Plug 'Valloric/YouCompleteMe'
+Plug 'hashivim/vim-terraform'
+Plug 'leafgarland/typescript-vim'
+Plug 'fatih/vim-go'
 Plug 'sheerun/vim-polyglot'
-
-" FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 if has('autocmd')
@@ -68,10 +64,8 @@ endif
 " vim-go
 " auto imports
 let g:go_fmt_command = "goimports"
-
 " show only quickfix
 let g:go_list_type = "quickfix"
-
 " let g:go_metalinter_autosave = 1
 
 " for hex editing
