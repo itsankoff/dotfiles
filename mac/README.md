@@ -6,7 +6,7 @@
 ## Install AirPodsConnect
 * Open Script Editor
 * Copy the `AirPodsConnect` script in the editor
-* Rename the `Ivaylo’s AirPods` with yours AirPods's name. If you have apostrophe
+* Rename the `Ivaylo’s AirPods Pro` with yours AirPods's name. If you have apostrophe
     in your AirPods name, make sure it matches extacly in the script.
 * Save the script in Applications with File Format `Application`
 * Open Spotlight, type `AirPodsConnect` and hit enter
