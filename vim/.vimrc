@@ -19,6 +19,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'epmatsw/ag.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -67,6 +69,15 @@ let g:go_fmt_command = "goimports"
 " show only quickfix
 let g:go_list_type = "quickfix"
 " let g:go_metalinter_autosave = 1
+
+" airline configuration
+let g:airline_theme = 'minimalist'
+" Do mess with spell settings
+let g:airline_detect_spell=0
+let g:airline_powerline_fonts = 1
+" Use for non-gui environments
+"let g:airline_symbols_ascii = 1
+
 
 " for hex editing
 augroup Binary
