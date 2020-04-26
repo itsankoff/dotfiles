@@ -28,17 +28,30 @@ if has('autocmd')
     " Default indent rules
     autocmd FileType * set tabstop=4 shiftwidth=4 expandtab softtabstop=0
 
+    " vim-go
+    " auto imports
+    autocmd FileType go let g:go_fmt_command = "goimports"
+    " show only quickfix
+    autocmd FileType go let g:go_list_type = "quickfix"
+    " autocmd FileType go let g:go_metalinter_autosave = 1
+
     " Golang shortcuts
-    " Trigger :GoCoverage
-    autocmd FileType go nmap <Leader>1 <Plug>(go-coverage-toggle)
-    autocmd FileType go nmap <Leader>2 <Plug>(go-info)
     autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
     autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
     autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
     autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
+    " Go mappings
+    " Trigger :GoCoverage
+    autocmd FileType go nmap <leader>1 <Plug>(go-coverage-toggle)
+    autocmd FileType go nmap <leader>h <Plug>(go-info)
+    autocmd FileType go nnoremap <leader>b :GoBuild<CR>
+    autocmd FileType go nnoremap <leader>t :GoTest!<CR>
+    autocmd FileType go nnoremap <leader>f :GoTestFunc!<CR>
+
+
     " Custom javascript indent rules
-    autocmd FileType javascript,javascript.jsx,typescript,html,htmldjango set tabstop=2 shiftwidth=2 expandtab
+    autocmd FileType javascript,javascript.jsx,typescript,typescriptreact,html,htmldjango set tabstop=2 shiftwidth=2 expandtab
 
     " Custom python indent rules
     autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
@@ -60,15 +73,7 @@ if has('autocmd')
 
     " Remove trailing spaces on save for specific file types
     autocmd FileType c,vim,cpp,python,javascript,jsx autocmd BufWritePre <buffer> :%s/\s\+$//e
-
 endif
-
-" vim-go
-" auto imports
-let g:go_fmt_command = "goimports"
-" show only quickfix
-let g:go_list_type = "quickfix"
-" let g:go_metalinter_autosave = 1
 
 " airline configuration
 let g:airline_theme = 'minimalist'
