@@ -131,8 +131,8 @@ set showmatch
 " Set modifiable
 set ma
 
-" Show vim gutter
-set scl=yes
+" Vim gutter
+set scl=no
 
 " Check for file changes
 set autoread
