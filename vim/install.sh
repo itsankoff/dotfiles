@@ -38,7 +38,7 @@ echo "VIM Plugins installed"
 
 # Install YouCompleteMe server
 pushd ${VIM_DIR}/YouCompleteMe
-    must python3 install.py
+    must python3 install.py --go-completer
 popd
 
 must vim -c 'GoInstallBinaries' +qall
