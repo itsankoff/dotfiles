@@ -33,13 +33,11 @@ if has('autocmd')
     autocmd FileType go let g:go_fmt_command = "goimports"
     " show only quickfix
     autocmd FileType go let g:go_list_type = "quickfix"
+
     " autocmd FileType go let g:go_metalinter_autosave = 1
 
-    " Golang shortcuts
-    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+    " ycm go LSP
+    autocmd FileType go let g:ycm_gopls_binary_path = '$GOPATH/bin/gopls'
 
     " Go mappings
     " Trigger :GoCoverage
@@ -48,7 +46,10 @@ if has('autocmd')
     autocmd FileType go nnoremap <leader>b :GoBuild<CR>
     autocmd FileType go nnoremap <leader>t :GoTest!<CR>
     autocmd FileType go nnoremap <leader>f :GoTestFunc!<CR>
-
+    autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+    autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
     " Custom javascript indent rules
     autocmd FileType javascript,javascript.jsx,typescript,typescriptreact,html,htmldjango set tabstop=2 shiftwidth=2 expandtab
