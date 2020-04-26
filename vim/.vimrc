@@ -83,6 +83,9 @@ let g:airline_powerline_fonts = 1
 " Use for non-gui environments
 "let g:airline_symbols_ascii = 1
 
+" ycm autocompletion settings
+let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_key_invoke_completion = '<C-Space>'
 
 " for hex editing
 augroup Binary
