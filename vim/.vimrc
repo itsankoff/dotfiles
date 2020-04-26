@@ -80,13 +80,17 @@ endif
 let g:airline_theme = 'minimalist'
 " Do mess with spell settings
 let g:airline_detect_spell=0
+" Use for GUI environments
 let g:airline_powerline_fonts = 1
-" Use for non-gui environments
+" Use for non-GUI environments
 "let g:airline_symbols_ascii = 1
 
 " ycm autocompletion settings
-let g:ycm_add_preview_to_completeopt = 1
-" let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_invoke_completion = '<C-f>'
+
+" Terraform vim config
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
 " for hex editing
 augroup Binary
@@ -100,6 +104,7 @@ augroup Binary
   au BufWritePost *.bin set nomod | endif
 augroup END
 
+" Leader definition
 let mapleader = "`"
 
 " Color scheme
@@ -126,10 +131,13 @@ set showmatch
 " Set modifiable
 set ma
 
+" Show vim gutter
+set scl=yes
+
 " Check for file changes
 set autoread
 
-" Show numbers
+" Show line numbers
 set number
 
 " Disable backups
@@ -192,11 +200,12 @@ set langmap+=чявертъуиопшщасдфгхйклзьцжбнмЧЯВЕ�
 
 set backspace=indent,eol,start
 
-" Switch to sudo mode in already opened buffer
-cmap w!! w !sudo tee % >/dev/null
-
 " Set split direction
 set splitright
+
+" Save buffer changes with sudo even if it was opened without sudo
+cmap w!! w !sudo tee > /dev/null %
+cmap W!! w !sudo tee > /dev/null %
 
 " Comment mapping
 noremap <silent> <C-c> :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
@@ -204,15 +213,6 @@ noremap <silent> <C-x> :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/'
 
 " Open close nerdtree
 noremap <Tab> :NERDTreeToggle<CR>
-
-" Switch .h .cpp (based on plugin)
-nnoremap <F2> :A<CR>
-nnoremap <silent> <F3> :Bgrep<CR>
-nnoremap <silent> <F4> :Rgrep<CR>
-
-" Terraform vim config
-let g:terraform_align=1
-let g:terraform_fmt_on_save=1
 
 " Save files
 nnoremap <leader>ww :w<CR>
