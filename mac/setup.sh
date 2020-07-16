@@ -109,6 +109,9 @@ mv ${USER_HOME}/.zshrc ${USER_HOME}/.zshrc.orig
 ln -s ${USER_HOME}/developers/dotfiles/.zshrc ${USER_HOME}/.zshrc
 ln -s ${USER_HOME}/developers/dotfiles/.aliases ${USER_HOME}/.aliases
 
+# zsh-autosuggestions plugin
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 # Setup vim
 pushd ${USER_HOME}/developers/dotfiles/vim && ./install.sh && popd
 

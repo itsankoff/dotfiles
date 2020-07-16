@@ -49,6 +49,7 @@ plugins=(
   command-not-found
   mosh
   ssh-agent
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
