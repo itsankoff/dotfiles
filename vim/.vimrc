@@ -57,9 +57,7 @@ if has('autocmd')
     " Custom python indent rules
     autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 
-    autocmd FileType yaml set tabstop=2 shiftwidth=2 expandtab
-
-    autocmd FileType ansible set tabstop=2 shiftwidth=2 expandtab
+    autocmd FileType yaml,yaml.ansible set tabstop=2 shiftwidth=2 expandtab
 
     " Custom Makefile indent rules
     autocmd Filetype make set noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -235,6 +233,9 @@ nnoremap <leader>r :so $MYVIMRC<CR>
 
 " FZF mappings
 nnoremap <leader>s :Files<CR>
+
+" Ag search word under the cursor
+noremap <leader>a :Ag! "<cword>"<cr>
 
 " Easy window navigation
 nnoremap <C-h> <C-w>h
