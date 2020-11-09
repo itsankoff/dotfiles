@@ -61,6 +61,9 @@ source ~/.aliases
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep -R -n "$1" $2 }
 function pub() { ssh-keygen -y -f $1 > $1.pub }
+function kube_token { kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}') }
+function kube_context { kubectl config use-context $1 }
+function kube_be_token { echo $(kubectl get secrets/$(kubectl get sa/rhyme-backend -o=jsonpath="{.secrets[0].name}") -o=jsonpath="{.data.token}") | base64 -D }
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
