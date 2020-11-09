@@ -12,6 +12,7 @@ alias vimr='vim $(fzf)'
 alias vimz='vim $(fzf)'
 alias copy='pbcopy'
 alias paste='pbpaste'
+alias жим='vim'
 
 # Git releated
 alias g="git"
