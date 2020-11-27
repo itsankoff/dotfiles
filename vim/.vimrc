@@ -21,6 +21,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'epmatsw/ag.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'n0v1c3/vira', { 'do': './install.sh', 'branch': 'dev' }
 
 call plug#end()
 
@@ -72,6 +74,9 @@ if has('autocmd')
 
     " Remove trailing spaces on save for specific file types
     autocmd FileType c,vim,cpp,python,javascript,jsx autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+    " Keep clipboard content after vim exit
+    autocmd VimLeave * call system("xclip -o | xclip -selection c")
 endif
 
 " airline configuration
@@ -108,8 +113,21 @@ let mapleader = "`"
 " Color scheme
 colorscheme jellygrass
 
-" Keep clipboard content after vim exit
-autocmd VimLeave * call system("xclip -o | xclip -selection c")
+" NERDThree Git plugin
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✐',
+                \ 'Staged'    :'▲',
+                \ 'Untracked' :'⟎',
+                \ 'Renamed'   :'☈',
+                \ 'Unmerged'  :'▽',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✹',
+                \ 'Ignored'   :'.',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
+let g:NERDTreeGitStatusUseNerdFonts = 1 "
 
 " Vim, not vi
 set nocompatible
