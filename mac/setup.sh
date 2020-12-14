@@ -510,11 +510,11 @@ function setup_git() {
 }
 
 is_pkg "setup_development" && setup_development
-# is_pkg "setup_zsh" && setup_zsh
-# is_pkg "setup_golang" && setup_golang
-# is_pkg "setup_postgresql" && setup_postgresql
-# is_pkg "install_fonts" && install_fonts
-# is_pkg "setup_vim" && setup_vim
+is_pkg "setup_zsh" && setup_zsh
+is_pkg "setup_golang" && setup_golang
+is_pkg "setup_postgresql" && setup_postgresql
+is_pkg "install_fonts" && install_fonts
+is_pkg "setup_vim" && setup_vim
 is_pkg "setup_git" && setup_git
 
 verify "Btw how was your coffee/tea" "good" "bad"
