@@ -1,5 +1,5 @@
 # Installation guide for OSX
-This is poor man's attempt to set up a platform agnostic development environment
+[WIP] This is poor man's attempt to set up a platform agnostic development environment
 through overcomplicated shell scripts.
 
 ## General setup
