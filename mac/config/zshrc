@@ -71,11 +71,6 @@ function kube_be_token { echo $(kubectl get secrets/$(kubectl get sa/rhyme-backe
 # Homebrew needs /usr/local/bin to be before /usr/bin in PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export EDITOR=vim
-export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/developers/workspace
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
-export PATH=$PATH:$GOROOT/bin
 
 echo "FUCKING WORK $(date +%V/54)"
 
@@ -85,3 +80,14 @@ export LC_ALL=en_US.UTF-8
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
+
+# Configured by setup.sh
+export GOROOT=/usr/local/Cellar/go@1.13/1.13.15/libexec
+# Configured by setup.sh
+export PATH="$PATH:/usr/local/opt/go@1.13/bin"
+# Configured by setup.sh
+export GOPATH=/Users/itsankov/developers/workspace
+# Configured by setup.sh
+export GOBIN=$GOPATH/bin
+# Configured by setup.sh
+export PATH="$PATH:$GOBIN"

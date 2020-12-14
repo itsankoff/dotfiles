@@ -13,7 +13,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'Valloric/YouCompleteMe'
 Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
