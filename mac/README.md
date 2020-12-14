@@ -1,4 +1,6 @@
 # Installation guide for OSX
+This is poor man's attempt to set up a platform agnostic development environment
+through overcomplicated shell scripts.
 
 ## General setup
 * 📜 Run `setup.sh`
@@ -18,4 +20,6 @@
 * Depending on your Mac settings you may need to allow Accessibility permissions
     for the script. Go to `Settings -> Security and Privacy -> Privacy Tab -> Accessibility -> Add permission for AirPodsConnect`
 
-[Full article](https://medium.com/@secondfret/how-to-connect-your-airpods-to-your-mac-with-a-keyboard-shortcut-9d72e786993b)
+
+## References
+* AirPodsConnect Spotlight bind - [Full article](https://medium.com/@secondfret/how-to-connect-your-airpods-to-your-mac-with-a-keyboard-shortcut-9d72e786993b)
