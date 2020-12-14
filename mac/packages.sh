@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define basic apps and packages
+# Terminal packages
 terminal_packages=(
     git
     terraform
@@ -27,6 +27,7 @@ terminal_packages=(
     zsh
 )
 
+# GUI packages
 gui_packages=(
     iterm2
     the-unarchiver
@@ -38,9 +39,11 @@ gui_packages=(
     visual-studio-code
 )
 
+# Python dependencies
 pip_packages=(
     virtualenv
 )
 
+# Ruby dependencies
 ruby_gems=(
 )
