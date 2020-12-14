@@ -9,7 +9,7 @@ through overcomplicated shell scripts.
 
 ## Install AirPodsConnect
 * Open Script Editor
-* Copy the `AirPodsConnect` script in the editor
+* Copy the `config/AirPodsConnect` script in the editor
 * Rename the `AirPods Pro` with yours AirPods's name. If you have apostrophe
     in your AirPods name, make sure it matches extacly in the script.
 * Save the script in Applications with File Format `Application`
