@@ -1,2 +1,7 @@
 # dotfiles
-My dotfiles
+
+       🤖
+🦾 SHELL FLEX 🦾
+    MAC ENV
+    VIM ENV
+   🦿      🦿
