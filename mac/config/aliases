@@ -32,7 +32,13 @@ alias zload='source ~/.zshrc'
 
 # Aliases related
 alias zalias='vim ~/.aliases'
+alias zaliase='vim ~/.aliases'
 alias zaliases='vim ~/.aliases'
+
+# AFK
+alias AFK='afk'
+alias AKF='afk'
+alias akf='afk'
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"

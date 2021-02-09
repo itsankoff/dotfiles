@@ -61,9 +61,17 @@ source ~/.aliases
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep -R -n "$1" $2 }
 function pub() { ssh-keygen -y -f $1 > $1.pub }
+
+# K8S functions
 function kube_token { kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}') }
 function kube_context { kubectl config use-context $1 }
 function kube_be_token { echo $(kubectl get secrets/$(kubectl get sa/rhyme-backend -o=jsonpath="{.secrets[0].name}") -o=jsonpath="{.data.token}") | base64 -D }
+
+# afk prints AFK
+function afk() {
+    clear
+    figlet -W AFK
+}
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -81,6 +89,8 @@ export LC_ALL=en_US.UTF-8
 
 eval "$(direnv hook zsh)"
 
+export PATH="/usr/local/sbin:$PATH"
+
 # Configured by setup.sh
 export GOROOT=/usr/local/Cellar/go@1.13/1.13.15/libexec
 # Configured by setup.sh
@@ -91,3 +101,5 @@ export GOPATH=/Users/itsankov/developers/workspace
 export GOBIN=$GOPATH/bin
 # Configured by setup.sh
 export PATH="$PATH:$GOBIN"
+
+export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
