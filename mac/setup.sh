@@ -63,11 +63,13 @@ message "Setting up the environment..."
 # source the needed packages
 source ./packages.sh
 
+# Install terminal packages and cli apps
 for pkg in "${terminal_packages[@]}"
 do
     pkg_install ${pkg}
 done
 
+# Install gui packages and apps
 if [[ ${SETUP_ENV} == ${GUI_ENV} ]]
 then
     for pkg in "${gui_packages[@]}"
@@ -76,11 +78,13 @@ then
     done
 fi
 
+# Install pip packages
 for pkg in "${pip_packages[@]}"
 do
     pip_install ${pkg}
 done
 
+# Install ruby packages
 for pkg in "${ruby_gems[@]}"
 do
     gem_install ${pkg}
