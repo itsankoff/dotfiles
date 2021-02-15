@@ -11,6 +11,8 @@
     logone = log --oneline
     pullr = pull --rebase
     uncommit = reset HEAD^
+    branchdiff = "!f() { git log ${1}..${2}; }; f"
+    bd = branchdiff
     branches = branch -a
     remotes = remote -v
     whichcommit = branch --contains
