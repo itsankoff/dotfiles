@@ -10,6 +10,7 @@
     logp = log --graph --oneline --pretty
     logone = log --oneline
     pullr = pull --rebase
+    pulr = pullr
     uncommit = reset HEAD^
     branchdiff = "!f() { git log ${1}..${2}; }; f"
     bd = branchdiff
