@@ -60,7 +60,18 @@ source ~/.aliases
 # File search functions
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep -R -n "$1" $2 }
-function pub() { ssh-keygen -y -f $1 > $1.pub }
+function pub() { ssh-keygen -y -f $1 }
+
+# Whatismyip CLI
+function whatismyip() { curl ifconfig.me }
+
+# PDF merger
+# Example: mergepdf output.pdf file1.pdf file2.pdf ....
+mergepdf () {
+  # NOTE: Use the binary here because the gs alias clashes with ghostscript
+  # binary name
+  /usr/local/bin/gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="$1" "${@:2}"
+}
 
 # K8S functions
 function kube_token { kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}') }
@@ -91,15 +102,15 @@ eval "$(direnv hook zsh)"
 
 export PATH="/usr/local/sbin:$PATH"
 
+# Go configuration
+export PATH="/usr/local/opt/go@1.15/bin:$PATH"
+
 # Configured by setup.sh
-export GOROOT=/usr/local/Cellar/go@1.13/1.13.15/libexec
-# Configured by setup.sh
-export PATH="$PATH:/usr/local/opt/go@1.13/bin"
+export GOROOT="/usr/local/opt/go@1.15/libexec"
+
 # Configured by setup.sh
 export GOPATH=/Users/itsankov/developers/workspace
 # Configured by setup.sh
 export GOBIN=$GOPATH/bin
 # Configured by setup.sh
 export PATH="$PATH:$GOBIN"
-
-export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
