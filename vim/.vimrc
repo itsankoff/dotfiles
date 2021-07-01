@@ -22,7 +22,6 @@ Plug 'epmatsw/ag.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'n0v1c3/vira', { 'do': './install.sh', 'branch': 'dev' }
 
 call plug#end()
 
@@ -55,6 +54,9 @@ if has('autocmd')
 
     " Custom javascript indent rules
     autocmd FileType javascript,javascript.jsx,typescript,typescriptreact,html,htmldjango set tabstop=2 shiftwidth=2 expandtab
+
+    autocmd BufRead,BufNewFile *.hcl set filetype=terraform
+    autocmd FileType hcl set filetype=terraform syntax=terraform
 
     " Custom python indent rules
     autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
