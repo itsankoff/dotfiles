@@ -17,6 +17,7 @@ terminal_packages=(
     cmake
     ffmpeg
     jq
+    gs
     kubectl
     eksctl
     k9s
