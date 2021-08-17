@@ -3,29 +3,30 @@
 # Terminal packages
 terminal_packages=(
     git
-    terraform
-    wget
-    curl
+    hg
+    zsh
     htop
+    curl
+    telnet
+    wget
     direnv
     autojump
     grip
+    jq
+    gs
+    the_silver_searcher
+    cmake
+    vim
+    go@1.13
     node
     ansible
     python3
-    vim
-    cmake
-    ffmpeg
-    jq
-    gs
+    postgresql@11
+    terraform
     kubectl
     eksctl
     k9s
-    the_silver_searcher
-    hg
-    go@1.13
-    postgresql@11
-    zsh
+    ffmpeg
 )
 
 # GUI packages
