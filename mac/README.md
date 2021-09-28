@@ -52,13 +52,14 @@ through overcomplicated shell scripts.
 * Uncheck `Move left a space` (`^<-`)
 * Uncheck `Move right a space` (`^->`)
 
-## Additional iterm2 setup
-
+## [macOS] Additional iterm2 setup
+* iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles -> /path/to/dotfiles/mac/config/iterm-profile.json
+* Set the profile as default
+* iTerm2 -> Preferences -> Keys -> Presets -> Import... -> /path/to/dotfiles/mac/config/iterm-keys.itermkeymap
 
 ## Troubleshooting
 * Depending on your Mac settings you may need to allow Accessibility permissions
     for the script. Go to `Settings -> Security and Privacy -> Privacy Tab -> Accessibility -> Add permission for AirPodsConnect`
-
 
 ## References
 * AirPodsConnect Spotlight bind - [Full article](https://medium.com/@secondfret/how-to-connect-your-airpods-to-your-mac-with-a-keyboard-shortcut-9d72e786993b)
