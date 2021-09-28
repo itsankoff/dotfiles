@@ -10,7 +10,6 @@ call plug#begin('~/.vim-itsankoff')
 
 Plug 'preservim/nerdtree'
 Plug 'flazz/vim-colorschemes'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'maralla/completor.vim'
 Plug 'hashivim/vim-terraform'
