@@ -10,7 +10,9 @@ call plug#begin('~/.vim-itsankoff')
 
 Plug 'preservim/nerdtree'
 Plug 'flazz/vim-colorschemes'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'maralla/completor.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -96,6 +98,17 @@ let g:ycm_key_invoke_completion = '<C-f>'
 " Terraform vim config
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
+
+" Golang documentation pop-up
+let g:go_doc_popup_window = 1
+
+" Golang autocompletion
+let g:completor_filetype_map = {}
+let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls -remote=auto'}"
+
+" Complete on TAB
+let g:completor_auto_trigger = 1
+" inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
 
 " for hex editing
 augroup Binary
