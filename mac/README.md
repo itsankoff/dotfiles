@@ -56,6 +56,7 @@ through overcomplicated shell scripts.
 * iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles -> /path/to/dotfiles/mac/config/iterm-profile.json
 * Set the profile as default
 * iTerm2 -> Preferences -> Keys -> Presets -> Import... -> /path/to/dotfiles/mac/config/iterm-keys.itermkeymap
+* iTerm2 -> Preferences -> Appearance -> Uncheck Stretch tabs to fill bar
 
 ## Troubleshooting
 * Depending on your Mac settings you may need to allow Accessibility permissions
