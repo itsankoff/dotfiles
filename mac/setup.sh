@@ -125,16 +125,9 @@ function setup_golang() {
     mkdir -p ${DEV_HOME}/workspace/pkg
     mkdir -p ${DEV_HOME}/workspace/bin
 
-    # injecting the go toochain into the PATH
-    # FIXME: Proper setup of golang executables in OSX
-    shell_inject 'export GOROOT=/usr/local/Cellar/go@1.13/1.13.15/libexec'
-    shell_inject 'export PATH="$PATH:/usr/local/opt/go@1.13/bin"'
-
     # injecting the go environment
     shell_inject "export GOPATH=${DEV_HOME}/workspace"
     shell_inject 'export GOBIN=$GOPATH/bin'
-
-    # injecting go bin to environment path
     shell_inject 'export PATH="$PATH:$GOBIN"'
 
     # Install goimports
@@ -280,12 +273,6 @@ is_pkg "setup_postgresql" && setup_postgresql
 is_pkg "install_fonts" && install_fonts
 is_pkg "setup_vim" && setup_vim
 is_pkg "setup_git" && setup_git
-
-verify "Btw how was your coffee/tea" "good" "bad"
-sleep 1
-
-message "Anyway..."
-sleep 1
 
 warn "Don't forget to source the new terminal environment"
 code "source ${USER_HOME}/.zshrc"
