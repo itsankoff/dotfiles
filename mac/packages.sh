@@ -17,7 +17,7 @@ terminal_packages=(
     the_silver_searcher
     cmake
     vim
-    go@1.13
+    go@1.16
     node
     ansible
     python3
