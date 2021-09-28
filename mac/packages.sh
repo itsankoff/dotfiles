@@ -39,6 +39,17 @@ gui_packages=(
     ngrok
     spotify
     visual-studio-code
+    karabiner-elements
+    viscosity
+    1password
+    adobe-acrobat-reader
+    calibre
+    firefox
+    kindle
+    postico
+    slack
+    zoom
+    vlc
 )
 
 # Python dependencies
