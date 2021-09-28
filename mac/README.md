@@ -1,13 +1,30 @@
 # Installation guide for OSX
-[WIP] This is poor man's attempt to set up a platform agnostic development environment
+This is poor man's attempt to set up a platform agnostic development environment
 through overcomplicated shell scripts.
+
+## [macOS] Prerequisites
+* Make sure the executing user has access to the following directories (NOTE: This is not an exhaustive list):
+    * Caskroom
+    * Cellar
+    * Frameworks
+    * Homebrew
+    * bin
+    * etc
+    * include
+    * lib
+    * opt
+    * sbin
+    * share
+    * var
+* You can ensure ownership with the following command: `sudo chown -R ${USER}:admin <dirs_listed_above>`
 
 ## General setup
 * 📜 Run `setup.sh`
+* It may ask you for a sudo password initially
 * ☕ Make yourself a coffee or a tea! **NOTE**: It is really important for the script!
 * 🚀 Happy coding!
 
-## Install AirPodsConnect
+## [macOS] Install AirPodsConnect
 * Open Script Editor
 * Copy the `config/AirPodsConnect` script in the editor
 * Rename the `AirPods Pro` with yours AirPods's name. If you have apostrophe
@@ -15,6 +32,26 @@ through overcomplicated shell scripts.
 * Save the script in Applications with File Format `Application`
 * Open Spotlight, type `AirPodsConnect` and hit enter
 * Enjoy the 🎧
+
+## [macOS] OS additional setup
+* Click on the Battery icon at the status back -> Check `Show Percentage`
+* Open Settings
+* Go to Date & Time -> Clock
+* Check - `Display the time with seconds`
+* Go to Dock
+* Check `Automatically hide and show Dock`
+* Go to Hot Corners
+* Left top - `-`
+* Left bottom - `Desktop`
+* Right top - `Notification center`
+* Right bottom - `Desktop`
+* Go to Appearance
+* Highligh color: `Graphite`
+* Theme - `Dark`
+
+## Additional iterm2 setup
+TBD
+
 
 ## Troubleshooting
 * Depending on your Mac settings you may need to allow Accessibility permissions
