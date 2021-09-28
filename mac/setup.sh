@@ -44,7 +44,7 @@ function help {
     exit 1
 }
 
-# setup_env sets up the development structure.
+# setup_env sets up basic variables
 function setup_env() {
     message "Setting up development structure"
 
@@ -62,7 +62,10 @@ function setup_env() {
     USER_HOME="${HOME_PATH_PREFIX}/${USER}"
     DEV_HOME="${USER_HOME}/developers"
     SSH_DIR="${USER_HOME}/.ssh"
+}
 
+# setup_env sets up the development structure.
+function setup_development_env() {
     mkdir -p ${DEV_HOME} ${SSH_DIR}
 }
 
@@ -168,7 +171,7 @@ function setup_terminal_apps() {
     manager_update
     for pkg in "${terminal_packages[@]}"
     do
-        ready=$(pkg_install ${pkg} >> setup.log 2>1)
+        ready=$(pkg_install ${pkg} >> setup.log 2>&1)
         if [[ ${ready} -eq 0 ]]
         then
             message "${pkg} ready for use"
@@ -186,7 +189,7 @@ function setup_gui_apps() {
     then
         for pkg in "${gui_packages[@]}"
         do
-            ready=$(pkg_install ${pkg} "gui" >> setup.log 2>1)
+            ready=$(pkg_install ${pkg} "gui" >> setup.log 2>&1)
             if [[ ${ready} -eq 0 ]]
             then
                 message "${pkg} ready for use"
@@ -231,9 +234,9 @@ setup_env
 # source the needed packages
 source ./packages.sh
 
+# parse script arguments. Each of the arguments support long version. See below.
 if [[ $# -gt 0 ]]
 then
-    # Parse script arguments. Each of the arguments support long version. See below.
     FLAGS="p:h-:"
     while getopts "${FLAGS}" FLAG; do
         case "${FLAG}" in
@@ -283,12 +286,6 @@ sleep 1
 
 message "Anyway..."
 sleep 1
-
-if [[ ${SETUP_OS} == ${OS_OSX} ]]
-then
-    message "Don't forget to uncheck keyboard shortcuts in Settings -> Keyboards -> Shortcuts -> Mission Control ^<- ^->"
-    sleep 2
-fi
 
 warn "Don't forget to source the new terminal environment"
 code "source ${USER_HOME}/.zshrc"
