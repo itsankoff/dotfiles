@@ -21,7 +21,7 @@ terminal_packages=(
     node
     ansible
     python3
-    postgresql@11
+    postgresql@13
     terraform
     kubectl
     eksctl
