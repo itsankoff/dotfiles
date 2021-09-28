@@ -100,14 +100,7 @@ export LC_ALL=en_US.UTF-8
 
 eval "$(direnv hook zsh)"
 
-export PATH="/usr/local/sbin:$PATH"
-
-# Go configuration
-export PATH="/usr/local/opt/go@1.15/bin:$PATH"
-
-# Configured by setup.sh
-export GOROOT="/usr/local/opt/go@1.15/libexec"
-
+export PATH="$PATH:/usr/local/sbin"
 # Configured by setup.sh
 export GOPATH=/Users/itsankov/developers/workspace
 # Configured by setup.sh
