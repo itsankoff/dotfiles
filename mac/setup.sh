@@ -38,60 +38,14 @@ TERMINAL_ENV="terminal"
 # If you want to set the environment for terminal only change to ${TERMINAL_ENV}
 SETUP_ENV=${GUI_ENV}
 
-# source the utility library
-source ${SCRIPT_DIR}/lib.sh
+# Print help section
+function help {
+    echo "${SCRIPT} [-p|--package <package>] [-h|--help]"
+    exit 1
+}
 
-# execute os setup
-setup_os
-
-if [[ ${SETUP_OS} == ${OS_OSX} ]]
-then
-    # MANAGER controls the package manager for the setup script.
-    MANAGER=${OSX_BREW}
-fi
-
-
-message "OK Let's setup this machine! I will take care..."
-message "Go, make yourself a coffee or a tea!"
-message "------------------------------------------------"
-
-manager_setup
-manager_update
-
-message "Setting up the environment..."
-
-# source the needed packages
-source ./packages.sh
-
-# Install terminal packages and cli apps
-for pkg in "${terminal_packages[@]}"
-do
-    pkg_install ${pkg}
-done
-
-# Install gui packages and apps
-if [[ ${SETUP_ENV} == ${GUI_ENV} ]]
-then
-    for pkg in "${gui_packages[@]}"
-    do
-        pkg_install ${pkg} "gui"
-    done
-fi
-
-# Install pip packages
-for pkg in "${pip_packages[@]}"
-do
-    pip_install ${pkg}
-done
-
-# Install ruby packages
-for pkg in "${ruby_gems[@]}"
-do
-    gem_install ${pkg}
-done
-
-# setup_development sets up the development structure.
-function setup_development() {
+# setup_env sets up the development structure.
+function setup_env() {
     message "Setting up development structure"
 
     if [[ ${SETUP_OS} == ${OS_OSX} ]]
@@ -107,29 +61,34 @@ function setup_development() {
     # setup development structure
     USER_HOME="${HOME_PATH_PREFIX}/${USER}"
     DEV_HOME="${USER_HOME}/developers"
+    SSH_DIR="${USER_HOME}/.ssh"
 
-    mkdir -p ${DEV_HOME}
+    mkdir -p ${DEV_HOME} ${SSH_DIR}
 }
 
 # setup_zsh sets up Oh my zsh environment.
 function setup_zsh() {
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    pushd ${DEV_HOME} && \
-        git clone https://github.com/powerline/fonts.git || skip_error && \
-        pushd fonts && \
-            ./install.sh && \
-        popd && \
-    popd
+    if [[ -z $ZSH ]]
+    then
+        message "zshell installation is missing. Installing oh-my-zsh..."
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+        pushd ${DEV_HOME} && \
+            git clone https://github.com/powerline/fonts.git || skip_error && \
+            pushd fonts && \
+                ./install.sh && \
+            popd && \
+        popd
+    fi
 
-    if [[ -e ${USER_HOME}/.zshrc ]]
+    message "Configuring zsh environment..."
+    if [[ -f ${USER_HOME}/.zshrc ]]
     then
         verify "There is existing .zshrc for the ${USER}. Do you want to move it to ${USER_HOME}/.zshrc.backup" "y" "n" && \
             mv ${USER_HOME}/.zshrc ${USER_HOME}/.zshrc.backup
-
     fi
     ln -s ${CONFIG_DIR}/zshrc ${USER_HOME}/.zshrc
 
-    if [[ -e ${USER_HOME}/.aliases ]]
+    if [[ -f ${USER_HOME}/.aliases ]]
     then
         verify "There is existing .aliases for the ${USER}. Do you want to move it to ${USER_HOME}/.aliases.backup" "y" "n" && \
             mv ${USER_HOME}/.aliases ${USER_HOME}/.aliases.backup
@@ -203,7 +162,115 @@ function setup_git() {
     ln -s ${CONFIG_DIR}/gitconfig ${USER_HOME}/.gitconfig
 }
 
-is_pkg "setup_development" && setup_development
+# Install terminal packages and cli apps
+function setup_terminal_apps() {
+    manager_setup
+    manager_update
+    for pkg in "${terminal_packages[@]}"
+    do
+        ready=$(pkg_install ${pkg} >> setup.log 2>1)
+        if [[ ${ready} -eq 0 ]]
+        then
+            message "${pkg} ready for use"
+        else
+            warn "Failed to set up ${pkg}. For more information check logs"
+        fi
+    done
+}
+
+# Install gui packages and apps
+function setup_gui_apps() {
+    manager_setup
+    manager_update
+    if [[ ${SETUP_ENV} == ${GUI_ENV} ]]
+    then
+        for pkg in "${gui_packages[@]}"
+        do
+            ready=$(pkg_install ${pkg} "gui" >> setup.log 2>1)
+            if [[ ${ready} -eq 0 ]]
+            then
+                message "${pkg} ready for use"
+            else
+                warn "Failed to set up ${pkg}. For more information check logs"
+            fi
+        done
+    fi
+}
+
+# Install pip packages
+function setup_python_apps() {
+    for pkg in "${pip_packages[@]}"
+    do
+        pip_install ${pkg}
+    done
+}
+
+# Install ruby packages
+function setup_ruby_apps() {
+    for pkg in "${ruby_gems[@]}"
+    do
+        gem_install ${pkg}
+    done
+}
+
+# source the utility library
+source ${SCRIPT_DIR}/lib.sh
+
+# execute os setup
+setup_os
+
+if [[ ${SETUP_OS} == ${OS_OSX} ]]
+then
+    # MANAGER controls the package manager for the setup script.
+    MANAGER=${OSX_BREW}
+fi
+
+# execute env setup
+setup_env
+
+# source the needed packages
+source ./packages.sh
+
+if [[ $# -gt 0 ]]
+then
+    # Parse script arguments. Each of the arguments support long version. See below.
+    FLAGS="p:h-:"
+    while getopts "${FLAGS}" FLAG; do
+        case "${FLAG}" in
+            p)
+                PACKAGE=${OPTARG}
+                ;;
+            h)
+                help
+                ;;
+            -)
+                case ${OPTARG} in
+                    package)
+                        PACKAGE="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
+                        ;;
+                    help)
+                        help
+                        ;;
+                esac;;
+            \?)
+                ask_for_help
+                exit 2
+                ;;
+        esac
+    done
+else
+    PACKAGE=all
+fi
+
+message "OK Let's setup this machine! I will take care..."
+message "Go, make yourself a coffee or a tea!"
+message "------------------------------------------------"
+message "Setting up the environment..."
+
+is_pkg "setup_terminal_apps" && setup_terminal_apps
+is_pkg "setup_gui_apps" && setup_gui_apps
+is_pkg "setup_python_apps" && setup_python_apps
+is_pkg "setup_ruby_appst" && setup_ruby_apps
 is_pkg "setup_zsh" && setup_zsh
 is_pkg "setup_golang" && setup_golang
 is_pkg "setup_postgresql" && setup_postgresql
