@@ -134,8 +134,15 @@ function manager_setup() {
 
     if [[ ${MANAGER} == ${OSX_BREW} ]]
     then
-        # install brew
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        ${MANAGER} --version > /dev/null 2>&1
+        if [[ ${?} -eq 0 ]]
+        then
+            message "Package manager ${MANAGER} already installed. Trying to upgrade..."
+            ${MANAGER} upgrade
+        else
+            message "Package manager ${MANAGER} is not installed. Trying to install..."
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
     fi
 
     touch ${MANAGER_SETUP_LOCK}
