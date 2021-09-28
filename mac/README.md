@@ -48,9 +48,11 @@ through overcomplicated shell scripts.
 * Go to Appearance
 * Highligh color: `Graphite`
 * Theme - `Dark`
+* Go to Keyboards -> Shortcuts -> Mission Control
+* Uncheck `Move left a space` (`^<-`)
+* Uncheck `Move right a space` (`^->`)
 
 ## Additional iterm2 setup
-TBD
 
 
 ## Troubleshooting
