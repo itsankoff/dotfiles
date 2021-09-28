@@ -36,11 +36,6 @@ must vim -c 'PlugInstall' +qall
 
 echo "VIM Plugins installed"
 
-# Install YouCompleteMe server
-pushd ${VIM_DIR}/YouCompleteMe
-    must python3 install.py --go-completer
-popd
-
 must vim -c 'GoInstallBinaries' +qall
 # Install vim-go binaries
 must go get github.com/mdempsky/gocode
