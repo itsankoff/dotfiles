@@ -27,6 +27,7 @@ terminal_packages=(
     eksctl
     k9s
     ffmpeg
+    hugo
 )
 
 # GUI packages
