@@ -84,6 +84,22 @@ function afk() {
     figlet -W AFK
 }
 
+# ssh_tunnel tunnels traffic
+# $1 - identity file
+# $2 - username
+# $3 - remote_ip
+# $4 - local_port
+# $5 - remote_port
+function ssh_tunnel() {
+    if [[ ${1} == "--help" ]]
+    then
+        echo "ssh_tunnel <username> <remote_host> <local_port> <remote_port> <identity_file>"
+        return
+    fi
+
+    ssh -i ${1} ${2}@${3} -N -f -L ${4}:${3}:${5}
+}
+
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
