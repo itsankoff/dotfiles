@@ -15,27 +15,32 @@ function must() {
 }
 
 # Install Plug
+echo "Installing Plug..."
 must curl -fLo ${VIM_DIR}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Setup colorscheme
+echo "Installing color scheme..."
 must mkdir -p ${VIM_DIR}/colors
 must ln -sf $(pwd)/jellygrass.vim ${VIM_DIR}/colors/jellygrass.vim
 
-# Install NERDTree plugin
+echo "Installing NERDTree plugin..."
 test -d ${VIM_PLUGIN_DIR}/nerdtree || must git clone https://github.com/scrooloose/nerdtree.git ${VIM_PLUGIN_DIR}/nerdtree
 
-# Install TypeScript syntax
+echo "Installing TypeScript syntax..."
 test -d ${VIM_PLUGIN_DIR}/typescript-vim || must git clone https://github.com/leafgarland/typescript-vim.git ${VIM_PLUGIN_DIR}/typescript-vim
 
-# Install vim configuration
-test -f ~/.vimrc && must mv ~/.vimrc ~/.vimrc-${USER}
+echo "Installing vim config..."
+test -f ~/.vimrc && \
+    echo "WARNING: Detected existing vimrc. Moving it to ~/.vimrc-${USER}" && \
+    sleep 2 && \
+    must mv ~/.vimrc ~/.vimrc-${USER}
 must ln -s $(pwd)/.vimrc ~/.vimrc
 
-# Install all plug plugins
+echo "Installing Plug plugins..."
 must vim -c 'PlugInstall' +qall
 
 echo "VIM Plugins installed"
 
+echo "Installing Go binaries..."
 must vim -c 'GoInstallBinaries' +qall
 # Install vim-go binaries
 must go get github.com/mdempsky/gocode
