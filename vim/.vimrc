@@ -8,13 +8,22 @@ filetype off
 
 call plug#begin('~/.vim-itsankoff')
 
+" NERDTree
 Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Custom color scheme
 Plug 'flazz/vim-colorschemes'
+" vim language server
 Plug 'prabirshrestha/vim-lsp'
+" auto complete
 Plug 'maralla/completor.vim'
+" terraform for vim
 Plug 'hashivim/vim-terraform'
+" typescript for vim
 Plug 'leafgarland/typescript-vim'
+" golang for vim
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" language packs for vim
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -22,7 +31,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'epmatsw/ag.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
@@ -35,7 +43,17 @@ if has('autocmd')
     autocmd FileType go let g:go_fmt_command = "goimports"
     " show only quickfix
     autocmd FileType go let g:go_list_type = "quickfix"
-
+    " show types and functions signature
+    autocmd FileType go let g:go_auto_type_info = 1
+    autocmd FileType go set updatetime=100
+    " show highlights for same function and types
+    autocmd FileType go let g:go_auto_sameids = 1
+    autocmd FileType go let g:go_decls_includes = "func,type"
+    autocmd FileType go let g:go_def_mode = 'godef'
+    autocmd FileType go let g:go_highlight_types = 1
+    autocmd FileType go let g:go_highlight_fields = 1
+    autocmd FileType go let g:go_highlight_functions = 1
+    autocmd FileType go let g:go_highlight_operators = 1
     " autocmd FileType go let g:go_metalinter_autosave = 1
 
     " ycm go LSP
@@ -120,9 +138,6 @@ augroup Binary
   au BufWritePost *.bin if &bin | %!xxd
   au BufWritePost *.bin set nomod | endif
 augroup END
-
-" Leader definition
-let mapleader = "`"
 
 " Color scheme
 colorscheme jellygrass
@@ -233,6 +248,9 @@ set backspace=indent,eol,start
 " Set split direction
 set splitright
 
+" Leader definition
+let mapleader = "`"
+
 " Save buffer changes with sudo even if it was opened without sudo
 cmap w!! w !sudo tee > /dev/null %
 cmap W!! w !sudo tee > /dev/null %
@@ -267,7 +285,7 @@ nnoremap <leader>r :so $MYVIMRC<CR>
 nnoremap <leader>s :Files<CR>
 
 " Ag search word under the cursor
-noremap <leader>a :Ag! "<cword>"<cr>
+noremap <leader>u :Ag! "<cword>"<cr>
 
 " Easy window navigation
 nnoremap <C-h> <C-w>h
@@ -291,3 +309,6 @@ nnoremap <C-l> <C-w>l
 " nnoremap <Right> <NOP>
 " inoremap <Right> <NOP>
 " vnoremap <Right> <NOP>
+
+" Do not show mode status in default status line and use airline one
+set noshowmode
