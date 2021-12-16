@@ -25,10 +25,14 @@ Plug 'leafgarland/typescript-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " language packs for vim
 Plug 'sheerun/vim-polyglot'
+" fzf integration
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" git integration
 Plug 'tpope/vim-fugitive'
+" silver search integration
 Plug 'epmatsw/ag.vim'
+" status line integration
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
