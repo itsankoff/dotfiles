@@ -37,11 +37,11 @@ must ln -s $(pwd)/.vimrc ~/.vimrc
 
 echo "Installing Plug plugins..."
 must vim -c 'PlugInstall' +qall
-
 echo "VIM Plugins installed"
 
 echo "Installing Go binaries..."
-must vim -c 'GoInstallBinaries' +qall
+GO111MODULE=on vim -c 'GoInstallBinaries'
+
 # Install vim-go binaries
 must go get github.com/mdempsky/gocode
 GO111MODULE=on must go get golang.org/x/tools/gopls@latest
