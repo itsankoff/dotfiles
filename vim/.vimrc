@@ -51,7 +51,7 @@ if has('autocmd')
     autocmd FileType go let g:go_auto_type_info = 1
     autocmd FileType go set updatetime=100
     " show highlights for same function and types
-    autocmd FileType go let g:go_auto_sameids = 1
+"     autocmd FileType go let g:go_auto_sameids = 1
     autocmd FileType go let g:go_decls_includes = "func,type"
     autocmd FileType go let g:go_def_mode = 'godef'
     autocmd FileType go let g:go_highlight_types = 1
