@@ -50,6 +50,7 @@ plugins=(
   mosh
   ssh-agent
   zsh-autosuggestions
+  web-search
 )
 
 source $ZSH/oh-my-zsh.sh
