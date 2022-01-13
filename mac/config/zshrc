@@ -63,6 +63,11 @@ function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep -R -n "$1" $2 }
 function pub() { ssh-keygen -y -f $1 }
 
+# codecount counts the code lines within the cwd recursively
+# optional - ${1} - file extension filter
+# NOTE: currently working only on zsh out of the box
+function codecount() { wc -l **/*${1} 2>&1 | tail -n 1 }
+
 # Whatismyip CLI
 function whatismyip() { curl ifconfig.me }
 
