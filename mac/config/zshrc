@@ -86,19 +86,25 @@ function afk() {
 }
 
 # ssh_tunnel tunnels traffic
-# $1 - identity file
-# $2 - username
-# $3 - remote_ip
+# $1 - username
+# $2 - remote_host
+# $3 - remote_port
 # $4 - local_port
-# $5 - remote_port
+# $5 - identity_file
 function ssh_tunnel() {
     if [[ ${1} == "--help" ]]
     then
-        echo "ssh_tunnel <username> <remote_host> <local_port> <remote_port> <identity_file>"
+        echo "ssh_tunnel <username> <remote_host> <remote_port> <local_port> <identity_file>"
         return
     fi
 
-    ssh -i ${1} ${2}@${3} -N -f -L ${4}:${3}:${5}
+    username=${1}
+    remote_host=${2}
+    remote_port=${3}
+    local_port=${4}
+    identity_file=${5}
+
+    ssh -i ${identity_file} ${username}@${remote_host} -N -f -L ${remote_port}:127.0.0.1:${local_port}
 }
 
 # autojump
