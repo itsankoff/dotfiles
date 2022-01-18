@@ -91,7 +91,7 @@ if has('autocmd')
 
     " Commenting blocks of code.
     autocmd FileType c,cpp,java,scala,javascript,css,go,typescript let b:comment_leader = '// '
-    autocmd FileType sh,python,yaml,conf,fstab,nginx,make,terraform let b:comment_leader = '# '
+    autocmd FileType sh,python,yaml,yaml.ansible,conf,fstab,nginx,make,terraform let b:comment_leader = '# '
     autocmd FileType vim                             let b:comment_leader = '" '
 
     " Remember last position in file
