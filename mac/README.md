@@ -53,6 +53,8 @@ through overcomplicated shell scripts.
 * Uncheck `Move right a space` (`^->`)
 * Make Menu Bar dark
     * System Preferences -> Accessibility -> Display -> Reduce Transperancy
+* Battery percentage
+    * System Preferences -> Dock and Menu Bar -> Battery -> Show Percentage
 
 ## [macOS] Additional iterm2 setup
 * iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles -> /path/to/dotfiles/mac/config/iterm-profile.json
