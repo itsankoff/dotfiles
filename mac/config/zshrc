@@ -90,6 +90,11 @@ function afk() {
     figlet -W AFK
 }
 
+# text prints text with large characters
+function text() {
+    figlet -W ${1}
+}
+
 # ssh_tunnel tunnels traffic
 # $1 - username
 # $2 - remote_host
