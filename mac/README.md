@@ -51,6 +51,8 @@ through overcomplicated shell scripts.
 * Go to Keyboards -> Shortcuts -> Mission Control
 * Uncheck `Move left a space` (`^<-`)
 * Uncheck `Move right a space` (`^->`)
+* Make Menu Bar dark
+    * System Preferences -> Accessibility -> Display -> Reduce Transperancy
 
 ## [macOS] Additional iterm2 setup
 * iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles -> /path/to/dotfiles/mac/config/iterm-profile.json
