@@ -30,6 +30,13 @@ through overcomplicated shell scripts.
 * Rename the `AirPods Pro` with yours AirPods's name. If you have apostrophe
     in your AirPods name, make sure it matches extacly in the script.
 * Save the script in Applications with File Format `Application`
+* Allow Accessibility access to the AirPodsConnect script
+    * Open System Preferences -> Security And Privacy -> Privacy
+    * Go to Accessibility using the left panel
+    * Unlock using your credentials
+    * Use the `+` button on the right panel and nagivate to Applications/AirPodsConnect
+    * Check the AirPodsConnect
+    * Lock the settings
 * Open Spotlight, type `AirPodsConnect` and hit enter
 * Enjoy the 🎧
 
