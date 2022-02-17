@@ -28,6 +28,7 @@ terminal_packages=(
     k9s
     ffmpeg
     hugo
+    shellcheck
 )
 
 # GUI packages
