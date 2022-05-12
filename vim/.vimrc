@@ -289,7 +289,8 @@ nnoremap <leader>r :so $MYVIMRC<CR>
 nnoremap <leader>s :Files<CR>
 
 " Ag search word under the cursor
-noremap <leader>u :Ag! "<cword>"<cr>
+nnoremap <leader>f mM:Ag! <C-R><C-W><CR>
+vnoremap <leader>f mM"hy:Ag! <C-R>h<CR>
 
 " Easy window navigation
 nnoremap <C-h> <C-w>h
