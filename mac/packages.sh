@@ -29,6 +29,7 @@ terminal_packages=(
     ffmpeg
     hugo
     shellcheck
+    terragrunt
 )
 
 # GUI packages
