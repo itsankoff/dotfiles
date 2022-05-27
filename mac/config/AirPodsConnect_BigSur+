@@ -6,6 +6,7 @@ connect_bluetooth_devices("AirPods Pro")
 on connect_bluetooth_devices(bluetooth_device)
 	tell application "System Events"
 		tell its application process "ControlCenter"
+			delay 0.5
 
 			set menuBarItems to menu bar items of menu bar 1
 			repeat with mbi in menuBarItems
