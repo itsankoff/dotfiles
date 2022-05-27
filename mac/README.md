@@ -26,11 +26,11 @@ through overcomplicated shell scripts.
 
 ## [macOS] Install AirPodsConnect
 * Open Script Editor
-* Copy the `config/AirPodsConnect` script in the editor
+* Copy the `config/AirPodsConnect_Catalina` or `config/AirPodsConnect_BigSur+`  script in the editor
 * Rename the `AirPods Pro` with yours AirPods's name. If you have apostrophe
     in your AirPods name, make sure it matches extacly in the script.
 * Save the script in Applications with File Format `Application`
-* Allow Accessibility access to the AirPodsConnect script
+* Allow Accessibility access to the `AirPodsConnect` script
     * Open System Preferences -> Security And Privacy -> Privacy
     * Go to Accessibility using the left panel
     * Unlock using your credentials

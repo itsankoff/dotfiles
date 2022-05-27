@@ -1,0 +1,31 @@
+-- Connect to Bluetooth devices
+connect_bluetooth_devices("AirPods Pro")
+
+-- Handler to connect to Bluetooth devices
+-- @param bluetooth_device : String - the device names
+on connect_bluetooth_devices(bluetooth_device)
+	tell application "System Events"
+		tell its application process "ControlCenter"
+
+			set menuBarItems to menu bar items of menu bar 1
+			repeat with mbi in menuBarItems
+				if name of mbi contains "Bluetooth" then
+					set bluetoothItem to mbi
+				end if
+			end repeat
+
+			-- If the Bluetooth menu is in the menu bar, get the Sidecar device.
+			-- In Big Sur, it's a toggle button (checkbox) instead of a menu item.
+			if bluetoothItem is not equal to "" then
+				click bluetoothItem
+				delay 0.5
+				set btCheckbox to checkbox 1 of scroll area 1 of group 1 of window "Control Center" whose title contains bluetooth_device
+				click btCheckbox
+			else
+				-- If the Display menu isn't in the menu bar, display an error message.
+				set errorMessage to "Bluetooth menu not found in menu bar. Open System Preferences > Dock & Menu Bar -> Bluetooth. Enable checkbox 'Show in Menu Bar = Always'"
+				display dialog errorMessage with icon caution
+			end if
+		end tell
+	end tell
+end connect_bluetooth_devices
