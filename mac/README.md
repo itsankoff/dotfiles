@@ -1,30 +1,34 @@
 # Installation guide for OSX
-This is poor man's attempt to set up a platform agnostic development environment
-through overcomplicated shell scripts.
+This is a poor man's attempt to set up a platform agnostic development environment
+through overcomplicated shell scripts. Currently working mostly for macOS. Use
+`General Setup` if you use other OS (Linux, Unix, BSD).  
 
-## [macOS] Prerequisites
-* Make sure the executing user has access to the following directories (NOTE: This is not an exhaustive list):
-    * Caskroom
-    * Cellar
-    * Frameworks
-    * Homebrew
-    * bin
-    * etc
-    * include
-    * lib
-    * opt
-    * sbin
-    * share
-    * var
+Platform specific setups are described by separate section.
+
+## [] Prerequisites
+* Make sure the executing user `echo $USER` has access to the following sub-directories in `/usr/local`  
+(_NOTE: This is not an exhaustive list_):
+    * `Caskroom`
+    * `Cellar`
+    * `Frameworks`
+    * `Homebrew`
+    * `bin`
+    * `include`
+    * `lib`
+    * `opt`
+    * `sbin`
+    * `share`
+    * `var`
 * You can ensure ownership with the following command: `sudo chown -R ${USER}:admin <dirs_listed_above>`
 
 ## General setup
 * 📜 Run `setup.sh`
-* It may ask you for a sudo password initially
-* ☕ Make yourself a coffee or a tea! **NOTE**: It is really important for the script!
+* 🔒 It may ask you for a sudo password initially 👀
+* ☕ Make yourself a coffee or a tea! ___NOTE: It is really important for the script!___
 * 🚀 Happy coding!
 
-## [macOS] Install AirPodsConnect
+## [] Install AirPodsConnect
+* Make sure the executing user `echo $USER` has access to the following sub-directories in `/usr/local`  
 * Open Script Editor
 * Copy the `config/AirPodsConnect_Catalina` or `config/AirPodsConnect_BigSur+`  script in the editor
 * Rename the `AirPods Pro` with yours AirPods's name. If you have apostrophe
@@ -40,7 +44,7 @@ through overcomplicated shell scripts.
 * Open Spotlight, type `AirPodsConnect` and hit enter
 * Enjoy the 🎧
 
-## [macOS] OS additional setup
+## [] OS additional setup
 * Click on the Battery icon at the status back -> Check `Show Percentage`
 * Open Settings
 * Go to Date & Time -> Clock
@@ -63,14 +67,14 @@ through overcomplicated shell scripts.
 * Battery percentage
     * System Preferences -> Dock and Menu Bar -> Battery -> Show Percentage
 
-## [macOS] Additional iterm2 setup
+## [] Additional iterm2 setup
 * iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles -> /path/to/dotfiles/mac/config/iterm-profile.json
 * Set the profile as default
 * iTerm2 -> Preferences -> Keys -> Presets -> Import... -> /path/to/dotfiles/mac/config/iterm-keys.itermkeymap
 * iTerm2 -> Preferences -> Appearance -> Uncheck Stretch tabs to fill bar
 
 ## Troubleshooting
-* Depending on your Mac settings you may need to allow Accessibility permissions
+* [] Depending on your Mac settings you may need to allow Accessibility permissions
     for the script. Go to `Settings -> Security and Privacy -> Privacy Tab -> Accessibility -> Add permission for AirPodsConnect`
 
 ## References

@@ -10,5 +10,5 @@
 
 ## Installation
 
-* [MacOS setup](./mac/README.md)
-* [Vim setup](./vim/README.md)
+*  [README MacOS automation setup framework](./mac/README.md)
+* ✏️ [README Vim automation setup](./vim/README.md)
