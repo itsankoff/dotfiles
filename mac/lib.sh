@@ -7,6 +7,14 @@ OS_OSX='osx'
 OS_WINDOWS='the-forbidden-land'
 OS_BSD='the-unexplored-land'
 
+# Package installers
+
+# PIP controls which pip to use for the python packages.
+PIP="pip3"
+
+# Here are all the supported package managers.
+OSX_BREW="brew"
+
 # Coloring variables
 red=$(tput setaf 1)
 green=$(tput setaf 2)
@@ -29,6 +37,7 @@ function setup_os() {
     then
         # POSIX compatibility layer and Linux environment emulation for Windows
         SETUP_OS=${OS_LINUX}
+        MANAGER=${OSX_BREW}
     elif [[ "$OSTYPE" == "msys" ]];
     then
         # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
@@ -102,7 +111,7 @@ function verify() {
 # If no packages are provided by the CLI, 'all' is assumed which will allow
 # all packages to proceed (always returns 0).
 function should() {
-    if [[ "${PACKAGE}" == "all" ]] || [[ "${PACKAGE}" == "${1}" ]]
+    if [[ "${PACKAGE}" == "${ALL_PACKAGES}" ]] || [[ "${PACKAGE}" == "${1}" ]]
     then
         return 0
     else

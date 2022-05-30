@@ -9,25 +9,20 @@ source ${SCRIPT_DIR}/lib.sh
 # Always use the current working directory and add the SCRIPT_DIR path
 # to produce an absolute SCRIPT_PATH. Maybe there is a easier way.
 CURRENT_DIR=$(pwd)
-SCRIPT_DIR="$(pwd)/$(dirname ${0})"
+SCRIPT_DIR="${CURRENT_DIR}/$(dirname ${0})"
 
 # SCRIPT_NAME holds the script name.
+export SCRIPT_NAME=""
 SCRIPT_NAME=$(basename ${0})
 
 # CONFIG_DIR hold all the configurations.
 CONFIG_DIR="${SCRIPT_DIR}/config"
 
 # MANAGER_SETUP_LOCK controls the manager setup single execution.
-MANAGER_SETUP_LOCK=".setup.ready"
-
-# Here are all the supported package managers.
-OSX_BREW="brew"
-
-# PIP controls which pip to use for the python packages.
-PIP="pip3"
+export MANAGER_SETUP_LOCK=".setup.ready"
 
 GUI_ENV="gui"
-TERMINAL_ENV="terminal"
+#TERMINAL_ENV="terminal"
 
 # SETUP_ENV controls whether the script runs on terminal only or GUI environment.
 # If you want to set the environment for terminal only change to ${TERMINAL_ENV}
@@ -43,10 +38,10 @@ function help {
 function setup_env() {
     message "Setting up development structure"
 
-    if [[ ${SETUP_OS} == ${OS_OSX} ]]
+    if [[ "${SETUP_OS}" == "${OS_OSX}" ]]
     then
         HOME_PATH_PREFIX="/Users"
-    elif [[ ${SETUP_OS} == ${OS_LINUX} ]]
+    elif [[ "${SETUP_OS}" == "${OS_LINUX}" ]]
     then
         HOME_PATH_PREFIX="/home"
     else
@@ -75,7 +70,7 @@ function setup_zsh() {
             pushd fonts && \
                 ./install.sh && \
             popd && \
-        popd
+        popd || exit 10
     fi
 
     message "Configuring zsh environment..."
@@ -99,16 +94,16 @@ function setup_zsh() {
 
 # install_fonts install the fonts in case of gui environment.
 function install_fonts() {
-    if [[ ${SETUP_ENV} == ${GUI_ENV} ]]
+    if [[ "${SETUP_ENV}" == "${GUI_ENV}" ]]
     then
-        mkdir -p /tmp/fonts
-        pushd /tmp/fonts
-        git clone https://github.com/powerline/fonts.git --depth=1
-        cd fonts
-        ./install.sh
-        cd ..
-        rm -rf fonts
-        popd
+        ensure mkdir -p /tmp/fonts
+        ensure pushd /tmp/fonts
+            git clone https://github.com/powerline/fonts.git --depth=1
+            ensure cd fonts
+            ./install.sh
+            cd ..
+            rm -rf fonts
+        ensure popd
     fi
 }
 
@@ -140,7 +135,7 @@ function setup_postgresql() {
 # content.
 function setup_vim() {
     # Setup vim
-    pushd ${SCRIPT_DIR}/../vim && ./install.sh && popd
+    ensure "pushd ${SCRIPT_DIR}/../vim && ./install.sh && popd"
 }
 
 # setup_git sets up the git config and aliases.
@@ -173,7 +168,7 @@ function setup_terminal_apps() {
 function setup_gui_apps() {
     manager_setup
     manager_update
-    if [[ ${SETUP_ENV} == ${GUI_ENV} ]]
+    if [[ "${SETUP_ENV}" == "${GUI_ENV}" ]]
     then
         for pkg in "${gui_packages[@]}"
         do
@@ -192,7 +187,7 @@ function setup_gui_apps() {
 function setup_python_apps() {
     for pkg in "${pip_packages[@]}"
     do
-        pip_install ${pkg}
+        pip_install "${pkg}"
     done
 }
 
@@ -200,18 +195,12 @@ function setup_python_apps() {
 function setup_ruby_apps() {
     for pkg in "${ruby_gems[@]}"
     do
-        gem_install ${pkg}
+        gem_install "${pkg}"
     done
 }
 
 # execute os setup
 setup_os
-
-if [[ ${SETUP_OS} == ${OS_OSX} ]]
-then
-    # MANAGER controls the package manager for the setup script.
-    MANAGER=${OSX_BREW}
-fi
 
 # execute env setup
 setup_env
@@ -247,7 +236,7 @@ then
         esac
     done
 else
-    PACKAGE=all
+    export PACKAGE=${PACKAGE_ALL}
 fi
 
 message "OK Let's setup this machine! I will take care..."

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Terminal packages
-terminal_packages=(
+export terminal_packages=(
     git
     hg
     zsh
@@ -33,7 +33,7 @@ terminal_packages=(
 )
 
 # GUI packages
-gui_packages=(
+export gui_packages=(
     iterm2
     the-unarchiver
     google-chrome
@@ -56,10 +56,10 @@ gui_packages=(
 )
 
 # Python dependencies
-pip_packages=(
+export pip_packages=(
     virtualenv
 )
 
 # Ruby dependencies
-ruby_gems=(
+export ruby_gems=(
 )
