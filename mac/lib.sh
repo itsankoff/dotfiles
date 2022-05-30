@@ -81,14 +81,14 @@ function code() {
 # verify given action. If discarded then the script exits with 2.
 function verify() {
     warn "${1}? (${2}/${3}): "
-    read PROMPT
+    read -r PROMPT
 
-    if [ ${PROMPT} == ${2} ]
+    if [ "${PROMPT}" == "${2}" ]
     then
         message "Nice!"
     fi
 
-    if [ ${PROMPT} == ${3} ]
+    if [ "${PROMPT}" == "${3}" ]
     then
         warn "I am sorry, but I can't help with that..."
         return 1
@@ -102,7 +102,7 @@ function verify() {
 # If no packages are provided by the CLI, 'all' is assumed which will allow
 # all packages to proceed (always returns 0).
 function should() {
-    if [[ ${PACKAGE} == "all" ]] || [[ ${PACKAGE} == ${1} ]]
+    if [[ "${PACKAGE}" == "all" ]] || [[ "${PACKAGE}" == "${1}" ]]
     then
         return 0
     else
@@ -120,8 +120,7 @@ function skip_error() {
 # exit code.
 function ensure() {
     "${@}";
-    CODE=${?}
-    if [ ${CODE} -ne 0 ]
+    if [ ${?} -ne 0 ]
     then
         message "Action ($*) failed with non-zero exit code (${CODE})."
         exit 1
@@ -146,7 +145,7 @@ function manager_setup() {
         return 0
     fi
 
-    if [[ ${MANAGER} == ${OSX_BREW} ]]
+    if [[ "${MANAGER}" == "${OSX_BREW}" ]]
     then
         ${MANAGER} --version > /dev/null 2>&1
         if [[ ${?} -eq 0 ]]
@@ -159,14 +158,14 @@ function manager_setup() {
         fi
     fi
 
-    touch ${MANAGER_SETUP_LOCK}
+    touch "${MANAGER_SETUP_LOCK}"
 }
 
 # update the repos for the OS specific package manager specified in MANAGER.
 function manager_update() {
     message "Updating package manager's sources..."
 
-    if [[ ${MANAGER} == ${OSX_BREW} ]]
+    if [[ "${MANAGER}" == "${OSX_BREW}" ]]
     then
         brew update 2>&1
         export HOMEBREW_NO_AUTO_UPDATE=1
@@ -178,7 +177,7 @@ function manager_update() {
 # is_installed performs a check if the package is already installed from the
 # package manager.
 function is_installed() {
-    if [[ ${MANAGER} == ${OSX_BREW} ]]
+    if [[ "${MANAGER}" == "${OSX_BREW}" ]]
     then
         is_gui_pkg=false
         if [[ ! -z ${2} ]]
@@ -189,10 +188,10 @@ function is_installed() {
         installed_result=1
         if [[ ${is_gui_pkg} == true ]]
         then
-            brew list --cask --versions ${1} > /dev/null 2>&1
+            brew list --cask --versions "${1}" > /dev/null 2>&1
             installed_result=${?}
         else
-            brew list --versions ${1} > /dev/null 2>&1
+            brew list --versions "${1}" > /dev/null 2>&1
             installed_result=${?}
         fi
 
@@ -204,7 +203,7 @@ function is_installed() {
 
 # pkg_update attempts to update a package.
 function pkg_update() {
-    if [[ ${MANAGER} == ${OSX_BREW} ]]
+    if [[ "${MANAGER}" == "${OSX_BREW}" ]]
     then
         message "Package ${1} is already installed. Trying to update..."
 
@@ -219,10 +218,10 @@ function pkg_update() {
         update_output=""
         if [[ ${is_gui_pkg} == true ]]
         then
-            update_output=$(brew upgrade --cask ${1} 2>&1)
+            update_output=$(brew upgrade --cask "${1}" 2>&1)
             update_result=${?}
         else
-            update_output=$(brew upgrade ${1} 2>&1)
+            update_output=$(brew upgrade "${1}" 2>&1)
             update_result=${?}
         fi
 
@@ -244,11 +243,11 @@ function pkg_install() {
     # TODO: consider using https://github.com/Homebrew/homebrew-bundle which can do it all and more
     message "Installing ${1}..."
 
-    if is_installed ${@}
+    if is_installed "${@}"
     then
-        pkg_update ${@}
+        pkg_update "${@}"
     else
-        if [[ ${MANAGER} == ${OSX_BREW} ]]
+        if [[ "${MANAGER}" == "${OSX_BREW}" ]]
         then
             is_gui_pkg=false
             if [[ ! -z ${2} ]]
@@ -256,12 +255,11 @@ function pkg_install() {
                 is_gui_pkg=true
             fi
 
-            pkg_output=''
             if [[ ${is_gui_pkg} == true ]]
             then
-                brew install --cask ${1}
+                brew install --cask "${1}"
             else
-                brew install ${1}
+                brew install "${1}"
             fi
         fi
     fi
@@ -278,7 +276,7 @@ PACKAGE=${ALL_PACKAGES}
 # NOTE: In case no package is provided by CLI or as environment variable then
 # "all" is assumed which will allow all package installations and configuration.
 function is_pkg() {
-    if [[ ${PACKAGE} == ${ALL_PACKAGES} ]] || [[ ${PACKAGE} == ${1} ]]
+    if [[ "${PACKAGE}" == "${ALL_PACKAGES}" ]] || [[ "${PACKAGE}" == "${1}" ]]
     then
         return 0
     else
@@ -290,25 +288,25 @@ function is_pkg() {
 function pip_install() {
     message "Installing pip ${1}..."
 
-    pip_output=$(${PIP} install ${1} 2>&1)
-    plain ${pip_output}
+    pip_output=$(${PIP} install "${1}" 2>&1)
+    plain "${pip_output}"
 }
 
 # gem_install runs the configured gem.
 function gem_install() {
     message "Installing ruby gem ${1}..."
 
-    sudo gem install ${1}
+    sudo gem install "${1}"
 }
 
 # run_service runs a service.
 function run_service() {
-    if [[ ${SETUP_OS} == ${OS_OSX} ]]
+    if [[ "${SETUP_OS}" == "${OS_OSX}" ]]
     then
-        brew services run ${1}
-    elif [[ ${SETUP_OS} == ${OS_LINUX} ]]
+        brew services run "${1}"
+    elif [[ "${SETUP_OS}" == "${OS_LINUX}" ]]
     then
-        service ${1} start
+        service "${1}" start
     else
         unsupported "service implementation"
     fi
@@ -331,8 +329,8 @@ function shell_inject() {
 
     # check if the line already exists in the shell config
     # to prevent redundant configuration
-    grep -R -n "${1}" ${SHELL_CONFIG} > /dev/null 2>&1 || \
-        echo -e "# Configured by ${SCRIPT_NAME}" >> ${SHELL_CONFIG} && \
-        (echo -e "${1}" >> ${SHELL_CONFIG} && code "Injecting ${1} into ${SHELL_CONFIG}")
+    grep -R -n "${1}" "${SHELL_CONFIG}" > /dev/null 2>&1 || \
+        echo -e "# Configured by ${SCRIPT_NAME}" >> "${SHELL_CONFIG}" && \
+        (echo -e "${1}" >> "${SHELL_CONFIG}" && code "Injecting ${1} into ${SHELL_CONFIG}")
         message "Re-sourcing the ${SHELL_CONFIG} to reflect the changes"
 }
