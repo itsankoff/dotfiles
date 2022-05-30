@@ -7,6 +7,14 @@ OS_OSX='osx'
 OS_WINDOWS='the-forbidden-land'
 OS_BSD='the-unexplored-land'
 
+# Coloring variables
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+white=$(tput setaf 7)
+reset_clr=$(tput sgr0)
+white_bg=$(tput setaf 0 && tput setab 7)
+
 # setup_os sets up SETUP_OS environment variable to one of the possible values
 # (check above ^^)
 # In case of unknown OS type it exists the script with code 6.
