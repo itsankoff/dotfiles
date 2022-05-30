@@ -2,7 +2,7 @@
 echo 'Running shellcheck'
 set -e
 
-SHELL_FILES=(lib.sh packages.sh setup.sh)
+SHELL_FILES=(lib.sh packages.sh setup.sh install-hook.sh)
 
 cd mac &> /dev/null
 shellcheck -S warning ${SHELL_FILES[@]}
