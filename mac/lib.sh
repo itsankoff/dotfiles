@@ -11,20 +11,26 @@ OS_BSD='the-unexplored-land'
 # (check above ^^)
 # In case of unknown OS type it exists the script with code 6.
 function setup_os() {
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    if [[ "$OSTYPE" == "linux-gnu"* ]];
+    then
         SETUP_OS=${OS_LINUX}
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
+    elif [[ "$OSTYPE" == "darwin"* ]];
+    then
         SETUP_OS=${OS_OSX}
-    elif [[ "$OSTYPE" == "cygwin" ]]; then
+    elif [[ "$OSTYPE" == "cygwin" ]];
+    then
         # POSIX compatibility layer and Linux environment emulation for Windows
         SETUP_OS=${OS_LINUX}
-    elif [[ "$OSTYPE" == "msys" ]]; then
+    elif [[ "$OSTYPE" == "msys" ]];
+    then
         # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
         SETUP_OS=${OS_WINDOWS}
-    elif [[ "$OSTYPE" == "win32" ]]; then
+    elif [[ "$OSTYPE" == "win32" ]];
+    then
         # I'm not sure this can happen.
         SETUP_OS=${OS_WINDOWS}
-    elif [[ "$OSTYPE" == "freebsd"* ]]; then
+    elif [[ "$OSTYPE" == "freebsd"* ]];
+    then
         # The land of unexplored creatures and artifacts worth exloring
         SETUP_OS=${OS_BSD}
     else
@@ -45,12 +51,12 @@ function message() {
 
 # warn prints formatted warn message.
 function warn() {
-    echo "${yellow}${SCRIPT_NAME}: Warning ${1}${reset_clr}"
+    echo "${yellow}${SCRIPT_NAME}(warning): ${1}${reset_clr}"
 }
 
 # error prints formatted error message and exists the script with return code 1.
 function error() {
-    echo "${red}${SCRIPT_NAME}: Error ${1}${reset_clr}"
+    echo "${red}${SCRIPT_NAME}(error): ${1}${reset_clr}"
     exit 1
 }
 
@@ -71,7 +77,7 @@ function verify() {
 
     if [ ${PROMPT} == ${2} ]
     then
-        message "Nicee!"
+        message "Nice!"
     fi
 
     if [ ${PROMPT} == ${3} ]
