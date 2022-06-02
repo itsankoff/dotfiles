@@ -117,26 +117,32 @@ function ssh_tunnel() {
     ssh -i ${identity_file} ${username}@${remote_host} -N -f -L ${remote_port}:127.0.0.1:${local_port}
 }
 
-# autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
+# EXPORTS
+export EDITOR=vim
 # Homebrew needs /usr/local/bin to be before /usr/bin in PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export EDITOR=vim
-
-echo "FUCKING WORK $(date +%V/54)"
-
-# Set locale
-export LC_ALL=en_US.UTF-8
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-eval "$(direnv hook zsh)"
-
-export PATH="$PATH:/usr/local/sbin"
+export PATH="${PATH}:/usr/local/bin"
+export PATH="${PATH}:/opt/homebrew/bin"
 # Configured by setup.sh
 export GOPATH=/Users/itsankov/developers/workspace
 # Configured by setup.sh
-export GOBIN=$GOPATH/bin
+export GOBIN="${GOPATH}/bin"
 # Configured by setup.sh
-export PATH="$PATH:$GOBIN"
+export PATH="${PATH}:${GOBIN}"
+# set locale
+export LC_ALL=en_US.UTF-8
+# setup python bin in the PATH
+export "PATH=${PATH}:/Users/itsankov/Library/Python/3.8/bin"
+
+# Get some work down for f*ck sake!
+echo "FUCKING WORK $(date +%V/54)"
+
+# fzf setup
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+# direnv hook injection
+eval "$(direnv hook zsh)" || true
