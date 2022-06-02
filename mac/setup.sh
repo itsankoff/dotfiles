@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# source the utility library
-source ${SCRIPT_DIR}/lib.sh
-
 # NOTE:
 # This file can work as stand alone installer for mac environment.
 
@@ -28,30 +25,13 @@ GUI_ENV="gui"
 # If you want to set the environment for terminal only change to ${TERMINAL_ENV}
 SETUP_ENV=${GUI_ENV}
 
+# source the utility library
+source ${SCRIPT_DIR}/lib.sh
+
 # Print help section
 function help {
     echo "${SCRIPT} [-p|--package <package>] [-h|--help]"
     exit 1
-}
-
-# setup_env sets up basic variables
-function setup_env() {
-    message "Setting up development structure"
-
-    if [[ "${SETUP_OS}" == "${OS_OSX}" ]]
-    then
-        HOME_PATH_PREFIX="/Users"
-    elif [[ "${SETUP_OS}" == "${OS_LINUX}" ]]
-    then
-        HOME_PATH_PREFIX="/home"
-    else
-        HOME_PATH_PREFIX="/tmp"
-    fi
-
-    # setup development structure
-    USER_HOME="${HOME_PATH_PREFIX}/${USER}"
-    DEV_HOME="${USER_HOME}/developers"
-    SSH_DIR="${USER_HOME}/.ssh"
 }
 
 # setup_env sets up the development structure.
@@ -61,6 +41,8 @@ function setup_development_env() {
 
 # setup_zsh sets up Oh my zsh environment.
 function setup_zsh() {
+    mkdir -p ~/.ssh
+
     if [[ -z $ZSH ]]
     then
         message "zshell installation is missing. Installing oh-my-zsh..."
@@ -135,7 +117,9 @@ function setup_postgresql() {
 # content.
 function setup_vim() {
     # Setup vim
-    ensure "pushd ${SCRIPT_DIR}/../vim && ./install.sh && popd"
+    ensure pushd ${SCRIPT_DIR}/../vim
+        ensure ./install.sh
+    ensure popd
 }
 
 # setup_git sets up the git config and aliases.
@@ -209,6 +193,7 @@ setup_env
 source ./packages.sh
 
 # parse script arguments. Each of the arguments support long version. See below.
+PACKAGE="${ALL_PACKAGES}"
 if [[ $# -gt 0 ]]
 then
     FLAGS="p:h-:"
@@ -236,7 +221,7 @@ then
         esac
     done
 else
-    export PACKAGE=${PACKAGE_ALL}
+    export PACKAGE=${ALL_PACKAGES}
 fi
 
 message "OK Let's setup this machine! I will take care..."
@@ -244,16 +229,16 @@ message "Go, make yourself a coffee or a tea!"
 message "------------------------------------------------"
 message "Setting up the environment..."
 
-is_pkg "setup_terminal_apps" && setup_terminal_apps
-is_pkg "setup_gui_apps" && setup_gui_apps
-is_pkg "setup_python_apps" && setup_python_apps
-is_pkg "setup_ruby_appst" && setup_ruby_apps
-is_pkg "setup_zsh" && setup_zsh
-is_pkg "setup_golang" && setup_golang
-is_pkg "setup_postgresql" && setup_postgresql
-is_pkg "install_fonts" && install_fonts
-is_pkg "setup_vim" && setup_vim
-is_pkg "setup_git" && setup_git
+is_pkg "terminal_apps" && setup_terminal_apps
+is_pkg "gui_apps" && setup_gui_apps
+is_pkg "python_apps" && setup_python_apps
+is_pkg "ruby_apps" && setup_ruby_apps
+is_pkg "zsh" && setup_zsh
+is_pkg "golang" && setup_golang
+is_pkg "postgresql" && setup_postgresql
+is_pkg "fonts" && install_fonts
+is_pkg "vim" && setup_vim
+is_pkg "git" && setup_git
 
 warn "Don't forget to source the new terminal environment"
 code "source ${USER_HOME}/.zshrc"

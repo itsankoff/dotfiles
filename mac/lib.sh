@@ -33,11 +33,11 @@ function setup_os() {
     elif [[ "$OSTYPE" == "darwin"* ]];
     then
         SETUP_OS=${OS_OSX}
+        MANAGER=${OSX_BREW}
     elif [[ "$OSTYPE" == "cygwin" ]];
     then
         # POSIX compatibility layer and Linux environment emulation for Windows
         SETUP_OS=${OS_LINUX}
-        MANAGER=${OSX_BREW}
     elif [[ "$OSTYPE" == "msys" ]];
     then
         # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
@@ -54,6 +54,26 @@ function setup_os() {
         message "You are running a very uncommon environment :?"
         exit 6
     fi
+}
+
+# setup_env sets up basic variables
+function setup_env() {
+    message "Setting up development structure"
+
+    if [[ "${SETUP_OS}" == "${OS_OSX}" ]]
+    then
+        HOME_PATH_PREFIX="/Users"
+    elif [[ "${SETUP_OS}" == "${OS_LINUX}" ]]
+    then
+        HOME_PATH_PREFIX="/home"
+    else
+        HOME_PATH_PREFIX="/tmp"
+    fi
+
+    # setup development structure
+    USER_HOME="${HOME_PATH_PREFIX}/${USER}"
+    DEV_HOME="${USER_HOME}/developers"
+    SSH_DIR="${USER_HOME}/.ssh"
 }
 
 # plain prints the given message in plain mode (using echo).
@@ -275,7 +295,6 @@ function pkg_install() {
 }
 
 ALL_PACKAGES="all"
-PACKAGE=${ALL_PACKAGES}
 # is_pkg is used for conditional package installation. If the ${1} is the name
 # of the package provided by the CLI args then return 0 (true)
 # otherwise 1 (false).
