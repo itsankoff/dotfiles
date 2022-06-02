@@ -29,7 +29,7 @@ SETUP_ENV=${GUI_ENV}
 source ${SCRIPT_DIR}/lib.sh
 
 # Print help section
-function help {
+function help() {
     echo "${SCRIPT} [-p|--package <package>] [-h|--help]"
     exit 1
 }
