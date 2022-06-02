@@ -44,13 +44,15 @@ Platform specific setups are described by separate section.
     * Open System Preferences -> Security And Privacy -> Privacy
     * Go to Accessibility using the left panel
     * Unlock using your credentials
-    * Use the `+` button on the right panel and nagivate to Applications/AirPodsConnect
+    * Use the `+` button on the right panel and navigate to Applications/AirPodsConnect
     * Check the AirPodsConnect
     * Lock the settings
 * Open Spotlight, type `AirPodsConnect` and hit enter
 * Enjoy the 🎧
 
 ## [] OS additional setup
+* Login with iCloud and calendars
+    * System Preferences -> Internet Accounts -> `...`
 * Click on the Battery icon at the status back -> Check `Show Percentage`
 * Open Settings
 * Go to Date & Time -> Clock
@@ -72,16 +74,30 @@ Platform specific setups are described by separate section.
     * System Preferences -> Accessibility -> Display -> Reduce Transperancy
 * Battery percentage
     * System Preferences -> Dock and Menu Bar -> Battery -> Show Percentage
+* Keyboard inputs:
+    * System Preferences -> Keyboard -> Inputs Sources -> EN - US and Bulgarian QUERTY
+* Set home directory in finder as favorite
+    * Finder -> Preferences -> Sidebar -> ${USER}
+* Karabiner-Elements
+    * Setup privacy and security access
+    * rules
+        * `fn` -> `left control`
+        * `left control` -> `fn`
+        * if UK keyboard layout
+            * `grave_accent_and_tilde()` -> `non_us_backslash`
+            * `non_us_backslash` -> `grave_accent_and_tilde`
+
 
 ## [] Additional iterm2 setup
 * iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles -> /path/to/dotfiles/mac/config/iterm-profile.json
 * Set the profile as default
 * iTerm2 -> Preferences -> Keys -> Presets -> Import... -> /path/to/dotfiles/mac/config/iterm-keys.itermkeymap
-* iTerm2 -> Preferences -> Appearance -> Uncheck Stretch tabs to fill bar
+* iTerm2 -> Preferences -> Appearance -> Tabs -> Uncheck Stretch tabs to fill bar
 
 ## Troubleshooting
 * [] Depending on your Mac settings you may need to allow Accessibility permissions
     for the script. Go to `Settings -> Security and Privacy -> Privacy Tab -> Accessibility -> Add permission for AirPodsConnect`
+* [] `brew` failed to install due to github pub key access denied: https://github.com/Homebrew/brew/issues/52#issuecomment-208557489
 
 ## References
 * AirPodsConnect Spotlight bind - [Full article](https://medium.com/@secondfret/how-to-connect-your-airpods-to-your-mac-with-a-keyboard-shortcut-9d72e786993b)
