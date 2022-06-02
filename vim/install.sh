@@ -20,7 +20,7 @@ must curl -fLo ${VIM_DIR}/autoload/plug.vim --create-dirs https://raw.githubuser
 
 echo "Installing color scheme..."
 must mkdir -p ${VIM_DIR}/colors
-must ln -sf $(pwd)/jellygrass.vim ${VIM_DIR}/colors/jellygrass.vim
+must ln -sf $(pwd)/colors/jellygrass.vim ${VIM_DIR}/colors/jellygrass.vim
 
 echo "Installing NERDTree plugin..."
 test -d ${VIM_PLUGIN_DIR}/nerdtree || must git clone https://github.com/scrooloose/nerdtree.git ${VIM_PLUGIN_DIR}/nerdtree
