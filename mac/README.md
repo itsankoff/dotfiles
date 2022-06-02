@@ -20,6 +20,12 @@ Platform specific setups are described by separate section.
     * `share`
     * `var`
 * You can ensure ownership with the following command: `sudo chown -R ${USER}:admin <dirs_listed_above>`
+* Install [brew](https://brew.sh/)
+* Follow brew post install instructions to populate `brew` in the environment
+
+## Installation
+* Make code structure: `mkdir -p ~/developers`
+* Clone the repo: `git clone https://github.com/itsankoff/dotfiles.git`
 
 ## General setup
 * 📜 Run `setup.sh`
