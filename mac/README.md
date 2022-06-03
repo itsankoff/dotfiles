@@ -53,24 +53,23 @@ Platform specific setups are described by separate section.
 ## [] OS additional setup
 * Login with iCloud and calendars
     * System Preferences -> Internet Accounts -> `...`
-* Click on the Battery icon at the status back -> Check `Show Percentage`
-* Open Settings
-* Go to Date & Time -> Clock
-* Check - `Display the time with seconds`
-* Go to Dock
-* Check `Automatically hide and show Dock`
-* Go to Hot Corners
-* Left top - `-`
-* Left bottom - `Desktop`
-* Right top - `Notification center`
-* Right bottom - `Desktop`
-* Go to Appearance
-* Highligh color: `Graphite`
-* Theme - `Dark`
-* Go to Keyboards -> Shortcuts -> Mission Control
-* Uncheck `Move left a space` (`^<-`)
-* Uncheck `Move right a space` (`^->`)
-* Make Menu Bar dark
+* Go to System Preferences -> Date & Time -> Clock
+    * Check - `Display the time with seconds`
+* Go to System Preferences -> Dock
+    * Check `Automatically hide and show Dock`
+    * Uncheck `Show recent applications in Dock`
+* Go to System Preferences -> Hot Corners
+    * Left top - `-`
+    * Left bottom - `Desktop`
+    * Right top - `Notification center`
+    * Right bottom - `Desktop`
+* Go to System Preferences -> Appearance
+    * Highligh color: `Graphite`
+    * Theme - `Dark`
+    * Go to Keyboards -> Shortcuts -> Mission Control
+    * Uncheck `Move left a space` (`^<-`)
+    * Uncheck `Move right a space` (`^->`)
+* Go to Make Menu Bar dark
     * System Preferences -> Accessibility -> Display -> Reduce Transperancy
 * Battery percentage
     * System Preferences -> Dock and Menu Bar -> Battery -> Show Percentage
