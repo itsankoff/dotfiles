@@ -121,10 +121,6 @@ function ssh_tunnel() {
 
 # EXPORTS
 export EDITOR=vim
-# Homebrew needs /usr/local/bin to be before /usr/bin in PATH
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="${PATH}:/usr/local/bin"
-export PATH="${PATH}:/opt/homebrew/bin"
 # Configured by setup.sh
 export GOPATH=/Users/itsankov/developers/workspace
 # Configured by setup.sh
@@ -133,8 +129,6 @@ export GOBIN="${GOPATH}/bin"
 export PATH="${PATH}:${GOBIN}"
 # set locale
 export LC_ALL=en_US.UTF-8
-# setup python bin in the PATH
-export "PATH=${PATH}:/Users/itsankov/Library/Python/3.8/bin"
 
 # Get some work down for f*ck sake!
 echo "FUCKING WORK $(date +%V/54)"
