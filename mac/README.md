@@ -77,6 +77,8 @@ Platform specific setups are described by separate section.
     * System Preferences -> Keyboard -> Inputs Sources -> EN - US and Bulgarian QUERTY
 * Set home directory in finder as favorite
     * Finder -> Preferences -> Sidebar -> ${USER}
+* Set default directory for new Finder instances
+    * Finder -> Preferences -> New Finder windows show: `${USER}`
 * Karabiner-Elements
     * Setup privacy and security access
     * rules
