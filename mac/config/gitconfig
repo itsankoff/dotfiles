@@ -13,7 +13,7 @@
     pulr = pullr
     uncommit = reset HEAD^
     # ${1} - base, ${2} - second branch
-    branchdiff = "!f() { git log ${1}..${2}; }; f"
+    branchdiff = "!f() { git log ${1}..${2} ${3}; }; f"
     bd = branchdiff
     branches = branch -a
     remotes = remote -v
@@ -37,3 +37,5 @@
 
 [pager]
     branch = false
+[init]
+	defaultBranch = master
