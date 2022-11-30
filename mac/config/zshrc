@@ -97,16 +97,16 @@ function text() {
     figlet -W ${1}
 }
 
-# ssh_tunnel tunnels traffic
+# ssh_tunnel_local tunnels local traffic to remote machine
 # $1 - username
 # $2 - remote_host
 # $3 - remote_port
 # $4 - local_port
 # $5 - identity_file
-function ssh_tunnel() {
+function ssh_tunnel_local() {
     if [[ ${1} == "--help" ]]
     then
-        echo "ssh_tunnel <username> <remote_host> <remote_port> <local_port> <identity_file>"
+        echo "ssh_tunnel_local <username> <remote_host> <remote_port> <local_port> <identity_file>"
         return
     fi
 
@@ -117,6 +117,33 @@ function ssh_tunnel() {
     identity_file=${5}
 
     ssh -i ${identity_file} ${username}@${remote_host} -N -f -L ${remote_port}:127.0.0.1:${local_port}
+}
+
+# ssh_tunnel_remote tunnels remote traffic to local machine
+# $1 - username
+# $2 - remote_host
+# $3 - remote_port
+# $4 - local_port
+# $5 - identity_file
+function ssh_tunnel_remote() {
+    if [[ ${1} == "--help" ]]
+    then
+        echo "ssh_tunnel_remote <username> <remote_host> <remote_port> <local_port> <identity_file>"
+        return
+    fi
+
+    username=${1}
+    remote_host=${2}
+    remote_port=${3}
+    local_port=${4}
+    identity_file=${5}
+
+    ssh -i ${identity_file} ${username}@${remote_host} -N -f -R ${remote_port}:127.0.0.1:${local_port}
+}
+
+# port_listen list all open listen ports on the system
+function port_listen() {
+    lsof -i -P -n | grep LISTEN
 }
 
 # EXPORTS
