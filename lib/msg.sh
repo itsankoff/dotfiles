@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SCRIPT_NAME=${SCRIPT_NAME:""}
 
 # Coloring variables
 red=$(tput setaf 1)

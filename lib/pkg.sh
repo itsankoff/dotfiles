@@ -61,8 +61,8 @@ function setup_pkg_manager() {
     touch "${_pkg_manager_setup_lock}"
 }
 
-# update_pkg_update updates the repos for the OS specific package manager
-function update_pkg_update() {
+# update_pkg_manager updates the repos for the OS specific package manager
+function update_pkg_manager() {
     message "updating ${_pkg_manager} sources..."
 
     if [[ "${pkg_manager}" == "${_osx_pkg_manager}" ]]
