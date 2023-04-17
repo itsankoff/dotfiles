@@ -10,3 +10,4 @@ source ${_lib_script_dir}/msg.sh
 source ${_lib_script_dir}/ctrl.sh
 source ${_lib_script_dir}/os.sh
 source ${_lib_script_dir}/pkg.sh
+source ${_lib_script_dir}/service.sh
