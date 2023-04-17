@@ -1,48 +1,55 @@
 #!/bin/bash
 
-# NOTE:
 # This file can work as stand alone installer for mac environment.
 
-# Always use the current working directory and add the SCRIPT_DIR path
-# to produce an absolute SCRIPT_PATH. Maybe there is a easier way.
-CURRENT_DIR=$(pwd)
-SCRIPT_DIR="${CURRENT_DIR}/$(dirname ${0})"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
-# SCRIPT_NAME holds the script name.
-export SCRIPT_NAME=""
+# source the utility library
+source ${SCRIPT_DIR}/../lib/lib.sh
+
 SCRIPT_NAME=$(basename ${0})
-
-# CONFIG_DIR hold all the configurations.
 CONFIG_DIR="${SCRIPT_DIR}/config"
-
-# MANAGER_SETUP_LOCK controls the manager setup single execution.
-export MANAGER_SETUP_LOCK=".setup.ready"
-
 GUI_ENV="gui"
-#TERMINAL_ENV="terminal"
+TERMINAL_ENV="terminal"
+DEV_HOME="~/developers"
+SSH_DIR="~/.ssh"
 
 # SETUP_ENV controls whether the script runs on terminal only or GUI environment.
 # If you want to set the environment for terminal only change to ${TERMINAL_ENV}
 SETUP_ENV=${GUI_ENV}
 
-# source the utility library
-source ${SCRIPT_DIR}/lib.sh
-
-# Print help section
+# help prints the help section of the script
 function help() {
-    echo "${SCRIPT} [-p|--package <package>] [-h|--help]"
-    exit 1
+    plain "for full setup run: ${SCRIPT_NAME}"
+    plain "${SCRIPT_NAME} [-p|--package <package>] [-h|--help]"
+    exit 0
 }
 
-# setup_env sets up the development structure.
-function setup_development_env() {
+ALL_PACKAGES="all"
+# is_pkg is used for conditional package installation. If the ${1} is the name
+# of the package provided by the CLI args then return 0 (true)
+# otherwise 1 (false).
+# Example:
+# 1. $> is_pkg direnv
+# PACKAGE will be set to "direnv" and then is_pkg "direnv" will return 0 (true).
+# NOTE: In case no package is provided by CLI or as environment variable then
+# "all" is assumed which will allow all package installations and configuration.
+function is_pkg() {
+    if [[ "${PACKAGE}" == "${ALL_PACKAGES}" ]] || [[ "${PACKAGE}" == "${1}" ]]
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# setup_dev_env sets up the development structure.
+function setup_dev_env() {
     mkdir -p ${DEV_HOME} ${SSH_DIR}
 }
 
-# setup_zsh sets up Oh my zsh environment.
-function setup_zsh() {
-    mkdir -p ~/.ssh
-
+# zsh_env sets up Oh my zsh environment.
+function zsh_env() {
     if [[ -z $ZSH ]]
     then
         message "zshell installation is missing. Installing oh-my-zsh..."
@@ -53,29 +60,30 @@ function setup_zsh() {
                 ./install.sh && \
             popd && \
         popd || exit 10
+
+        # zsh-autosuggestions plugin
+        message "installing zshell autosuggestion plugin..."
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1 || skip_error
     fi
 
-    message "Configuring zsh environment..."
-    if [[ -f ${USER_HOME}/.zshrc ]]
+    message "configuring zsh environment..."
+    if [[ -f ${HOME}/.zshrc ]]
     then
-        verify "There is existing .zshrc for the ${USER}. Do you want to move it to ${USER_HOME}/.zshrc.backup" "y" "n" && \
-            mv ${USER_HOME}/.zshrc ${USER_HOME}/.zshrc.backup
+        verify "there is existing .zshrc for the ${USER}. Do you want to move it to ${HOME}/.zshrc.backup" "y" "n" \
+        && mv ${HOME}/.zshrc ${HOME}/.zshrc.backup
     fi
-    ln -s ${CONFIG_DIR}/zshrc ${USER_HOME}/.zshrc
+    ln -s ${CONFIG_DIR}/zshrc ${HOME}/.zshrc
 
-    if [[ -f ${USER_HOME}/.aliases ]]
+    if [[ -f ${HOME}/.aliases ]]
     then
-        verify "There is existing .aliases for the ${USER}. Do you want to move it to ${USER_HOME}/.aliases.backup" "y" "n" && \
-            mv ${USER_HOME}/.aliases ${USER_HOME}/.aliases.backup
+        verify "there is existing .aliases for the ${USER}. Do you want to move it to ${HOME}/.aliases.backup" "y" "n" \
+        && mv ${HOME}/.aliases ${HOME}/.aliases.backup
     fi
-    ln -s ${CONFIG_DIR}/aliases ${USER_HOME}/.aliases
-
-    # zsh-autosuggestions plugin
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-${USER_HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1 || skip_error
+    ln -s ${CONFIG_DIR}/aliases ${HOME}/.aliases
 }
 
-# install_fonts install the fonts in case of gui environment.
-function install_fonts() {
+# fonts installs the fonts in case of gui environment.
+function fonts() {
     if [[ "${SETUP_ENV}" == "${GUI_ENV}" ]]
     then
         ensure mkdir -p /tmp/fonts
@@ -89,8 +97,8 @@ function install_fonts() {
     fi
 }
 
-# setup_golang sets up the golang environment.
-function setup_golang() {
+# golang_env sets up the golang environment.
+function golang_env() {
     # setup golang workspace structure
     mkdir -p ${DEV_HOME}/workspace
     mkdir -p ${DEV_HOME}/workspace/src
@@ -106,88 +114,80 @@ function setup_golang() {
     go get golang.org/x/tools/cmd/goimports
 }
 
-# setup_postgresql sets up the postgresql environment.
-function setup_postgresql() {
+# postgresql_env sets up the postgresql environment.
+function postgresql_env() {
     initdb
     run_service postgres
     createdb ${USER}
 }
 
-# setup_vim sets up the vim environment. For more information check the script
+# vim_setup sets up the vim environment. For more information check the script
 # content.
-function setup_vim() {
+function vim_setup() {
     # Setup vim
     ensure pushd ${SCRIPT_DIR}/../vim
         ensure ./install.sh
     ensure popd
 }
 
-# setup_git sets up the git config and aliases.
-function setup_git() {
-    if [[ -e ${USER_HOME}/.gitconfig ]]
+# git_setup sets up the git config and aliases.
+function git_setup() {
+    if [[ -e ${HOME}/.gitconfig ]]
     then
-        verify "There is existing .gitconfig for the ${USER}. Do you want to move it to ${USER_HOME}/.gitconfig.backup" "y" "n" && \
-            mv ${USER_HOME}/.gitconfig ${USER_HOME}/.giconfig.backup
+        verify "There is existing .gitconfig for the ${USER}. Do you want to move it to ${HOME}/.gitconfig.backup" "y" "n" && \
+            mv ${HOME}/.gitconfig ${HOME}/.giconfig.backup
     fi
-    ln -s ${CONFIG_DIR}/gitconfig ${USER_HOME}/.gitconfig
+    ln -s ${CONFIG_DIR}/gitconfig ${HOME}/.gitconfig
 }
 
-# Install terminal packages and cli apps
-function setup_terminal_apps() {
-    manager_setup
-    manager_update
+# terminal_apps installs terminal and cli apps
+function terminal_apps() {
     for pkg in "${terminal_packages[@]}"
     do
-        ready=$(pkg_install ${pkg} >> setup.log 2>&1)
+        local ready=$(pkg_install ${pkg} >> setup.log 2>&1)
         if [[ ${ready} -eq 0 ]]
         then
             message "${pkg} ready for use"
         else
-            warn "Failed to set up ${pkg}. For more information check logs"
+            warn "failed to set up ${pkg}. For more information check logs"
         fi
     done
 }
 
-# Install gui packages and apps
-function setup_gui_apps() {
-    manager_setup
-    manager_update
+# gui_apps installs GUI packages and apps
+function gui_apps() {
     if [[ "${SETUP_ENV}" == "${GUI_ENV}" ]]
     then
         for pkg in "${gui_packages[@]}"
         do
-            ready=$(pkg_install ${pkg} "gui" >> setup.log 2>&1)
+            local ready=$(pkg_install ${pkg} "gui" >> setup.log 2>&1)
             if [[ ${ready} -eq 0 ]]
             then
                 message "${pkg} ready for use"
             else
-                warn "Failed to set up ${pkg}. For more information check logs"
+                warn "failed to set up ${pkg}. for more information check logs"
             fi
         done
+    else
+        warn "skip installing gui apps"
     fi
 }
 
-# Install pip packages
-function setup_python_apps() {
+# python_apps installs python related packages and apps
+function python_apps() {
     for pkg in "${pip_packages[@]}"
     do
         pip_install "${pkg}"
     done
 }
 
-# Install ruby packages
-function setup_ruby_apps() {
+# ruby_apps installs ruby related packages and apps
+function ruby_apps() {
     for pkg in "${ruby_gems[@]}"
     do
         gem_install "${pkg}"
     done
 }
-
-# execute os setup
-setup_os
-
-# execute env setup
-setup_env
 
 # source the needed packages
 source ./packages.sh
@@ -226,21 +226,22 @@ fi
 
 message "OK Let's setup this machine! I will take care..."
 message "Go, make yourself a coffee or a tea!"
-message "------------------------------------------------"
+plain   "------------------------------------------------"
 message "Setting up the environment..."
 
-is_pkg "terminal_apps" && setup_terminal_apps
-is_pkg "gui_apps" && setup_gui_apps
-is_pkg "python_apps" && setup_python_apps
-is_pkg "ruby_apps" && setup_ruby_apps
-is_pkg "zsh" && setup_zsh
-is_pkg "golang" && setup_golang
-is_pkg "postgresql" && setup_postgresql
-is_pkg "fonts" && install_fonts
-is_pkg "vim" && setup_vim
-is_pkg "git" && setup_git
+is_pkg "dev_env" && setup_dev_env
+is_pkg "terminal_apps" && terminal_apps
+is_pkg "gui_apps" && gui_apps
+is_pkg "python_apps" && python_apps
+is_pkg "ruby_apps" && ruby_apps
+is_pkg "zsh" && zsh_env
+is_pkg "golang" && golang_env
+is_pkg "postgresql" && postgresql_env
+is_pkg "fonts" && fonts
+is_pkg "vim" && vim_setup
+is_pkg "git" && git_setup
 
 warn "Don't forget to source the new terminal environment"
-code "source ${USER_HOME}/.zshrc"
+code "source ${HOME}/.zshrc"
 
 message "Happy coding!"
