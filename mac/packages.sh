@@ -2,57 +2,64 @@
 
 # Terminal packages
 export terminal_packages=(
-    git
-    hg
-    zsh
-    htop
-    curl
-    telnet
-    wget
-    direnv
-    autojump
-    grip
-    jq
-    gs
-    the_silver_searcher
-    cmake
-    vim
-    go@1.18
-    node
     ansible
-    python3
-    postgresql@13
-    terraform
-    kubectl
+    autojump
+    cmake
+    curl
+    direnv
     eksctl
-    k9s
     ffmpeg
+    fzf
+    git
+    go@1.18
+    grip
+    gs
+    help
+    hg
+    htop
     hugo
+    jq
+    k9s
+    kubectl
+    node
+    packer
+    postgresql@13
+    python3
     shellcheck
+    telnet
+    terraform
     terragrunt
+    tfenv
+    the_silver_searcher
+    tmate
+    vim
+    watch
+    wget
+    yq
+    zsh
 )
 
 # GUI packages
 export gui_packages=(
-    iterm2
-    the-unarchiver
-    google-chrome
-    adoptopenjdk-jre
-    docker
-    ngrok
-    spotify
-    visual-studio-code
-    karabiner-elements
-    viscosity
     1password
     adobe-acrobat-reader
+    adoptopenjdk-jre
     calibre
+    docker
     firefox
+    google-chrome
+    iterm2
+    karabiner-elements
     kindle
+    ngrok
     postico
     slack
-    zoom
+    spotify
+    the-unarchiver
+    visual-studio-code
+    viscosity
     vlc
+    zoom
 )
 
 # Python dependencies
