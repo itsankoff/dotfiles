@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Supported values for SETUP_OS variable. Please always use these for os
 # specific conditions.
 OS_LINUX='linux'

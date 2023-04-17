@@ -1,5 +1,11 @@
 #!/bin/bash
 
+_service_script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+
+# imports
+source ${_service_script_dir}/msg.sh
+
+
 # start_service runs the service
 function start_service() {
     if [[ "${SETUP_OS}" == "${OS_OSX}" ]]
