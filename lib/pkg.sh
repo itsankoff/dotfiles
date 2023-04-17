@@ -175,5 +175,17 @@ function pkg_install() {
     fi
 }
 
+# pip_install runs the configured pip environment to install the given package.
+function pip_install() {
+    message "installing pip ${1}..."
+    pip3 install "${1}" 2>&1
+}
+
+# gem_install runs the configured gem.
+function gem_install() {
+    message "installing ruby gem ${1}..."
+    gem install "${1}"
+}
+
 choose_manager
 setup_pkg_manager
