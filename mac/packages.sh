@@ -30,6 +30,7 @@ export terminal_packages=(
     hugo
     shellcheck
     terragrunt
+    watch
 )
 
 # GUI packages
