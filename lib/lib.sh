@@ -12,4 +12,3 @@ source ${_lib_script_dir}/os.sh
 source ${_lib_script_dir}/pkg.sh
 source ${_lib_script_dir}/service.sh
 source ${_lib_script_dir}/shell.sh
-source ${_lib_script_dir}/misc.sh
