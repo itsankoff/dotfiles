@@ -63,7 +63,7 @@ alias vim=/opt/homebrew/bin/vim
 # File search functions
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep -R -n "$1" $2 }
-function pub() { ssh-keygen -y -f $1 }
+function pub() { ssh-keygen -C "" -y -f $1 }
 
 # codecount counts the code lines within the cwd recursively
 # optional - ${1} - file extension filter
@@ -141,9 +141,23 @@ function ssh_tunnel_remote() {
     ssh -i ${identity_file} ${username}@${remote_host} -N -f -R ${remote_port}:127.0.0.1:${local_port}
 }
 
+# ping_scan does a quick ping scan for given IP range (start, to)
+# usage: ping_scan 192.168.1.{0..255}
+function ping_scan() {
+    for i in ${1}
+    do
+        ping -c 1 -t 1 ${i} > /dev/null 2>&1 && echo ${i}
+    done
+}
+
 # port_listen list all open listen ports on the system
 function port_listen() {
     lsof -i -P -n | grep LISTEN
+}
+
+# check_ssl obtains information about SSL of given remote host
+function ssl_check() {
+    openssl s_client -servername ${1} -connect ${1}:443 2>/dev/null | openssl x509 -noout -dates
 }
 
 # EXPORTS
@@ -156,6 +170,8 @@ export GOBIN="${GOPATH}/bin"
 export PATH="${PATH}:${GOBIN}"
 # set locale
 export LC_ALL=en_US.UTF-8
+# we don't like auto updates fckn homebrew 🤯!
+export HOMEBREW_NO_AUTO_UPDATE="1"
 
 # Get some work down for f*ck sake!
 echo "FUCKING WORK $(date +%V/54)"
@@ -169,3 +185,5 @@ echo "FUCKING WORK $(date +%V/54)"
 
 # direnv hook injection
 eval "$(direnv hook zsh)" || true
+
+export PATH="$PATH:/Users/itsankov/.bin"
