@@ -3,11 +3,11 @@
 # This file can work as stand alone installer for mac environment.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+SCRIPT_NAME=$(basename ${0})
 
 # source the utility library
 source ${SCRIPT_DIR}/../lib/lib.sh
 
-SCRIPT_NAME=$(basename ${0})
 CONFIG_DIR="${SCRIPT_DIR}/config"
 GUI_ENV="gui"
 TERMINAL_ENV="terminal"
