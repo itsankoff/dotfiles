@@ -154,25 +154,23 @@ function pkg_upgrade() {
 function pkg_install() {
     message "installing ${1}..."
 
-    if is_installed "${@}"
+    if [[ "${_pkg_manager}" == "${_osx_pkg_manager}" ]]
     then
-        pkg_update "${@}"
-    else
-        if [[ "${_pkg_manager}" == "${_osx_pkg_manager}" ]]
+        local is_gui_pkg=false
+        if [[ ! -z ${2} ]]
         then
-            local is_gui_pkg=false
-            if [[ ! -z ${2} ]]
-            then
-                is_gui_pkg=true
-            fi
-
-            if [[ ${is_gui_pkg} == true ]]
-            then
-                ${_pkg_manager} install --cask "${1}"
-            else
-                ${_pkg_manager} install "${1}"
-            fi
+            is_gui_pkg=true
         fi
+
+        if [[ ${is_gui_pkg} == true ]]
+        then
+            ${_pkg_manager} install --cask "${1}"
+        else
+            ${_pkg_manager} install "${1}"
+        fi
+    elif [[ "${_pkg_manager}" == "${_linux_pkg_manager}" ]]
+    then
+        ${_pkg_manager} install ${1}
     fi
 }
 
