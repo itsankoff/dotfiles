@@ -1,0 +1,17 @@
+# :help cursor-motions
+# :help left-right-motions
+# :help up-down-motions
+# :help scrolling
+% - move to the matching bracket
+f<character> - find the character after the cursor
+F<character> - find the character after the cursor
+; , - go forward and backward with finding next/prev <character>
+y$ - copy everything from cursor to end of line
+d$ - delete everything from cursor to end of line
+
+# :help operators
+# :help text-objects
+diw - delete inside the word
+viw - visual select inside the word
+ciw - change inside the word
+dip - delete inside the paragraph
