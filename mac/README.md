@@ -6,21 +6,6 @@ through overcomplicated shell scripts. Currently working mostly for macOS. Use
 Platform specific setups are described by separate section.
 
 ## [] Prerequisites
-* Make sure the executing user `echo $USER` has access to the following sub-directories in `/usr/local`  
-(_NOTE: This is not an exhaustive list_):
-    * `Caskroom`
-    * `Cellar`
-    * `Frameworks`
-    * `Homebrew`
-    * `bin`
-    * `include`
-    * `lib`
-    * `opt`
-    * `sbin`
-    * `share`
-    * `var`
-* You can ensure ownership with the following command: `sudo chown -R ${USER}:admin <dirs_listed_above>`
-* Install [brew](https://brew.sh/)
 * Follow brew post install instructions to populate `brew` in the environment
 
 ## Installation
