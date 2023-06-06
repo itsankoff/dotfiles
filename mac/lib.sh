@@ -184,6 +184,14 @@ function manager_setup() {
         else
             message "Package manager ${MANAGER} is not installed. Trying to install..."
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            BREW_BIN='/opt/homebrew/bin'
+            if [[ "${PATH}" == *"${BREW_BIN}"* ]];
+            then
+                message "BREW_BIN already in PATH"
+            else
+                export PATH="${PATH}:/opt/homebrew/bin"
+                message "Setting up BREW_BIN in PATH only for script execution"
+            fi
         fi
     fi
 
