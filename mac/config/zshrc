@@ -162,12 +162,6 @@ function ssl_check() {
 
 # EXPORTS
 export EDITOR=vim
-# Configured by setup.sh
-export GOPATH=/Users/itsankov/developers/workspace
-# Configured by setup.sh
-export GOBIN="${GOPATH}/bin"
-# Configured by setup.sh
-export PATH="${PATH}:${GOBIN}"
 # set locale
 export LC_ALL=en_US.UTF-8
 # we don't like auto updates fckn homebrew 🤯!
@@ -187,3 +181,11 @@ echo "FUCKING WORK $(date +%V/54)"
 eval "$(direnv hook zsh)" || true
 
 export PATH="$PATH:/Users/itsankov/.bin"
+# Configured by setup.sh
+export GOPATH=/Users/itsankov/developers/workspace
+# Configured by setup.sh
+export GOBIN=$GOPATH/bin
+# Configured by setup.sh
+export PATH="$PATH:$GOBIN"
+
+export PATH="${PATH}:/opt/homebrew/bin"
