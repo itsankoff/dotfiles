@@ -1,5 +1,5 @@
 {
-  "Transparency" : 0,
+  "Use Non-ASCII Font" : true,
   "Tags" : [
 
   ],
@@ -8,29 +8,35 @@
     "Red Component" : "0.4470588",
     "Blue Component" : "0.8117647"
   },
-  "Guid" : "9DB1D2FA-189F-42E6-BC1A-20CBD00DAE76",
-  "Normal Font" : "UbuntuMonoDerivativePowerline-Regular 18",
+  "Ansi 7 Color" : {
+    "Green Component" : "0.8431373",
+    "Red Component" : "0.827451",
+    "Blue Component" : "0.8117647"
+  },
+  "Ansi 8 Color" : {
+    "Green Component" : "0.3411765",
+    "Red Component" : "0.3333333",
+    "Blue Component" : "0.3254902"
+  },
   "Bold Color" : {
     "Green Component" : "1",
     "Red Component" : "1",
     "Blue Component" : "1"
   },
-  "Ansi 2 Color" : {
-    "Green Component" : "0.6039215999999999",
-    "Red Component" : "0.3058824",
-    "Blue Component" : "0.02352941"
+  "Ansi 9 Color" : {
+    "Green Component" : "0.1607843",
+    "Red Component" : "0.9372549",
+    "Blue Component" : "0.1607843"
   },
-  "Link Color" : {
-    "Red Component" : 0,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.73423302173614502,
-    "Alpha Component" : 1,
-    "Green Component" : 0.35916060209274292
+  "Ansi 6 Color" : {
+    "Green Component" : "0.5960785",
+    "Red Component" : "0.02352941",
+    "Blue Component" : "0.6039215999999999"
   },
-  "Ansi 4 Color" : {
-    "Green Component" : "0.3960784",
-    "Red Component" : "0.2039216",
-    "Blue Component" : "0.6431373"
+  "Ansi 0 Color" : {
+    "Green Component" : "0",
+    "Red Component" : "0",
+    "Blue Component" : "0"
   },
   "Rows" : 25,
   "Default Bookmark" : "No",
@@ -111,7 +117,7 @@
     "Blue Component" : "0.3098039"
   },
   "Use Italic Font" : true,
-  "Unlimited Scrollback" : false,
+  "Unlimited Scrollback" : true,
   "Keyboard Map" : {
     "0xf700-0x260000" : {
       "Action" : 10,
@@ -293,7 +299,7 @@
     "Alpha Component" : 0.5,
     "Green Component" : 0.1491314172744751
   },
-  "Scrollback Lines" : 5000,
+  "Scrollback Lines" : 0,
   "Send Code When Idle" : false,
   "Close Sessions On End" : true,
   "Terminal Type" : "xterm-256color",
@@ -406,11 +412,7 @@
     "Red Component" : "1",
     "Blue Component" : "1"
   },
-  "Ansi 0 Color" : {
-    "Green Component" : "0",
-    "Red Component" : "0",
-    "Blue Component" : "0"
-  },
+  "Transparency" : 0,
   "Ansi 1 Color" : {
     "Green Component" : "0",
     "Red Component" : "0.8",
@@ -424,26 +426,24 @@
   },
   "Custom Directory" : "No",
   "Right Option Key Sends" : 0,
-  "Use Non-ASCII Font" : true,
-  "Ansi 7 Color" : {
-    "Green Component" : "0.8431373",
-    "Red Component" : "0.827451",
-    "Blue Component" : "0.8117647"
+  "Guid" : "9DB1D2FA-189F-42E6-BC1A-20CBD00DAE76",
+  "Ansi 2 Color" : {
+    "Green Component" : "0.6039215999999999",
+    "Red Component" : "0.3058824",
+    "Blue Component" : "0.02352941"
   },
-  "Ansi 8 Color" : {
-    "Green Component" : "0.3411765",
-    "Red Component" : "0.3333333",
-    "Blue Component" : "0.3254902"
+  "Normal Font" : "UbuntuMonoDerivativePowerline-Regular 18",
+  "Link Color" : {
+    "Red Component" : 0,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.73423302173614502,
+    "Alpha Component" : 1,
+    "Green Component" : 0.35916060209274292
   },
-  "Ansi 9 Color" : {
-    "Green Component" : "0.1607843",
-    "Red Component" : "0.9372549",
-    "Blue Component" : "0.1607843"
-  },
-  "Ansi 6 Color" : {
-    "Green Component" : "0.5960785",
-    "Red Component" : "0.02352941",
-    "Blue Component" : "0.6039215999999999"
+  "Ansi 4 Color" : {
+    "Green Component" : "0.3960784",
+    "Red Component" : "0.2039216",
+    "Blue Component" : "0.6431373"
   },
   "Ansi 5 Color" : {
     "Green Component" : "0.3137255",
