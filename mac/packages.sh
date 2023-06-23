@@ -23,6 +23,7 @@ export terminal_packages=(
     python3
     postgresql@13
     terraform
+    tfenv
     kubectl
     eksctl
     k9s
@@ -54,6 +55,7 @@ export gui_packages=(
     slack
     zoom
     vlc
+    anydesk
 )
 
 # Python dependencies
