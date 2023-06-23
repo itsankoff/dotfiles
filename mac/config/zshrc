@@ -58,7 +58,6 @@ source $ZSH/oh-my-zsh.sh
 # Setup aliases
 source ~/.aliases
 # Use homebrew vim
-alias vim=/opt/homebrew/bin/vim
 
 # File search functions
 function f() { find . -iname "*$1*" ${@:2} }
@@ -160,8 +159,7 @@ function ssl_check() {
     openssl s_client -servername ${1} -connect ${1}:443 2>/dev/null | openssl x509 -noout -dates
 }
 
-# EXPORTS
-export EDITOR=vim
+
 # set locale
 export LC_ALL=en_US.UTF-8
 # we don't like auto updates fckn homebrew 🤯!
@@ -177,9 +175,6 @@ echo "FUCKING WORK $(date +%V/54)"
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
-# direnv hook injection
-eval "$(direnv hook zsh)" || true
-
 export PATH="$PATH:/Users/itsankov/.bin"
 # Configured by setup.sh
 export GOPATH=/Users/itsankov/developers/workspace
@@ -188,4 +183,13 @@ export GOBIN=$GOPATH/bin
 # Configured by setup.sh
 export PATH="$PATH:$GOBIN"
 
-export PATH="${PATH}:/opt/homebrew/bin"
+export PATH="/opt/homebrew/bin:${PATH}"
+
+# EXPORTS
+export EDITOR=vim
+alias vim=/opt/homebrew/bin/vim
+
+export PATH="/opt/homebrew/opt/go@1.18/bin:$PATH"
+
+# direnv hook injection
+eval "$(direnv hook zsh)"
