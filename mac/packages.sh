@@ -32,6 +32,7 @@ export terminal_packages=(
     shellcheck
     terragrunt
     watch
+    maccy
 )
 
 # GUI packages
