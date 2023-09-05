@@ -63,6 +63,7 @@ source ~/.aliases
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep -R -n "$1" $2 }
 function pub() { ssh-keygen -C "" -y -f $1 }
+function fingerprint() { ssh-keygen -lf $1 -E md5 }
 
 # codecount counts the code lines within the cwd recursively
 # optional - ${1} - file extension filter

@@ -33,6 +33,7 @@ export terminal_packages=(
     terragrunt
     watch
     maccy
+    fd
 )
 
 # GUI packages
