@@ -34,6 +34,7 @@ export terminal_packages=(
     watch
     maccy
     fd
+    tmux
 )
 
 # GUI packages
