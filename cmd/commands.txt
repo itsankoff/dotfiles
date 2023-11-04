@@ -1,3 +1,4 @@
 grep " install " /var/log/dpkg.log.1 /var/log/dpkg.log # get installed packages from dpkg logs
 gunzip -c `ls -tr /var/log/dpkg.log.*.gz` | grep " install " # get installed packages from archived dpkg logs
 (cd /tmp/.X11-unix && for x in X*; do echo ":${x#X}"; done) # get available X11 displays
+ffmpeg -i DJI_0927.mp4 -vf "crop=1080:1920:(iw-1080)/2:(ih-1920)/2,scale=1080:1920" -preset veryfast DJI_0927_cropped.mp4
