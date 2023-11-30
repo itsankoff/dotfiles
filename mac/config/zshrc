@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/${USER}/.oh-my-zsh"
+export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
@@ -175,6 +175,7 @@ echo "FUCKING WORK $(date +%V/54)"
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+[ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
 export PATH="$PATH:/Users/itsankov/.bin"
 # Configured by setup.sh
@@ -188,7 +189,6 @@ export PATH="/opt/homebrew/bin:${PATH}"
 
 # EXPORTS
 export EDITOR=vim
-alias vim=/opt/homebrew/bin/vim
 
 export PATH="/opt/homebrew/opt/go@1.18/bin:$PATH"
 
