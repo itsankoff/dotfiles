@@ -19,11 +19,11 @@ CONFIG_DIR="${SCRIPT_DIR}/config"
 export MANAGER_SETUP_LOCK=".setup.ready"
 
 GUI_ENV="gui"
-#TERMINAL_ENV="terminal"
+TERMINAL_ENV="terminal"
 
 # SETUP_ENV controls whether the script runs on terminal only or GUI environment.
 # If you want to set the environment for terminal only change to ${TERMINAL_ENV}
-SETUP_ENV=${GUI_ENV}
+SETUP_ENV=${TERMINAL_ENV}
 
 # source the utility library
 source ${SCRIPT_DIR}/lib.sh
@@ -134,6 +134,11 @@ function setup_git() {
 
 # Install terminal packages and cli apps
 function setup_terminal_apps() {
+    if [[ "${SETUP_OS}" == "${OS_LINUX}" ]] && [[ "$EUID" -ne 0 ]]
+    then
+        error "Please run me with sudo"
+    fi
+
     manager_setup
     manager_update
     for pkg in "${terminal_packages[@]}"
