@@ -13,7 +13,8 @@ OS_BSD='the-unexplored-land'
 PIP="pip3"
 
 # Here are all the supported package managers.
-OSX_BREW="brew"
+BREW="brew"
+APT="apt"
 
 # Coloring variables
 red=$(tput setaf 1)
@@ -30,10 +31,11 @@ function setup_os() {
     if [[ "$OSTYPE" == "linux-gnu"* ]];
     then
         SETUP_OS=${OS_LINUX}
+        MANAGER=${APT}
     elif [[ "$OSTYPE" == "darwin"* ]];
     then
         SETUP_OS=${OS_OSX}
-        MANAGER=${OSX_BREW}
+        MANAGER=${BREW}
     elif [[ "$OSTYPE" == "cygwin" ]];
     then
         # POSIX compatibility layer and Linux environment emulation for Windows
@@ -174,7 +176,7 @@ function manager_setup() {
         return 0
     fi
 
-    if [[ "${MANAGER}" == "${OSX_BREW}" ]]
+    if [[ "${MANAGER}" == "${BREW}" ]]
     then
         ${MANAGER} --version > /dev/null 2>&1
         if [[ ${?} -eq 0 ]]
@@ -202,10 +204,13 @@ function manager_setup() {
 function manager_update() {
     message "Updating package manager's sources..."
 
-    if [[ "${MANAGER}" == "${OSX_BREW}" ]]
+    if [[ "${MANAGER}" == "${BREW}" ]]
     then
-        brew update 2>&1
+        ${MANAGER} update 2>&1
         export HOMEBREW_NO_AUTO_UPDATE=1
+    elif [[ "${MANAGER}" == "${APT}" ]]
+    then
+        ${MANAGER} update 2>&1
     else
         error "Unsupported package manager ${MANAGER}. Please implement me!"
     fi
@@ -214,7 +219,7 @@ function manager_update() {
 # is_installed performs a check if the package is already installed from the
 # package manager.
 function is_installed() {
-    if [[ "${MANAGER}" == "${OSX_BREW}" ]]
+    if [[ "${MANAGER}" == "${BREW}" ]]
     then
         is_gui_pkg=false
         if [[ ! -z ${2} ]]
@@ -233,6 +238,12 @@ function is_installed() {
         fi
 
         return ${installed_result}
+    elif [[ "${MANAGER}" == "${APT}" ]]
+    then
+        dpkg -l "${1}" > /dev/null 2>&1
+        installed_result=${?}
+
+        return ${installed_result}
     else
         unsupported "package manager"
     fi
@@ -240,10 +251,13 @@ function is_installed() {
 
 # pkg_update attempts to update a package.
 function pkg_update() {
-    if [[ "${MANAGER}" == "${OSX_BREW}" ]]
-    then
-        message "Package ${1} is already installed. Trying to update..."
+    message "Package ${1} is already installed. Trying to update..."
 
+    update_output=""
+    update_result="-1"
+
+    if [[ "${MANAGER}" == "${BREW}" ]]
+    then
         is_gui_pkg=false
         if [[ ! -z ${2} ]]
         then
@@ -251,8 +265,6 @@ function pkg_update() {
         fi
 
         # Prevent upgrade fail because the most recent version already installed.
-        update_result=1
-        update_output=""
         if [[ ${is_gui_pkg} == true ]]
         then
             update_output=$(brew upgrade --cask "${1}" 2>&1)
@@ -261,16 +273,20 @@ function pkg_update() {
             update_output=$(brew upgrade "${1}" 2>&1)
             update_result=${?}
         fi
-
-        if [[ ${update_result} -eq 0 ]]
-        then
-            message "${1} is up-to-date"
-        else
-            warn "Failed to upgrade ${1}: exit code ${update_result}!"
-            error "${update_output}"
-        fi
+    elif [[ "${MANAGER}" == "${APT}" ]]
+    then
+        update_output=$(${MANAGER} install --only-upgrade "${1}" 2>&1)
+        update_result=${?}
     else
         unsupported 'package manager'
+    fi
+
+    if [[ ${update_result} -eq 0 ]]
+    then
+        message "${1} is up-to-date"
+    else
+        warn "Failed to upgrade ${1}: exit code ${update_result}!"
+        error "${update_output}"
     fi
 }
 
@@ -284,7 +300,7 @@ function pkg_install() {
     then
         pkg_update "${@}"
     else
-        if [[ "${MANAGER}" == "${OSX_BREW}" ]]
+        if [[ "${MANAGER}" == "${BREW}" ]]
         then
             is_gui_pkg=false
             if [[ ! -z ${2} ]]
@@ -298,6 +314,9 @@ function pkg_install() {
             else
                 brew install "${1}"
             fi
+        elif [[ "${MANAGER}" == "${APT}" ]]
+        then
+            ${MANAGER} install "${1}"
         fi
     fi
 }
