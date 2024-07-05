@@ -35,6 +35,7 @@ export terminal_packages=(
     maccy
     fd
     tmux
+    imagemagick
 )
 
 # GUI packages
