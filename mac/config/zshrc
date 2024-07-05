@@ -92,6 +92,11 @@ function afk() {
     figlet -W AFK
 }
 
+function awake() {
+    print "AWAKE ENABLED!"
+    caffeinate -d > /dev/null 2>&1 &
+}
+
 # text prints text with large characters
 function text() {
     figlet -W ${1}
@@ -199,8 +204,13 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 eval "$(rtx activate zsh > /dev/null 2>&1)" || true
 
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/itsankov/developers/inveyes/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/itsankov/developers/inveyes/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/itsankov/developers/inveyes/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/itsankov/developers/inveyes/google-cloud-sdk/completion.zsh.inc'; fi
+
+awake
