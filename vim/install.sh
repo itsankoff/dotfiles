@@ -34,8 +34,12 @@ must vim -c 'PlugInstall' +qall
 echo "VIM Plugins installed"
 
 # Install coc.nvim extensions
-while read extension; do
-  vim -c "CocInstall -sync $extension" +qall
-done < coc_extensions.txt
+if [ -f coc_extensions.txt ]; then
+  while read extension; do
+    vim -n -c "CocInstall -sync $extension" +qall
+  done < coc_extensions.txt
+else
+  echo "WARNING: coc_extensions.txt not found. Skipping CocInstall step."
+fi
 
 echo "Happy vim-ing!"
