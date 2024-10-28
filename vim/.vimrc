@@ -40,6 +40,11 @@ call plug#end()
 " Set colorscheme
 colorscheme jellygrass
 
+" Airline configuration
+let g:airline_theme = 'minimalist'
+let g:airline_powerline_fonts = 1
+set noshowmode
+
 " Set default indent rules
 autocmd FileType * setlocal tabstop=4 shiftwidth=4 expandtab
 
@@ -73,9 +78,6 @@ inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : coc#refresh()
 inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 inoremap <expr> . coc#refresh() . '.'
 
-" Clipboard interaction
-set clipboard=unnamedplus
-
 " Use y and p to work with system clipboard
 nnoremap y "+y
 vnoremap y "+y
@@ -86,17 +88,27 @@ nnoremap Y "+Y
 " NERDTree toggle mapping
 noremap <Tab> :NERDTreeToggle<CR>
 
-" Airline configuration
-let g:airline_theme = 'minimalist'
-let g:airline_powerline_fonts = 1
-set noshowmode
-
 " Commentary mapping (using vim-commentary)
 nnoremap <C-c> :Commentary<CR> " Comment current line or selection
 vnoremap <C-c> :Commentary<CR> " Comment selection
 nnoremap <C-x> :Commentary<CR> " Uncomment current line or selection
 vnoremap <C-x> :Commentary<CR> " Uncomment selection
 
+" FZF key mappings
+nnoremap <leader>s :Files<CR>
+
+" General key mappings
+nnoremap <leader>r :so $MYVIMRC<CR> " Reload .vimrc
+nnoremap <leader>qq :q<CR> " Close the file
+
+" Easy window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Clipboard interaction
+set clipboard=unnamedplus
 
 " Spell checking settings
 set spell
@@ -111,19 +123,6 @@ set undolevels=1000
 set foldmethod=syntax
 set foldlevelstart=99 " Open most folds by default
 set nofoldenable " Do not fold files by default
-
-" FZF key mappings
-nnoremap <leader>s :Files<CR>
-
-" General key mappings
-nnoremap <leader>r :so $MYVIMRC<CR> " Reload .vimrc
-nnoremap <leader>qq :q<CR> " Close the file
-
-" Easy window navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " Search options
 set incsearch
