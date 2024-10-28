@@ -1,9 +1,10 @@
 set rtp^=~/.vim-itsankoff
 
+set nocompatible
 filetype plugin indent on
 syntax on
+set hidden
 
-set nocompatible
 filetype off
 
 call plug#begin('~/.vim-itsankoff')
@@ -13,18 +14,12 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Custom color scheme
 Plug 'flazz/vim-colorschemes'
-" vim language server
-Plug 'prabirshrestha/vim-lsp'
-" auto complete
-Plug 'maralla/completor.vim'
+" Install coc.nvim plugin - completions
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " terraform for vim
 Plug 'hashivim/vim-terraform'
-" typescript for vim
-Plug 'leafgarland/typescript-vim'
 " golang for vim
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" language packs for vim
-Plug 'sheerun/vim-polyglot'
 " fzf integration
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'

@@ -25,9 +25,6 @@ must ln -sf $(pwd)/colors/jellygrass.vim ${VIM_DIR}/colors/jellygrass.vim
 echo "Installing NERDTree plugin..."
 test -d ${VIM_PLUGIN_DIR}/nerdtree || must git clone https://github.com/scrooloose/nerdtree.git ${VIM_PLUGIN_DIR}/nerdtree
 
-echo "Installing TypeScript syntax..."
-test -d ${VIM_PLUGIN_DIR}/typescript-vim || must git clone https://github.com/leafgarland/typescript-vim.git ${VIM_PLUGIN_DIR}/typescript-vim
-
 echo "Installing vim config..."
 test -f ~/.vimrc && \
     echo "WARNING: Detected existing vimrc. Moving it to ~/.vimrc-${USER}" && \
