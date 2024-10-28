@@ -48,20 +48,17 @@ set noshowmode
 " Set default indent rules
 autocmd FileType * setlocal tabstop=4 shiftwidth=4 expandtab
 
-" Golang specific autocommands
-augroup go_settings
-  autocmd!
-  autocmd FileType go setlocal tabstop=4 shiftwidth=4 expandtab
-  autocmd FileType go let g:go_fmt_command = "goimports"
-  autocmd FileType go let g:go_auto_type_info = 1
-  autocmd FileType go set updatetime=100
-  autocmd FileType go let g:go_decls_includes = "func,type"
-  autocmd FileType go let g:go_def_mode = 'godef'
-  autocmd FileType go let g:go_highlight_types = 1
-  autocmd FileType go let g:go_highlight_fields = 1
-  autocmd FileType go let g:go_highlight_functions = 1
-  autocmd FileType go let g:go_highlight_operators = 1
-augroup END
+" Golang configurations
+
+" Golang formatting and import management on save using coc.nvim
+autocmd BufWritePre *.go :call CocAction('organizeImport')
+autocmd BufWritePre *.go :call CocAction('format')
+
+" Go to definition and references key mappings
+nnoremap gd <Plug>(coc-definition) " Go to definition
+nnoremap gr <Plug>(coc-references) " Go to references
+nnoremap K :call CocActionAsync('doHover')<CR> " Show hover information
+
 
 " Show diagnostics in a floating window when the cursor is on a line with an issue
 " autocmd CursorHold * silent call CocActionAsync('doHover')
@@ -74,7 +71,7 @@ let g:coc_diagnostic_virtual_text = {'highlight': 'CocUnderline'}
 
 " Trigger completion like VSCode
 silent! iunmap <Tab>
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : coc#refresh()
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 inoremap <expr> . coc#refresh() . '.'
 
@@ -87,6 +84,22 @@ nnoremap Y "+Y
 
 " NERDTree toggle mapping
 noremap <Tab> :NERDTreeToggle<CR>
+
+" NERDTree Git Status Icon Customization
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ 'Modified': '✹',
+    \ 'Staged': '●',
+    \ 'Untracked': '✭',
+    \ 'Renamed': '➜',
+    \ 'Unmerged': '═',
+    \ 'Deleted': '✖',
+    \ 'Dirty': '',
+    \ 'Ignored': '☒',
+    \ 'Clean': '✔',
+    \ 'Unknown': '?' 
+    \ }
+let g:NERDTreeGitStatusShowClean = 0
+let g:NERDTreeGitStatusUseNerdFonts = 1
 
 " Commentary mapping (using vim-commentary)
 nnoremap <C-c> :Commentary<CR> " Comment current line or selection
