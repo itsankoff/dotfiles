@@ -7,6 +7,7 @@ set backspace=indent,eol,start
 filetype plugin indent on
 syntax on
 set hidden
+set noswapfile
 
 " Plugin manager - vim-plug setup
 call plug#begin('~/.vim-itsankoff')
