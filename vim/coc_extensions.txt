@@ -1,0 +1,17 @@
+@yaegassy/coc-nginx
+coc-clangd
+coc-css
+coc-docker
+coc-go
+coc-html
+coc-java
+coc-json
+coc-markdownlint
+coc-marketplace
+coc-protobuf
+coc-python
+coc-sh
+coc-sql
+coc-swagger
+coc-tsserver
+coc-yaml

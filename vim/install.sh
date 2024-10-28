@@ -22,9 +22,6 @@ echo "Installing color scheme..."
 must mkdir -p ${VIM_DIR}/colors
 must ln -sf $(pwd)/colors/jellygrass.vim ${VIM_DIR}/colors/jellygrass.vim
 
-echo "Installing NERDTree plugin..."
-test -d ${VIM_PLUGIN_DIR}/nerdtree || must git clone https://github.com/scrooloose/nerdtree.git ${VIM_PLUGIN_DIR}/nerdtree
-
 echo "Installing vim config..."
 test -f ~/.vimrc && \
     echo "WARNING: Detected existing vimrc. Moving it to ~/.vimrc-${USER}" && \
@@ -36,11 +33,9 @@ echo "Installing Plug plugins..."
 must vim -c 'PlugInstall' +qall
 echo "VIM Plugins installed"
 
-echo "Installing Go binaries..."
-GO111MODULE=on vim -c 'GoInstallBinaries'
-
-# Install vim-go binaries
-must go get github.com/mdempsky/gocode
-GO111MODULE=on must go get golang.org/x/tools/gopls@latest
+# Install coc.nvim extensions
+while read extension; do
+  vim -c "CocInstall -sync $extension" +qall
+done < coc_extensions.txt
 
 echo "Happy vim-ing!"
