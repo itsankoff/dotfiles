@@ -3,6 +3,7 @@ set rtp^=~/.vim-itsankoff
 
 " General Vim settings
 set nocompatible
+set backspace=indent,eol,start
 filetype plugin indent on
 syntax on
 set hidden
@@ -58,7 +59,13 @@ augroup go_settings
 augroup END
 
 " Show diagnostics in a floating window when the cursor is on a line with an issue
-autocmd CursorHold * silent call CocActionAsync('doHover')
+" autocmd CursorHold * silent call CocActionAsync('doHover')
+autocmd CursorHold * silent call CocActionAsync('diagnosticInfo')
+" Underline problematic terms based on severity
+highlight CocErrorUnderline cterm=underline gui=underline ctermfg=red guifg=red
+highlight CocWarningUnderline cterm=underline gui=underline ctermfg=yellow guifg=yellow
+highlight CocInfoUnderline cterm=underline gui=underline ctermfg=yellow guifg=yellow
+let g:coc_diagnostic_virtual_text = {'highlight': 'CocUnderline'}
 
 " Trigger completion like VSCode
 silent! iunmap <Tab>
@@ -85,7 +92,11 @@ let g:airline_powerline_fonts = 1
 set noshowmode
 
 " Commentary mapping (using vim-commentary)
-" No additional configuration required as vim-commentary is simple and effective
+nnoremap <C-c> :Commentary<CR> " Comment current line or selection
+vnoremap <C-c> :Commentary<CR> " Comment selection
+nnoremap <C-x> :Commentary<CR> " Uncomment current line or selection
+vnoremap <C-x> :Commentary<CR> " Uncomment selection
+
 
 " Spell checking settings
 set spell
@@ -106,7 +117,7 @@ nnoremap <leader>s :Files<CR>
 
 " General key mappings
 nnoremap <leader>r :so $MYVIMRC<CR> " Reload .vimrc
-vnoremap <leader>c :Commentary<CR> " Comment selection
+nnoremap <leader>qq :q<CR> " Close the file
 
 " Easy window navigation
 nnoremap <C-h> <C-w>h
