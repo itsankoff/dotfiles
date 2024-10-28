@@ -57,6 +57,9 @@ augroup go_settings
   autocmd FileType go let g:go_highlight_operators = 1
 augroup END
 
+" Show diagnostics in a floating window when the cursor is on a line with an issue
+autocmd CursorHold * silent call CocActionAsync('doHover')
+
 " Trigger completion like VSCode
 silent! iunmap <Tab>
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : coc#refresh()
