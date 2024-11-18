@@ -211,3 +211,15 @@ if [ -f '/Users/itsankov/developers/inveyes/google-cloud-sdk/path.zsh.inc' ]; th
 if [ -f '/Users/itsankov/developers/inveyes/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/itsankov/developers/inveyes/google-cloud-sdk/completion.zsh.inc'; fi
 
 awake
+# Configured by setup.sh
+export GOPATH=/Users/itsankoff/developers/workspace
+# Configured by setup.sh
+export GOBIN=$GOPATH/bin
+# Configured by setup.sh
+export PATH="$PATH:$GOBIN"
+# Configured by setup.sh
+export GOPATH=/Users/itsankoff/developers/workspace
+# Configured by setup.sh
+export GOBIN=$GOPATH/bin
+# Configured by setup.sh
+export PATH="$PATH:$GOBIN"

@@ -23,10 +23,13 @@ TERMINAL_ENV="terminal"
 
 # SETUP_ENV controls whether the script runs on terminal only or GUI environment.
 # If you want to set the environment for terminal only change to ${TERMINAL_ENV}
-SETUP_ENV=${TERMINAL_ENV}
+SETUP_ENV=${GUI_ENV}
 
 # source the utility library
 source ${SCRIPT_DIR}/lib.sh
+
+# source the needed packages
+source ./packages.sh
 
 # Print help section
 function help() {
@@ -156,11 +159,15 @@ function setup_terminal_apps() {
 # Install gui packages and apps
 function setup_gui_apps() {
     manager_setup
+    message "Manager setup completed: $?"
     manager_update
+    message "Manager update completed: $?"
+    message "${SETUP_ENV} == ${GUI_ENV}"
     if [[ "${SETUP_ENV}" == "${GUI_ENV}" ]]
     then
         for pkg in "${gui_packages[@]}"
         do
+            message "Installing ${pkg}..."
             ready=$(pkg_install ${pkg} "gui" >> setup.log 2>&1)
             if [[ ${ready} -eq 0 ]]
             then
@@ -193,9 +200,6 @@ setup_os
 
 # execute env setup
 setup_env
-
-# source the needed packages
-source ./packages.sh
 
 # parse script arguments. Each of the arguments support long version. See below.
 PACKAGE="${ALL_PACKAGES}"

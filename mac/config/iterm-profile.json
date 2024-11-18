@@ -33,11 +33,7 @@
     "Red Component" : "0.02352941",
     "Blue Component" : "0.6039215999999999"
   },
-  "Ansi 0 Color" : {
-    "Green Component" : "0",
-    "Red Component" : "0",
-    "Blue Component" : "0"
-  },
+  "Right Option Key Sends" : 0,
   "Rows" : 25,
   "Default Bookmark" : "No",
   "Cursor Guide Color" : {
@@ -96,7 +92,7 @@
   },
   "Custom Command" : "No",
   "ASCII Anti Aliased" : true,
-  "Non Ascii Font" : "UbuntuMonoDerivativePowerline-Regular 18",
+  "Non Ascii Font" : "Menlo-Regular 11",
   "Vertical Spacing" : 1,
   "Use Bold Font" : true,
   "Option Key Sends" : 0,
@@ -400,6 +396,7 @@
     "Red Component" : "0.2039216",
     "Blue Component" : "0.8862745"
   },
+  "ASCII Ligatures" : false,
   "Name" : "itsankoff",
   "Cursor Text Color" : {
     "Green Component" : "0",
@@ -412,27 +409,17 @@
     "Red Component" : "1",
     "Blue Component" : "1"
   },
-  "Transparency" : 0,
-  "Ansi 1 Color" : {
+  "Ansi 0 Color" : {
     "Green Component" : "0",
-    "Red Component" : "0.8",
+    "Red Component" : "0",
     "Blue Component" : "0"
   },
-  "Horizontal Spacing" : 1,
-  "Ansi 3 Color" : {
-    "Green Component" : "0.627451",
-    "Red Component" : "0.7686275",
-    "Blue Component" : "0"
-  },
-  "Custom Directory" : "No",
-  "Right Option Key Sends" : 0,
   "Guid" : "9DB1D2FA-189F-42E6-BC1A-20CBD00DAE76",
   "Ansi 2 Color" : {
     "Green Component" : "0.6039215999999999",
     "Red Component" : "0.3058824",
     "Blue Component" : "0.02352941"
   },
-  "Normal Font" : "UbuntuMonoDerivativePowerline-Regular 18",
   "Link Color" : {
     "Red Component" : 0,
     "Color Space" : "sRGB",
@@ -449,5 +436,19 @@
     "Green Component" : "0.3137255",
     "Red Component" : "0.4588235",
     "Blue Component" : "0.4823529"
-  }
+  },
+  "Transparency" : 0,
+  "Ansi 1 Color" : {
+    "Green Component" : "0",
+    "Red Component" : "0.8",
+    "Blue Component" : "0"
+  },
+  "Normal Font" : "Menlo-Regular 15",
+  "Horizontal Spacing" : 1,
+  "Ansi 3 Color" : {
+    "Green Component" : "0.627451",
+    "Red Component" : "0.7686275",
+    "Blue Component" : "0"
+  },
+  "Custom Directory" : "No"
 }

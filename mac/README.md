@@ -18,23 +18,6 @@ Platform specific setups are described by separate section.
 * ☕ Make yourself a coffee or a tea! ___NOTE: It is really important for the script!___
 * 🚀 Happy coding!
 
-## [] Install AirPodsConnect
-* Make sure the executing user `echo $USER` has access to the following sub-directories in `/usr/local`  
-* Open Script Editor
-* Copy the `config/AirPodsConnect_Catalina` or `config/AirPodsConnect_BigSur+`  script in the editor
-* Rename the `AirPods Pro` with yours AirPods's name. If you have apostrophe
-    in your AirPods name, make sure it matches extacly in the script.
-* Save the script in Applications with File Format `Application`
-* Allow Accessibility access to the `AirPodsConnect` script
-    * Open System Preferences -> Security And Privacy -> Privacy
-    * Go to Accessibility using the left panel
-    * Unlock using your credentials
-    * Use the `+` button on the right panel and navigate to Applications/AirPodsConnect
-    * Check the AirPodsConnect
-    * Lock the settings
-* Open Spotlight, type `AirPodsConnect` and hit enter
-* Enjoy the 🎧
-
 ## [] OS additional setup
 * Login with iCloud and calendars
     * System Preferences -> Internet Accounts -> `...`
@@ -75,15 +58,12 @@ Platform specific setups are described by separate section.
 
 
 ## [] Additional iterm2 setup
-* iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles -> /path/to/dotfiles/mac/config/iterm-profile.json
+* iTerm2 -> Settings -> Profiles -> Other Actions -> Import JSON Profiles -> /path/to/dotfiles/mac/config/iterm-profile.json
 * Set the profile as default
 * iTerm2 -> Preferences -> Keys -> Presets -> Import... -> /path/to/dotfiles/mac/config/iterm-keys.itermkeymap
 * iTerm2 -> Preferences -> Appearance -> Tabs -> Uncheck Stretch tabs to fill bar
 
 ## Troubleshooting
-* [] Depending on your Mac settings you may need to allow Accessibility permissions
-    for the script. Go to `Settings -> Security and Privacy -> Privacy Tab -> Accessibility -> Add permission for AirPodsConnect`
 * [] `brew` failed to install due to github pub key access denied: https://github.com/Homebrew/brew/issues/52#issuecomment-208557489
 
 ## References
-* AirPodsConnect Spotlight bind - [Full article](https://medium.com/@secondfret/how-to-connect-your-airpods-to-your-mac-with-a-keyboard-shortcut-9d72e786993b)
