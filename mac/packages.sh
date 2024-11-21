@@ -36,6 +36,7 @@ export terminal_packages=(
     fd
     tmux
     imagemagick
+    pipx
 )
 
 # GUI packages
@@ -64,9 +65,5 @@ export gui_packages=(
 
 # Python dependencies
 export pip_packages=(
-    virtualenv
-)
-
-# Ruby dependencies
-export ruby_gems=(
+    jupyterlab
 )

@@ -181,10 +181,15 @@ function setup_gui_apps() {
 
 # Install pip packages
 function setup_python_apps() {
-    for pkg in "${pip_packages[@]}"
-    do
-        pip_install "${pkg}"
-    done
+    if is_installed ${PIP}
+    then
+        for pkg in "${pip_packages[@]}"
+        do
+            pip_install "${pkg}"
+        done
+    else
+        error "pipx not found. please install it through ./setup.sh -p terminal_apps"
+    fi
 }
 
 # Install ruby packages

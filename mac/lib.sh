@@ -10,7 +10,7 @@ OS_BSD='the-unexplored-land'
 # Package installers
 
 # PIP controls which pip to use for the python packages.
-PIP="pip3"
+PIP="pipx"
 
 # Here are all the supported package managers.
 BREW="brew"
@@ -109,6 +109,12 @@ function code() {
     echo "${white_bg}${1}${reset_clr}"
 }
 
+# unsupported prints the {1} and interrupts the script with code 3.
+function unsupported() {
+    error "Unsupported ${1}"
+    exit 3
+}
+
 # verify given action. If discarded then the script exits with 2.
 function verify() {
     warn "${1}? (${2}/${3}): "
@@ -126,9 +132,9 @@ function verify() {
     fi
 }
 
-# should is used for conditional action over packages. It compares
+# should - is used for conditional action over packages. It compares
 # the provided package name in ${1} and the CLI package names provided
-# and process with the install or update action if there is a match.
+# and install or update if there is a match.
 # If match occurs then the function returns 0 (true), otherwise 1 (false).
 # If no packages are provided by the CLI, 'all' is assumed which will allow
 # all packages to proceed (always returns 0).
@@ -156,12 +162,6 @@ function ensure() {
         message "Action ($*) failed with non-zero exit code (${CODE})."
         exit 1
     fi
-}
-
-# unsupported prints the {1} and interrupts the script with code 3.
-function unsupported() {
-    error "Unsupported ${1}"
-    exit 3
 }
 
 # manager_setup sets up the package manager. It will be executed only per
