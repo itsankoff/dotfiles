@@ -34,3 +34,6 @@
 
 [init]
     defaultBranch = master
+
+[advice]
+    addIgnoredFile = false
