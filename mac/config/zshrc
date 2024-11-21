@@ -165,14 +165,10 @@ function ssl_check() {
     openssl s_client -servername ${1} -connect ${1}:443 2>/dev/null | openssl x509 -noout -dates
 }
 
-
 # set locale
 export LC_ALL=en_US.UTF-8
 # we don't like auto updates fckn homebrew 🤯!
 export HOMEBREW_NO_AUTO_UPDATE="1"
-
-# Get some work down for f*ck sake!
-echo "FUCKING WORK $(date +%V/54)"
 
 # fzf setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -223,3 +219,11 @@ export GOPATH=/Users/itsankoff/developers/workspace
 export GOBIN=$GOPATH/bin
 # Configured by setup.sh
 export PATH="$PATH:$GOBIN"
+
+# Created by `pipx` on 2024-11-21 14:02:35
+export PATH="$PATH:/Users/itsankoff/.local/bin"
+# pipx completions
+eval "$(register-python-argcomplete pipx)"
+
+# Get some work down for f*ck sake!
+echo "FUCKING WORK $(date +%V/54)"
