@@ -148,6 +148,9 @@ set number
 " Remove trailing spaces on save for specific file types
 autocmd FileType c,cpp,python,javascript,jsx autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+" Makefile don't expand tabs
+autocmd FileType make setlocal noexpandtab
+
 " Enable wildmenu for command-line completion
 set wildmenu
 set wildmode=longest:full,full
