@@ -156,6 +156,10 @@ set wildmenu
 set wildmode=longest:full,full
 set completeopt=menuone,noselect
 
+" Show whitespaces and trailing spaces
+set list
+set listchars=tab:▸\ ,trail:·,extends:>,precedes:<
+
 " Show matching parentheses
 set showmatch
 
