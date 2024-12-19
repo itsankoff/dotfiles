@@ -172,3 +172,6 @@ cmap w!! w !sudo tee > /dev/null %
 
 " Split direction
 set splitright
+
+" Markdown ` color highlighting
+autocmd FileType markdown highlight link markdownCodeDelimiter Normal
