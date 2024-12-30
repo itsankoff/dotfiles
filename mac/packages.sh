@@ -11,7 +11,6 @@ export terminal_packages=(
     wget
     direnv
     autojump
-    grip
     jq
     gs
     the_silver_searcher
@@ -66,4 +65,5 @@ export gui_packages=(
 # Python dependencies
 export pip_packages=(
     jupyterlab
+    git+https://github.com/joeyespo/grip.git@master
 )
