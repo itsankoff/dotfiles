@@ -65,5 +65,5 @@ export gui_packages=(
 # Python dependencies
 export pip_packages=(
     jupyterlab
-    git+https://github.com/joeyespo/grip.git@master
+    git+https://github.com/itsankoff/grip.git@master
 )
