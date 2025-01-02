@@ -144,6 +144,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " vim-commentary for commenting code
 Plug 'tpope/vim-commentary'
+" vim-go for golang development
+Plug 'fatih/vim-go'
 call plug#end()
 " end plugins installation
 
@@ -235,6 +237,12 @@ vnoremap <C-x> :Commentary<CR> " Uncomment selection
 " Comment prefix definition for different files
 " autocmd FileType apache set commentstring=#\ %s
 " end commentary plugin configuration
+
+" ---------------------------
+" vim-go plugin configuration
+" ---------------------------
+" Build the golang project
+nnoremap <leader>b :GoBuild<CR>
 
 " ---------
 " functions
