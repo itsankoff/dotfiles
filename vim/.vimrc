@@ -79,8 +79,14 @@ set foldlevelstart=99 " Open most folds by default
 set nofoldenable " Do not fold files by default
 
 " Search options
+" ignore case when searching
+set ignorecase
+" incremental search in real time while typing
 set incsearch
+" make vim be smart about search cases
 set smartcase
+" highlight search results
+set hlsearch
 
 " Show line numbers
 set number
