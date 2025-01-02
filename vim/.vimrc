@@ -101,6 +101,8 @@ set list
 set listchars=tab:▸\ ,trail:·,extends:>,precedes:<
 " Remove trailing spaces on save for specific file types
 autocmd FileType c,cpp,python,javascript,jsx autocmd BufWritePre <buffer> :%s/\s\+$//e
+" Markdown ` color highlighting
+autocmd FileType markdown highlight link markdownCodeDelimiter Normal
 
 " Show matching parentheses
 set showmatch
@@ -115,8 +117,10 @@ cmap w!! w !sudo tee > /dev/null %
 " Split direction
 set splitright
 
-" Markdown ` color highlighting
-autocmd FileType markdown highlight link markdownCodeDelimiter Normal
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 " --------------------
 " plugins installation
@@ -231,3 +235,23 @@ vnoremap <C-x> :Commentary<CR> " Uncomment selection
 " Comment prefix definition for different files
 " autocmd FileType apache set commentstring=#\ %s
 " end commentary plugin configuration
+
+" ---------
+" functions
+" ---------
+function! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'gv'
+        call CmdLine("Ack '" . l:pattern . "' " )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
