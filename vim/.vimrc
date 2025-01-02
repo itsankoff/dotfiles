@@ -1,120 +1,6 @@
 " Set runtime path
 set rtp^=~/.vim-itsankoff
 
-" Plugin manager - vim-plug setup
-call plug#begin('~/.vim-itsankoff')
-
-" NERDTree for file navigation
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-
-" Custom color scheme
-Plug 'flazz/vim-colorschemes'
-
-" coc.nvim for autocompletion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" fzf for fuzzy finding
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'on': ['Files', 'Ag'] }
-Plug 'junegunn/fzf.vim', { 'on': ['Files', 'Ag'] }
-
-" git integration
-Plug 'tpope/vim-fugitive'
-
-" vim-airline for status line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" vim-commentary for commenting code
-Plug 'tpope/vim-commentary'
-
-call plug#end()
-
-" -----------------------------
-" nerdtree plugin configuration
-" -----------------------------
-" NERDTree toggle mapping
-noremap <Tab> :NERDTreeToggle<CR>
-" NERDTree Git Status Icon Customization
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ 'Modified': '✹',
-    \ 'Staged': '●',
-    \ 'Untracked': '✭',
-    \ 'Renamed': '➜',
-    \ 'Unmerged': '═',
-    \ 'Deleted': '✖',
-    \ 'Dirty': '',
-    \ 'Ignored': '☒',
-    \ 'Clean': '✔',
-    \ 'Unknown': '?'
-    \ }
-let g:NERDTreeGitStatusShowClean = 0
-let g:NERDTreeGitStatusUseNerdFonts = 1
-" end nerdtree plugin configuration
-
-" --------------------------------
-" colorscheme plugin configuration
-" --------------------------------
-" Set colorscheme
-colorscheme jellygrass
-" end colorscheme plugin configuration
-
-" ------------------------
-" coc plugin configuration
-" ------------------------
-" Golang formatting and import management on save using coc.nvim
-autocmd BufWritePre *.go :call CocAction('organizeImport')
-autocmd BufWritePre *.go :call CocAction('format')
-" Go to definition and references key mappings
-nnoremap gd <Plug>(coc-definition) " Go to definition
-nnoremap gr <Plug>(coc-references) " Go to references
-nnoremap K :call CocActionAsync('doHover')<CR> " Show hover information
-" Show diagnostics in a floating window when the cursor is on a line with an issue
-" autocmd CursorHold * silent call CocActionAsync('doHover')
-autocmd CursorHold * silent call CocActionAsync('diagnosticInfo')
-" Underline problematic terms based on severity
-highlight CocErrorUnderline cterm=underline gui=underline ctermfg=red guifg=red
-highlight CocWarningUnderline cterm=underline gui=underline ctermfg=yellow guifg=yellow
-highlight CocInfoUnderline cterm=underline gui=underline ctermfg=yellow guifg=yellow
-let g:coc_diagnostic_virtual_text = {'highlight': 'CocUnderline'}
-" Trigger completion like VSCode
-silent! iunmap <Tab>
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-inoremap <expr> . coc#refresh() . '.'
-" end coc plugin configuration
-
-" ------------------------
-" fzf plugin configuration
-" ------------------------
-" FZF key mappings
-nnoremap <leader>s :Files<CR>
-" end fzf plugin configuration
-
-" -----------------------------
-" fugitive plugin configuration
-" -----------------------------
-autocmd User FugitiveIndex setlocal tabstop=4 shiftwidth=4 expandtab
-" end fugitive plugin configuration
-
-" ----------------------------
-" airline plugin configuration
-" ----------------------------
-let g:airline_theme = 'minimalist'
-let g:airline_powerline_fonts = 1
-" end airline plugin configuration
-
-" -------------------------------
-" commentary plugin configuration
-" -------------------------------
-nnoremap <C-c> :Commentary<CR> " Comment current line or selection
-vnoremap <C-c> :Commentary<CR> " Comment selection
-nnoremap <C-x> :Commentary<CR> " Uncomment current line or selection
-vnoremap <C-x> :Commentary<CR> " Uncomment selection
-" Comment prefix definition for different files
-" autocmd FileType apache set commentstring=#\ %s
-" end commentary plugin configuration
-
 " ---------------------
 " General configuration
 " ---------------------
@@ -126,11 +12,12 @@ set nocompatible
 set backspace=indent,eol,start
 
 " Indentation configuration - Set default indent rules for all files
+filetype plugin indent on
+syntax on
+
 autocmd FileType * setlocal tabstop=4 shiftwidth=4 expandtab
 " Makefile don't expand tabs
 autocmd FileType make setlocal noexpandtab
-filetype plugin indent on
-syntax on
 
 " Switch buffer without vim prompting to save or discard changes
 set hidden
@@ -211,3 +98,117 @@ set splitright
 
 " Markdown ` color highlighting
 autocmd FileType markdown highlight link markdownCodeDelimiter Normal
+
+" --------------------
+" plugins installation
+" --------------------
+" Plugin manager - vim-plug setup
+call plug#begin('~/.vim-itsankoff')
+" NERDTree for file navigation
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+" Custom color scheme
+Plug 'flazz/vim-colorschemes'
+" coc.nvim for autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" fzf for fuzzy finding
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'on': ['Files', 'Ag'] }
+Plug 'junegunn/fzf.vim', { 'on': ['Files', 'Ag'] }
+" git integration
+Plug 'tpope/vim-fugitive'
+" vim-airline for status line
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" vim-commentary for commenting code
+Plug 'tpope/vim-commentary'
+call plug#end()
+" end plugins installation
+
+" -----------------------------
+" nerdtree plugin configuration
+" -----------------------------
+" NERDTree toggle mapping
+noremap <Tab> :NERDTreeToggle<CR>
+" NERDTree Git Status Icon Customization
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ 'Modified': '✹',
+    \ 'Staged': '●',
+    \ 'Untracked': '✭',
+    \ 'Renamed': '➜',
+    \ 'Unmerged': '═',
+    \ 'Deleted': '✖',
+    \ 'Dirty': '',
+    \ 'Ignored': '☒',
+    \ 'Clean': '✔',
+    \ 'Unknown': '?'
+    \ }
+let g:NERDTreeGitStatusShowClean = 0
+let g:NERDTreeGitStatusUseNerdFonts = 1
+" end nerdtree plugin configuration
+
+" --------------------------------
+" colorscheme plugin configuration
+" --------------------------------
+" Set colorscheme
+colorscheme jellygrass
+" end colorscheme plugin configuration
+
+" ------------------------
+" coc plugin configuration
+" ------------------------
+" Golang formatting and import management on save using coc.nvim
+autocmd BufWritePre *.go :call CocAction('organizeImport')
+autocmd BufWritePre *.go :call CocAction('format')
+" Go to definition and references key mappings
+nnoremap gd <Plug>(coc-definition) " Go to definition
+nnoremap gr <Plug>(coc-references) " Go to references
+nnoremap K :call CocActionAsync('doHover')<CR> " Show hover information
+" Show diagnostics in a floating window when the cursor is on a line with an issue
+" autocmd CursorHold * silent call CocActionAsync('doHover')
+autocmd CursorHold * silent call CocActionAsync('diagnosticInfo')
+" Underline problematic terms based on severity
+highlight CocErrorUnderline cterm=underline gui=underline ctermfg=red guifg=red
+highlight CocWarningUnderline cterm=underline gui=underline ctermfg=yellow guifg=yellow
+highlight CocInfoUnderline cterm=underline gui=underline ctermfg=yellow guifg=yellow
+let g:coc_diagnostic_virtual_text = {'highlight': 'CocUnderline'}
+" Trigger completion like VSCode
+silent! iunmap <Tab>
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <expr> . coc#refresh() . '.'
+" end coc plugin configuration
+
+" ------------------------
+" fzf plugin configuration
+" ------------------------
+" FZF key mappings
+nnoremap <leader>s :Files<CR>
+" end fzf plugin configuration
+
+" -----------------------------
+" fugitive plugin configuration
+" -----------------------------
+" default indent rules for fugitive buffers
+autocmd User FugitiveIndex setlocal tabstop=4 shiftwidth=4 expandtab
+" delete fugitive buffers when they are closed so they don't clutter
+" memory
+autocmd BufWinEnter fugitive://* set bufhidden=delete
+" end fugitive plugin configuration
+
+" ----------------------------
+" airline plugin configuration
+" ----------------------------
+let g:airline_theme = 'minimalist'
+let g:airline_powerline_fonts = 1
+" end airline plugin configuration
+
+" -------------------------------
+" commentary plugin configuration
+" -------------------------------
+nnoremap <C-c> :Commentary<CR> " Comment current line or selection
+vnoremap <C-c> :Commentary<CR> " Comment selection
+nnoremap <C-x> :Commentary<CR> " Uncomment current line or selection
+vnoremap <C-x> :Commentary<CR> " Uncomment selection
+" Comment prefix definition for different files
+" autocmd FileType apache set commentstring=#\ %s
+" end commentary plugin configuration
