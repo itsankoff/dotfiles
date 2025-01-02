@@ -8,16 +8,31 @@ set rtp^=~/.vim-itsankoff
 " General Vim settings
 set nocompatible
 
-" Backspace behaviour
-set backspace=indent,eol,start
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
 
-" Indentation configuration - Set default indent rules for all files
-filetype plugin indent on
+" Set to auto read when a file is changed from the outside
+set autoread
+au FocusGained,BufEnter * silent! checktime
+
+" Leader character definition
+let mapleader = '`'
+
+" Syntax highlighting
 syntax on
 
+" Indentation configuration - Set default indent rules for all files
 autocmd FileType * setlocal tabstop=4 shiftwidth=4 expandtab
 " Makefile don't expand tabs
 autocmd FileType make setlocal noexpandtab
+" Be smart when to use tabs
+set smarttab
+
+" Backspace behaviour
+set backspace=indent,eol,start
+" Allow '<', '>' and h l characters to cross to up and down lines
+set whichwrap+=<,>,h,l
 
 " Switch buffer without vim prompting to save or discard changes
 set hidden
@@ -30,8 +45,6 @@ set noswapfile
 set noshowmode
 
 " Key mappings
-" Leader character configuration
-let mapleader = '`'
 " General key mappings
 nnoremap <leader>r :so $MYVIMRC<CR> " Reload .vimrc
 nnoremap <leader>qq :q<CR> " Close the file
