@@ -1,11 +1,11 @@
 # dotfiles
 
 ```
-       🤖
-🦾 SHELL FLEX 🦾
-    MAC ENV
-    VIM ENV
-   🦿      🦿
+               🤖
+🦾 VIM CONFIG AND SHELL FLEX 🦾
+            MAC ENV
+            VIM ENV
+           🦿      🦿
 ```
 
 ## Installation
