@@ -1,3 +1,5 @@
 .DS_Store
 .setup.ready
 *.log
+mac/bin
+mac/lib
