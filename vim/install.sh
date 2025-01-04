@@ -1,10 +1,9 @@
 #!/bin/bash
 
 VIM_DIR=~/.vim-itsankoff
-VIM_PLUGIN_DIR=${VIM_DIR}/plugged
 
 function must() {
-    echo cmd: $@
+    echo cmd: "$@"
     "$@";
     code=$?
     if [ $code -ne 0 ]
@@ -20,14 +19,14 @@ must curl -fLo ${VIM_DIR}/autoload/plug.vim --create-dirs https://raw.githubuser
 
 echo "Installing color scheme..."
 must mkdir -p ${VIM_DIR}/colors
-must ln -sf $(pwd)/colors/jellygrass.vim ${VIM_DIR}/colors/jellygrass.vim
+must ln -sf "$(pwd)/colors/jellygrass.vim" "${VIM_DIR}/colors/jellygrass.vim"
 
 echo "Installing vim config..."
 test -f ~/.vimrc && \
     echo "WARNING: Detected existing vimrc. Moving it to ~/.vimrc-${USER}" && \
     sleep 2 && \
     must mv ~/.vimrc ~/.vimrc-${USER}
-must ln -s $(pwd)/.vimrc ~/.vimrc
+must ln -s "$(pwd)/.vimrc" ~/.vimrc
 
 echo "Installing Plug plugins..."
 must vim -c 'PlugInstall' +qall
