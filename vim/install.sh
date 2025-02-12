@@ -35,10 +35,12 @@ echo "VIM Plugins installed"
 # Install coc.nvim extensions
 if [ -f coc_extensions.txt ]; then
   while read extension; do
-    vim -n -c "CocInstall -sync $extension" +qall
+    vim -n -c "CocInstall $extension" +qall
   done < coc_extensions.txt
 else
   echo "WARNING: coc_extensions.txt not found. Skipping CocInstall step."
 fi
+
+must ln -s $(pwd)/coc-settings.jsonc ${VIM_DIR}/coc-settings.json
 
 echo "Happy vim-ing!"

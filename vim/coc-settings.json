@@ -1,0 +1,257 @@
+{
+    // General suggestion settings (mimicking VS Code IntelliSense)
+    "suggest.noselect": false, // Automatically select a suggestion
+    "suggest.enablePreselect": true, // Preselect the first item in the suggestion list
+    "suggest.minTriggerInputLength": 1, // Trigger completion after typing one character
+    "suggest.triggerAfterInsertEnter": true, // Start completion immediately in insert mode
+    "suggest.detailField": "menu", // Show extra detail (like type or source) in the suggestion menu
+    // Enable parameter hints (signature help)
+    "signature.enable": true,
+    "signature.floatWindow": true, // Show signature help in a floating window
+    // Hover information settings (for documentation popups)
+    "hover.target": "float",
+    // Format files on save for a variety of languages
+    "coc.preferences.formatOnSave": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "typescript",
+        "python",
+        "go",
+        "html",
+        "css",
+        "json",
+        "java",
+        "yaml",
+        "sql",
+        "nginx",
+        "docker"
+    ],
+    // === coc-html Settings ===
+    "html.suggest.html5": true, // Enable HTML5 tag and attribute suggestions
+    "html.suggest.angular1": false, // Disable AngularJS suggestions if not needed
+    "html.suggest.ionic": false, // Disable Ionic-specific completions
+    "html.autoClosingTags": true, // Automatically insert closing tags
+    "html.format.enable": true, // Enable HTML formatting
+    "html.format.indentInnerHtml": true, // Indent inner HTML for readability
+    "html.format.indentInnerHtml": true,
+    "html.format.extraLiners": [
+        "head",
+        "body"
+    ],
+    // Emmet configuration for HTML snippet expansion
+    "emmet.showAbbreviationSuggestions": true, // Show abbreviation suggestions in the completion menu
+    "emmet.syntaxProfiles": {
+        "html": {
+            "attr_quotes": "double" // Use double quotes for attribute values (VS Code style)
+        }
+    },
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": {
+        "html": "html"
+    },
+    // === coc-yaml Settings ===
+    "yaml.validate": true, // Enable YAML validation
+    "yaml.hover": true, // Show hover information for YAML schemas
+    "yaml.completion": true, // Enable autocompletion in YAML files
+    "yaml.format.enable": true, // Enable YAML formatting on save
+    "yaml.schemas": { // Example schema mappings (adjust as needed)
+        "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*",
+        "https://json.schemastore.org/github-action.json": "/.github/action.{yml,yaml}"
+    },
+    "yaml.trace.server": "verbose", // Log detailed server messages (for debugging)
+    // === coc-tsserver Settings (TypeScript/JavaScript) ===
+    "tsserver.enable": true, // Ensure tsserver is active
+    "tsserver.formatOnType": true, // Format code as you type
+    "tsserver.log": "verbose", // (Optional) Verbose logging for debugging
+    "tsserver.maxTsServerMemory": 4096, // Increase memory if needed
+    // Optional: Specify the path to the TypeScript SDK if not in your PATH
+    "tsserver.tsdk": "/usr/local/lib/node_modules/typescript/lib",
+    // === coc-swagger Settings (Swagger/OpenAPI) ===
+    "swagger.validate": true, // Validate Swagger/OpenAPI definitions
+    "swagger.hover": true, // Enable hover info (e.g. schema details)
+    "swagger.completion.enable": true, // Enable autocompletion for Swagger files
+    "swagger.format.enable": true, // Enable formatting of Swagger/OpenAPI files
+    // === coc-sql Settings (SQL Files) ===
+    "sql.validate": true, // Validate SQL syntax
+    "sql.hover": true, // Show hover information (e.g. table details)
+    "sql.completion.enable": true, // Enable autocompletion in SQL files
+    "sql.format.enable": true, // Enable SQL formatting on save
+    // === coc-sh Settings (Shell Scripts) ===
+    "sh.enable": true, // Enable shell script language support
+    "sh.completion.enable": true, // Provide autocompletion for shell scripts
+    "sh.hover": true, // Enable hover info for shell scripting
+    "sh.format.enable": true, // Enable formatting for shell scripts
+    // === coc-pyright Settings (Python) ===
+    // These settings configure the Pyright language server for Python,
+    // enabling strict type checking, auto-import completions, and support for organizing imports.
+    "pyright.disableOrganizeImports": false,
+    "pyright.disableLanguageServices": false,
+    "pyright.useLibraryCodeForTypes": true,
+    "pyright.typeCheckingMode": "strict",
+    "pyright.autoImportCompletion": true,
+    // Optional: Integrate with external formatters or linters (adjust as desired)
+    "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": false,
+    // === coc-markdownlint Settings (Markdown) ===
+    // Enable markdownlint to validate and provide suggestions for Markdown files.
+    // Customize rules to match a comfortable VS Code–like experience.
+    "markdownlint.enable": true,
+    "markdownlint.config": {
+        "default": true,
+        "MD013": false, // Disable line-length warnings
+        "MD033": false // Disable warnings for inline HTML (adjust as needed)
+    },
+    // === coc-json Settings (JSON) ===
+    // Enable JSON validation and formatting with schema-based autocompletion,
+    // similar to the experience in VS Code.
+    "json.validate.enable": false,
+    "json.format.enable": true,
+    "json.schemas": {
+        "https://json.schemastore.org/package.json": "/package.json",
+        "https://json.schemastore.org/tsconfig.json": "/tsconfig*.json"
+    },
+    "json.trace.server": "verbose",
+    // === coc-go Settings (Go) ===
+    // These options help bring gopls (the Go language server) into a VS Code–like workflow.
+    "go.formatOnSave": true, // Format Go code on save
+    "go.useLanguageServer": true, // Ensure gopls is active for rich language features
+    "go.lintOnSave": "package", // Lint the current package on save
+    "go.vetOnSave": "package", // Run go vet on the package on save
+    "go.goplsOptions": { // Options passed to gopls
+        "staticcheck": true, // Enable additional static analysis checks
+        "completeUnimported": true, // Auto-complete symbols from unimported packages
+        "usePlaceholders": true, // Insert placeholders for function parameters
+        "analyses": {
+            "unusedparams": true // Warn about unused parameters
+        }
+    },
+    // === coc-docker Settings (Docker) ===
+    // These settings provide validation, autocompletion, and formatting for Dockerfiles.
+    "docker.validate": true, // Validate Dockerfile syntax
+    "docker.completion.enable": true, // Enable autocompletion for Docker keywords and instructions
+    "docker.format.enable": true, // Enable formatting of Dockerfiles
+    "docker.lint": true, // Enable linting to catch common issues
+    // === coc-css Settings (CSS) ===
+    // These settings ensure robust CSS support similar to VS Code.
+    "css.validate": true, // Validate CSS syntax
+    "css.completion.enable": true, // Provide completions for CSS properties and values
+    "css.format.enable": true, // Enable CSS formatting
+    "css.lint.validProperties": [
+        "color",
+        "background-color",
+        "margin",
+        "padding"
+    ], // Example: restrict linting to common properties
+    "css.hover": true, // Show hover details (such as property definitions)
+    // === coc-clangd Settings (C/C++/Objective-C) ===
+    // This language server configuration enables clangd for C, C++, Objective-C, and Objective‑C++ files.
+    "languageserver": {
+        "clangd": {
+            "command": "clangd", // Ensure clangd is installed and in your PATH
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                "compile_commands.json",
+                ".vim/",
+                ".git/"
+            ],
+            "trace.server": "verbose" // Verbose logging for debugging; remove or lower for production
+        }
+    },
+    // === @yaegassy/coc-nginx Settings (Nginx Configuration) ===
+    // These settings enhance Nginx configuration file editing with validation,
+    // autocompletion, hover support, and formatting similar to the VS Code experience.
+    "nginx.validate": true, // Enable syntax validation of Nginx config files
+    "nginx.hover": true, // Show hover details (e.g. directive descriptions)
+    "nginx.completion.enable": true, // Enable autocompletion for Nginx directives and parameters
+    "nginx.format.enable": true, // Allow formatting of Nginx files on save
+    // Optionally, you can extend the suggestions with additional custom directives:
+    "nginx.suggest.additionalDirectives": [
+        "proxy_pass",
+        "include",
+        "server",
+        "location",
+        "listen",
+        "root",
+        "index"
+    ],
+    // Language server configurations (adjust to your installed extensions)
+    "languageserver": {
+        "protobuf": {
+            "command": "protobuf-language-server", // Command for the server
+            "args": [], // (Optional) Additional arguments
+            "filetypes": [
+                "proto"
+            ], // Enable for .proto files
+            "rootPatterns": [
+                ".git",
+                "WORKSPACE"
+            ], // Detect project root
+            "initializationOptions": {}, // Any server-specific options
+            "trace.server": "verbose" // For debugging purposes
+        },
+        "clangd": {
+            "command": "clangd",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                "compile_commands.json",
+                ".vim/",
+                ".git/"
+            ]
+        },
+        "pyright": {
+            "command": "pyright-langserver",
+            "args": [
+                "--stdio"
+            ],
+            "filetypes": [
+                "python"
+            ],
+            "rootPatterns": [
+                "pyrightconfig.json",
+                "setup.py",
+                ".git/"
+            ],
+            "trace.server": "verbose"
+        },
+        "tsserver": {
+            "command": "tsserver",
+            "filetypes": [
+                "javascript",
+                "javascriptreact",
+                "typescript",
+                "typescriptreact"
+            ],
+            "rootPatterns": [
+                "package.json",
+                "tsconfig.json",
+                ".git/"
+            ]
+        },
+        "go": {
+            "command": "gopls",
+            "filetypes": [
+                "go"
+            ],
+            "rootPatterns": [
+                "go.mod",
+                ".git/"
+            ],
+            "initializationOptions": {
+                "usePlaceholders": true,
+                "completeUnimported": true
+            }
+        }
+    }
+}
