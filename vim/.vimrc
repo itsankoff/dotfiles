@@ -181,26 +181,29 @@ colorscheme jellygrass
 " ------------------------
 " coc plugin configuration
 " ------------------------
-" Golang formatting and import management on save using coc.nvim
-autocmd BufWritePre *.go :call CocAction('organizeImport')
-autocmd BufWritePre *.go :call CocAction('format')
-" Go to definition and references key mappings
-nnoremap gd <Plug>(coc-definition) " Go to definition
-nnoremap gr <Plug>(coc-references) " Go to references
-nnoremap K :call CocActionAsync('doHover')<CR> " Show hover information
-" Show diagnostics in a floating window when the cursor is on a line with an issue
-" autocmd CursorHold * silent call CocActionAsync('doHover')
+let g:coc_config_home = '~/.vim-itsankoff'
+" Key mappings for coc.nvim
+nnoremap gd <Plug>(coc-definition)         " Go to definition
+nnoremap gr <Plug>(coc-references)           " Go to references
+nnoremap K  :call CocActionAsync('doHover')<CR> " Show hover information
+
+autocmd BufWritePre *.go call CocAction('organizeImport')
+autocmd BufWritePre *.go call CocAction('format')
+
+" Show diagnostics in a floating window when the cursor is held
 autocmd CursorHold * silent call CocActionAsync('diagnosticInfo')
+
 " Underline problematic terms based on severity
-highlight CocErrorUnderline cterm=underline gui=underline ctermfg=red guifg=red
+highlight CocErrorUnderline  cterm=underline gui=underline ctermfg=red   guifg=red
 highlight CocWarningUnderline cterm=underline gui=underline ctermfg=yellow guifg=yellow
-highlight CocInfoUnderline cterm=underline gui=underline ctermfg=yellow guifg=yellow
+highlight CocInfoUnderline    cterm=underline gui=underline ctermfg=yellow guifg=yellow
 let g:coc_diagnostic_virtual_text = {'highlight': 'CocUnderline'}
-" Trigger completion like VSCode
+
+" Trigger completion mappings (to mimic VS Code behavior)
 silent! iunmap <Tab>
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-inoremap <expr> . coc#refresh() . '.'
+inoremap <expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <expr> .   coc#refresh() . '.'
 " end coc plugin configuration
 
 " ------------------------
