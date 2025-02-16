@@ -145,25 +145,6 @@
         "padding"
     ], // Example: restrict linting to common properties
     "css.hover": true, // Show hover details (such as property definitions)
-    // === coc-clangd Settings (C/C++/Objective-C) ===
-    // This language server configuration enables clangd for C, C++, Objective-C, and Objective‑C++ files.
-    "languageserver": {
-        "clangd": {
-            "command": "clangd", // Ensure clangd is installed and in your PATH
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                "compile_commands.json",
-                ".vim/",
-                ".git/"
-            ],
-            "trace.server": "verbose" // Verbose logging for debugging; remove or lower for production
-        }
-    },
     // === @yaegassy/coc-nginx Settings (Nginx Configuration) ===
     // These settings enhance Nginx configuration file editing with validation,
     // autocompletion, hover support, and formatting similar to the VS Code experience.
@@ -195,49 +176,6 @@
             ], // Detect project root
             "initializationOptions": {}, // Any server-specific options
             "trace.server": "verbose" // For debugging purposes
-        },
-        "clangd": {
-            "command": "clangd",
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                "compile_commands.json",
-                ".vim/",
-                ".git/"
-            ]
-        },
-        "pyright": {
-            "command": "pyright-langserver",
-            "args": [
-                "--stdio"
-            ],
-            "filetypes": [
-                "python"
-            ],
-            "rootPatterns": [
-                "pyrightconfig.json",
-                "setup.py",
-                ".git/"
-            ],
-            "trace.server": "verbose"
-        },
-        "tsserver": {
-            "command": "tsserver",
-            "filetypes": [
-                "javascript",
-                "javascriptreact",
-                "typescript",
-                "typescriptreact"
-            ],
-            "rootPatterns": [
-                "package.json",
-                "tsconfig.json",
-                ".git/"
-            ]
         },
         "go": {
             "command": "gopls",
