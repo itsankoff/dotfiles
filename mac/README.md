@@ -47,14 +47,9 @@ Platform specific setups are described by separate section.
     * Finder -> Preferences -> Sidebar -> ${USER}
 * Set default directory for new Finder instances
     * Finder -> Preferences -> New Finder windows show: `${USER}`
-* Karabiner-Elements
-    * Setup privacy and security access
-    * rules
-        * `fn` -> `left control`
-        * `left control` -> `fn`
-        * if UK keyboard layout
-            * `grave_accent_and_tilde()` -> `non_us_backslash`
-            * `non_us_backslash` -> `grave_accent_and_tilde`
+* Control <-> FN key:
+    * Keyboard -> Shortcuts -> Modifier Keys:
+        * Swap control with globe key
 
 
 ## [] Additional iterm2 setup
