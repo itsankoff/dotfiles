@@ -221,3 +221,6 @@ eval "$(register-python-argcomplete pipx)"
 
 # Get some work down for f*ck sake!
 echo "FUCKING WORK $(date +%V/54)"
+
+# Added by Windsurf
+export PATH="/Users/itsankoff/.codeium/windsurf/bin:$PATH"
