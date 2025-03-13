@@ -66,4 +66,5 @@ export gui_packages=(
 export pip_packages=(
     jupyterlab
     git+https://github.com/itsankoff/grip.git@master
+    youtube-dl
 )
