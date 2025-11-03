@@ -9,8 +9,7 @@ set rtp^=~/.vim-itsankoff
 set nocompatible
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -24,6 +23,9 @@ syntax on
 
 " Indentation configuration - Set default indent rules for all files
 autocmd FileType * setlocal tabstop=4 shiftwidth=4 expandtab
+" YAML indentation configuration
+autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 expandtab
+
 " Makefile don't expand tabs
 autocmd FileType make setlocal noexpandtab
 " Be smart when to use tabs
