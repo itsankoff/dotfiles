@@ -36,6 +36,9 @@ export terminal_packages=(
     tmux
     imagemagick
     pipx
+    chruby
+    ruby-install
+    codex
 )
 
 # GUI packages
