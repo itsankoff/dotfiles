@@ -21,11 +21,16 @@ let mapleader = '`'
 " Syntax highlighting
 syntax on
 
+" -------------------------
+" Indentation configuration
+" -------------------------
+"
 " Indentation configuration - Set default indent rules for all files
 autocmd FileType * setlocal tabstop=4 shiftwidth=4 expandtab
 " YAML indentation configuration
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 expandtab
-
+" Markdown indentation configuration
+autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 expandtab
 " Makefile don't expand tabs
 autocmd FileType make setlocal noexpandtab
 " Be smart when to use tabs
@@ -148,6 +153,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 " vim-go for golang development
 Plug 'fatih/vim-go'
+" Modern python highlighting
+Plug 'vim-python/python-syntax'
 call plug#end()
 " end plugins installation
 
@@ -179,6 +186,18 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 " Set colorscheme
 colorscheme jellygrass
 " end colorscheme plugin configuration
+
+" ---------------
+" Python settings
+" ---------------
+" Use the improved syntax for Python
+let g:python_highlight_all = 1
+
+" Don't scream about whitespace 'errors' everywhere
+let g:python_highlight_space_errors = 0
+
+" If you see weird 'error' groups in new syntax, you can also try:
+" let g:python_slow_sync = 1
 
 " ------------------------
 " coc plugin configuration

@@ -82,18 +82,36 @@
     "sh.hover": true, // Enable hover info for shell scripting
     "sh.format.enable": true, // Enable formatting for shell scripts
     // === coc-pyright Settings (Python) ===
-    // These settings configure the Pyright language server for Python,
-    // enabling strict type checking, auto-import completions, and support for organizing imports.
+    // Make Pyright helpful but not insanely strict
     "pyright.disableOrganizeImports": false,
     "pyright.disableLanguageServices": false,
     "pyright.useLibraryCodeForTypes": true,
-    "pyright.typeCheckingMode": "strict",
+    // Use a saner default than "strict" for day-to-day editing
+    // valid: "off" | "basic" | "standard" | "strict"
+    "pyright.typeCheckingMode": "standard",
+    // Only fully analyze open files instead of the entire workspace
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    // Downgrade some noisy rules so they don't shout at you
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingTypeStubs": "information",
+        "reportUnknownVariableType": "information",
+        "reportUnknownMemberType": "information",
+        "reportUnusedImport": "warning",
+        "reportUnusedVariable": "information"
+    },
+    // Keep auto-import completions
     "pyright.autoImportCompletion": true,
-    // Optional: Integrate with external formatters or linters (adjust as desired)
+    // Turn off inlay type hints if they bug you (recent coc-pyright)
+    "pyright.inlayHints.functionReturnTypes": false,
+    "pyright.inlayHints.variableTypes": false,
+    "pyright.inlayHints.parameterTypes": false,
+    // Formatter / linter integration
     "python.formatting.provider": "black",
+    // Be careful with double-reporting: Pyright already finds a lot.
+    // You can keep flake8 for style, but if it's too noisy, disable it.
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
-    "python.linting.mypyEnabled": false,
+    "python.linting.mypyEnabled": false
     // === coc-markdownlint Settings (Markdown) ===
     // Enable markdownlint to validate and provide suggestions for Markdown files.
     // Customize rules to match a comfortable VS Code–like experience.
