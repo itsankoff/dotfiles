@@ -39,6 +39,7 @@ export terminal_packages=(
     chruby
     ruby-install
     codex
+    neovim
 )
 
 # GUI packages
