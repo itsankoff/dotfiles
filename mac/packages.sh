@@ -35,6 +35,7 @@ export terminal_packages=(
     fd
     tmux
     imagemagick
+    python-argcomplete
     pipx
     chruby
     ruby-install
@@ -63,6 +64,10 @@ export gui_packages=(
     zoom
     vlc
     anydesk
+    nordvpn
+    karabiner-elements
+    viber
+    whatsapp
 )
 
 # Python dependencies
