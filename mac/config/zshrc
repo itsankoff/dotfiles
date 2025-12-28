@@ -222,7 +222,7 @@ eval "$(register-python-argcomplete pipx)"
 # ruby env
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.4.7
+#chruby ruby-3.4.7
 
 # Get some work down for f*ck sake!
 echo "FUCKING WORK $(date +%V/54)"
