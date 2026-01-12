@@ -41,6 +41,7 @@ export terminal_packages=(
     ruby-install
     codex
     neovim
+    ripgrep
 )
 
 # GUI packages
@@ -68,6 +69,8 @@ export gui_packages=(
     karabiner-elements
     viber
     whatsapp
+    stremio
+    tailscale-app
 )
 
 # Python dependencies
