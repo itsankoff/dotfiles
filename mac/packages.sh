@@ -42,6 +42,7 @@ export terminal_packages=(
     codex
     neovim
     ripgrep
+    graphviz
 )
 
 # GUI packages
