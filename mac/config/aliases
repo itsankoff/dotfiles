@@ -16,7 +16,7 @@ alias жим='vim'
 
 # Git releated
 alias g="git"
-alias gs="git status"
+alias gs="git status ."
 alias gd="git diff"
 alias ga="git add"
 alias gds="git diff --staged"
