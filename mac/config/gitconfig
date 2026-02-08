@@ -7,6 +7,7 @@
     ce = checkout
     ds = diff --staged
     last = log -1
+    date = log --pretty=fuller
     logp = log --graph --oneline --pretty
     logone = log --oneline
     pullr = pull --rebase
