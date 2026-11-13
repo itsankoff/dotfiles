@@ -72,6 +72,7 @@ export gui_packages=(
     whatsapp
     stremio
     tailscale-app
+    headlamp
 )
 
 # Python dependencies
