@@ -80,3 +80,6 @@ export pip_packages=(
     git+https://github.com/itsankoff/grip.git@master
     youtube-dl
 )
+
+# replacement of grip
+# go install github.com/chrishrb/go-grip@latest
